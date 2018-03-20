@@ -14,9 +14,8 @@
 
     const makeMarkers = () => {
         return Spot.all.forEach( spot => {
-            const location = JSON.parse(spot.location);
             new google.maps.Marker({
-                position: new google.maps.LatLng(location.lat, location.lng),
+                position: new google.maps.LatLng(spot.lat, spot.lng),
                 map: Map.mapObject
             });
         });
