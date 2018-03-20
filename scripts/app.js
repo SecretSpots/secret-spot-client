@@ -6,10 +6,13 @@
         $('.view').hide();
     };
 
+    const Map = module.Map;
+    const mapView = module.mapView;
     const Spot = module.Spot;
     const User = module.User;
     const spotView = module.spotView;
     const loginView = module.loginView;
+
 
     page('*', (ctx, next) => {
         resetView();
@@ -20,8 +23,10 @@
     page('/spots/new', spotView.initNewSpot);
     page('/auth/signup', loginView.initSignup);
     page('/auth/signin', loginView.initSignin);
+    page('/map', () => mapView.initMapView());
 
     page('*', () => page.redirect('/list-view'));
+
 
     page({ hashbang: true });
 
