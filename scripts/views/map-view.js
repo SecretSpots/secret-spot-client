@@ -2,14 +2,26 @@
 
 (function(module) {
 
+    // const Map = module.Map;
+
     const mapView = {};
 
-    mapView.initMapView = () => {
+    let map = null;
+
+    mapView.initMap = () => {
         const center = { lat: 45.519900, lng: -122.678316 };
-        const map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 4,
+        map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 14,
             center: center
         });
+        const marker = new google.maps.Marker({
+            position: center,
+            map: map
+        });
+    };
+
+    mapView.initMapView = () => {
+
     };
 
     module.mapView = mapView;

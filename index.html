@@ -30,23 +30,22 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
-    <script src="scripts/views/map-view.js"></script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrLufX8_DAF_wPD79dBtiMgnktq6nxAt4&callback=initMap">
-    </script>
     <script>
-        const API_URL = window.location.protocol === 'https:'
-        ? 'https://secret-spots.herokuapp.com/api/v1'
-        : 'http://localhost:3000/api/v1';
-
-        window.module = {};
+            const API_URL = true // window.location.protocol === 'https:'
+            ? 'https://secret-spots.herokuapp.com/api/v1'
+            : 'http://localhost:3000/api/v1';
+    
+            window.module = {};
     </script>
-    <script src="scripts/models/spots.js"></script>
     <script src="scripts/models/user.js"></script>
+    <script src="scripts/models/map.js"></script>
+    <script src="scripts/views/map-view.js"></script>
     <script src="scripts/views/spots-view.js"></script>
     <script src="scripts/views/login-view.js"></script>
     <script src="scripts/views/error-view.js"></script>
     <script src="scripts/app.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrLufX8_DAF_wPD79dBtiMgnktq6nxAt4&callback=module.mapView.initMap">
+    </script>
 
 </body>
 </html>
