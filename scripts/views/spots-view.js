@@ -13,13 +13,13 @@
         $('#list-view').on('click', 'a.show-more', function(e) {
             e.preventDefault();
             if ($(this).text() === 'Show More') {
-                $(this).parent().find('*').fadeIn();
+                $(this).parent().find('*').slideDown();
                 $(this).html('Show Less');
             } else {
                 $(this).html('Show More');
-                $(this).parent().find('.hide').hide();
+                $(this).parent().find('.hide').slideUp();
             }
-        })
+        });
     };
 
     function resetView() {
