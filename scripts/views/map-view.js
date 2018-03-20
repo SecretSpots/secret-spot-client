@@ -2,7 +2,7 @@
 
 (function(module) {
 
-    // const Map = module.Map;
+    const Map = module.Map;
 
     const mapView = {};
 
@@ -14,10 +14,8 @@
             zoom: 14,
             center: center
         });
-        const marker = new google.maps.Marker({
-            position: center,
-            map: map
-        });
+
+        window.eqfeed_callback = Map.makeMarkers();
     };
 
     mapView.initMapView = () => {

@@ -2,23 +2,16 @@
 
 (function(module) {
 
-    const Location = module.Location;
+    const Spot = module.Spot;
 
-    function Map(data) {
-        Object.keys(data).map(key => this[key] = data[key]);
-    }
+    const Map = {};
 
-    Map.fetchAll = function() {
-        $.getJSON(`${API_URL}/spots`) //eslint-disable-line
-            .then(data => {
-                Location.all = data.map(each => new Location(each));
-            });
-    };
+    Map.makeMarkers = () => {
+        Spot.fetchAll();
 
-    Map.makeMarkers = function() {
-
-        Location.all.map( spot => {
-            const coords = new google.maps.LatLng(spot.location[0], spot.location[1]);
+        Spot.all.map( spot => {
+            const location = JSON.parse(spot.location);
+            const coords = new google.maps.LatLng(location.lat, location.lng);
             const marker = new google.maps.Marker({
                 position: coords,
                 map: map

@@ -17,7 +17,6 @@
 
     Spot.create = data => {
         return $.post(`${API_URL}/spots/new`, data);
-        
     };
 
     module.Spot = Spot;
