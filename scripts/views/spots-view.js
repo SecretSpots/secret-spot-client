@@ -36,9 +36,9 @@
                 event.preventDefault();
 
                 const data = {
-                    spot_id: $('input[name=spot_id]').val(),
                     name: $('input[name=name]').val(),
                     user_id: $('input[name=user_id]').val(),
+                    address: $('input[name=address]').val(),
                     location: $('input[name=location]').val(),
                     note: $('input[name=note]').val(),
                     date: $('input[name=date]').val()
