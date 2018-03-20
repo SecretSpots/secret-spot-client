@@ -4,7 +4,21 @@
     const Spot = module.Spot;
     const spotView = module.spotView;
 
-    page('/', () => Spot.fetchAll().then(spotView.initListView));
+    const resetView = () => {
+        $('.view').hide();
+    };
+
+    page('*', (ctx, next) => {
+        resetView();
+        next();
+    });
+
+    page('/list-view', () => Spot.fetchAll().then(spotView.initListView));
+
+
+    page('/spots/new', spotView.initNewSpot);
+
+    page('*', () => page.redirect('/list-view'));
 
     page({ hashbang: true });
 
