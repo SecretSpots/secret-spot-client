@@ -10,6 +10,7 @@
 
     loginView.initSignup = () => {
         if(User.current) {
+            $('#auth-type').hide();
             $('#auth-form').hide();
             $('#logged-in').show();
         } else {
@@ -23,6 +24,7 @@
 
     loginView.initSignin = () => {
         if(User.current) {
+            $('#auth-type').hide();
             $('#auth-form').hide();
             $('#logged-in').show();
         } else {
