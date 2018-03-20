@@ -13,17 +13,20 @@
     const spotView = module.spotView;
     const loginView = module.loginView;
 
+    const loadSpots = (ctx, next) => {
+        Spot.fetchAll().then(next);
+    };
 
     page('*', (ctx, next) => {
         resetView();
         next();
     });
-    page('/', () => Spot.fetchAll().then(spotView.initListView));
-    page('/list-view', () => Spot.fetchAll().then(spotView.initListView));
+    page('/', loadSpots, spotView.initListView);
+    page('/list-view', loadSpots, spotView.initListView);
     page('/spots/new', spotView.initNewSpot);
     page('/auth/signup', loginView.initSignup);
     page('/auth/signin', loginView.initSignin);
-    page('/map', () => mapView.initMapView());
+    page('/map', loadSpots, mapView.initMapView);
 
     page('*', () => page.redirect('/list-view'));
 

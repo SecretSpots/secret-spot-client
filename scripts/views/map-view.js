@@ -3,25 +3,24 @@
 (function(module) {
 
     const Map = module.Map;
+    const Spot = module.Spot;
 
     const mapView = {};
 
-    let map = null;
-
-    mapView.initMap = () => {
-        const center = { lat: 45.519900, lng: -122.678316 };
-        map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 14,
-            center: center
-        });
-
-        window.eqfeed_callback = Map.makeMarkers();
-    };
-
     mapView.initMapView = () => {
+        makeMarkers();
         $('#map-view').show();
     };
 
+    const makeMarkers = () => {
+        return Spot.all.forEach( spot => {
+            const location = JSON.parse(spot.location);
+            new google.maps.Marker({
+                position: new google.maps.LatLng(location.lat, location.lng),
+                map: Map.mapObject
+            });
+        });
+    };
     module.mapView = mapView;
 
 })(window.module);

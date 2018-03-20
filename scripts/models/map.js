@@ -2,20 +2,19 @@
 
 (function(module) {
 
-    const Spot = module.Spot;
+    // const Spot = module.Spot;
 
     const Map = {};
 
-    Map.makeMarkers = () => {
-        Spot.fetchAll();
+    Map.markers = [];
 
-        Spot.all.map( spot => {
-            const location = JSON.parse(spot.location);
-            const coords = new google.maps.LatLng(location.lat, location.lng);
-            const marker = new google.maps.Marker({
-                position: coords,
-                map: map
-            });
+    Map.mapObject = null;
+
+    Map.initMap = () => {
+        const center = { lat: 45.519900, lng: -122.678316 };
+        Map.mapObject = new google.maps.Map(document.getElementById('map'), {
+            zoom: 13,
+            center: center
         });
 
     };
