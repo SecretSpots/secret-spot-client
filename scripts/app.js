@@ -6,4 +6,6 @@
 
     page('/', () => Spot.fetchAll().then(spotView.initListView));
 
+    page({ hashbang: true });
+
 })(window.module);
