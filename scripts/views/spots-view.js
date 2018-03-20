@@ -1,12 +1,26 @@
 'use strict';
 
 (function(module) {
-
+    
     const Spot = module.Spot;
-
+    
     const listTemplate = Handlebars.compile($('#spot-list-template').html());
-
+    
     const spotView = {};
+    
+    spotView.showMore = () => {
+        $('.hide').hide();
+        $('#list-view').on('click', 'a.show-more', function(e) {
+            e.preventDefault();
+            if ($(this).text() === 'Show More') {
+                $(this).parent().find('*').fadeIn();
+                $(this).html('Show Less');
+            } else {
+                $(this).html('Show More');
+                $(this).parent().find('.hide').hide();
+            }
+        })
+    };
 
     function resetView() {
         $('.view').hide();
@@ -17,6 +31,7 @@
         $('#list-view').show();
         $('#list-view').empty();
         spotView.loadSpots();
+        spotView.showMore();
     };
 
     spotView.loadSpots = () => {
@@ -52,6 +67,7 @@
                     .catch(console.error);
             });
     };
+
 
     module.spotView = spotView;
 

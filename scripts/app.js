@@ -13,7 +13,6 @@
     const spotView = module.spotView;
     const loginView = module.loginView;
 
-
     page('*', (ctx, next) => {
         resetView();
         next();
@@ -24,10 +23,10 @@
     page('/auth/signup', loginView.initSignup);
     page('/auth/signin', loginView.initSignin);
     page('/map', () => mapView.initMapView());
-
+    
     page('*', () => page.redirect('/list-view'));
-
-
+    
+    
     page({ hashbang: true });
 
     User.tryToken();
