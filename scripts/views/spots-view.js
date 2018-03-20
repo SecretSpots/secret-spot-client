@@ -9,6 +9,7 @@
     const spotView = {};
 
     spotView.initListView = () => {
+        $('#list-view').show();
         spotView.loadSpots();
     };
 

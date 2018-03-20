@@ -7,7 +7,9 @@
     }
 
     Map.all = [];
+    const locations = []
 
+    
     module.Map = Map;
 
 })(window.module);
