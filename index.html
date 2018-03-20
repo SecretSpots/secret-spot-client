@@ -43,6 +43,8 @@
             <p id="logged-in">you are logged in</p>
     </section>
 
+    <section id="detail-view" class="view"></section>
+
     <section id="new-spot-view" class="view">
         <h2 class="view-title">Add New Spot</h2>
         <form id="add-spot">
@@ -80,13 +82,24 @@
 
     <!-- templates -->
     <template id="spot-list-template">
+        <a href="/spots/{{spot_id}}">
+            <div>
+                <h2>{{name}}</h2>
+                <h3>{{location}}</h3>
+                <p>{{note}}</p>
+            </div>
+        </a>
+    </template>
+    
+    <template id="detail-view-template">
         <div>
             <h2>{{name}}</h2>
             <h3>{{location}}</h3>
             <p>{{note}}</p>
+            <h3>Added by {{user_id}} on {{date}}</h3>
         </div>
     </template>
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>

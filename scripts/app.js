@@ -18,12 +18,13 @@
         resetView();
         next();
     });
-    page('/', () => Spot.fetchAll().then(spotView.initListView));
     page('/list-view', () => Spot.fetchAll().then(spotView.initListView));
     page('/spots/new', spotView.initNewSpot);
     page('/auth/signup', loginView.initSignup);
     page('/auth/signin', loginView.initSignin);
     page('/map', () => mapView.initMapView());
+
+    page('/spots/:id', ctx => Spot.fetchOne(ctx.params.id).then(spotView.initDetailView));
 
     page('*', () => page.redirect('/list-view'));
 

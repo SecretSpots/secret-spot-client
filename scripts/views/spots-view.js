@@ -5,6 +5,7 @@
     const Spot = module.Spot;
 
     const listTemplate = Handlebars.compile($('#spot-list-template').html());
+    const detailViewTemplate = Handlebars.compile($('#detail-view-template').html());
 
     const spotView = {};
 
@@ -51,6 +52,17 @@
                     })
                     .catch(console.error);
             });
+    };
+
+    spotView.initDetailView = () => {
+        resetView();
+
+        const html = detailViewTemplate(Spot.detail);
+
+        $('#detail-view')
+            .empty()
+            .append(html)
+            .show();
     };
 
     module.spotView = spotView;
