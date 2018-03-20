@@ -5,7 +5,7 @@
     const resetView = () => {
         $('.view').hide();
     };
-    
+
     const Map = module.Map;
     const mapView = module.mapView;
     const Spot = module.Spot;
@@ -23,10 +23,10 @@
     page('/spots/new', spotView.initNewSpot);
     page('/auth/signup', loginView.initSignup);
     page('/auth/signin', loginView.initSignin);
+    page('/map', () => mapView.initMapView());
 
     page('*', () => page.redirect('/list-view'));
 
-    page('/map', () => mapView.initMapView());
 
     page({ hashbang: true });
 
