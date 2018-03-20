@@ -1,16 +1,10 @@
 'use strict';
 
 (function(module) {
-    
-    const template = Handlebars.compile($('#spot-list-template').html());
 
     function Spot(data) {
         Object.keys(data).map(key => this[key] = data[key]);
     }
-
-    Spot.prototype.toHtml = function() {
-        return template(this);
-    };
 
     Spot.all = [];
 
