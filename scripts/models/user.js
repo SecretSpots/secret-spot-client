@@ -14,7 +14,7 @@
 
     function letUserPass(response) {
         User.current = true;
-        window.localStorage.token = response.token;
+        localStorage.setItem('token', response.token);
         setTokenHeader(response.token);
     }
 
@@ -25,7 +25,7 @@
             });
     };
   
-    User.signup = credentials => {
+    User.signin = credentials => {
         return $.post(`${API_URL}/auth/signin`, credentials)
             .then(response => {
                 letUserPass(response);
@@ -33,7 +33,7 @@
     };
 
     User.tryToken = () => {
-        const token = window.localStorage.token;
+        const token = localStorage.getItem('token');
         if (!token) return;
         setTokenHeader(token);
         User.current = true;
