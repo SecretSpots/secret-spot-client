@@ -10,15 +10,71 @@
     <link rel="stylesheet" href="styles/layout.css">
     <link rel="stylesheet" href="styles/modules.css">
     <title>Secret Spots</title>
+
+    <nav class="nav-menu clearfix">
+        <ul>
+          <li><a href="/list-view">Home</a></li>
+          <li><a href="/spots/new">Add Spot</a></li>
+          <li><a href="/map">Map</a></li>
+        </ul>
+      </nav>
 </head>
 <body>
     <!-- views -->
-    <section id="list-view" class="view">
-        <a href="/map">map</a>
-    </section>
     <section id="map-view" class="view">
         <div id="map"></div>
     </section>
+
+    <section id="list-view" class="view">
+        
+    </section>
+
+
+    <section id="auth-view" class="view">
+        <a id="auth-type" href="/auth/signin">sign in</a>
+        <form id="auth-form">
+            <input type="text" id="username" name="username" placeholder="username">
+            <input type="text" id="password" name="password" placeholder="password">
+            <button type="submit">enter</button>
+        </form>
+            <pre id="auth-error"></pre>
+            <p id="logged-in">you are logged in</p>
+    </section>
+
+    <section id="new-spot-view" class="view">
+        <h2 class="view-title">Add New Spot</h2>
+        <form id="add-spot">
+          <fieldset>
+            <label>
+              Spot Id:
+              <input type="text" name="spot_id">
+            </label>
+            <label>
+              Name of Spot:
+              <input type="text" name="name">
+            </label>
+            <label>
+              User Id:
+              <input type="text" name="user_id">
+            </label>
+            <label>
+              Location:
+              <input type="text" name="location">
+            </label>
+            <label>
+              Note:
+              <input type="text-area" name="note">
+            </label>
+            <label>
+                Date:
+                <input type="text" name="date">
+            </label>
+            <div>
+              <input id="form-button" type="submit" value="Add Spot">
+            </div>
+          </fieldset>
+        </form>
+      </section>
 
     <!-- templates -->
     <template id="spot-list-template">

@@ -7,7 +7,6 @@
     }
 
     Map.all = [];
-    const locations = []
 
     
     module.Map = Map;
