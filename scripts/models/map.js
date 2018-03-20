@@ -15,7 +15,7 @@
             });
     };
 
-    Map.makeMarkers = function(data) {
+    Map.makeMarkers = function() {
 
         Location.all.map( spot => {
             const coords = new google.maps.LatLng(spot.location[0], spot.location[1]);
