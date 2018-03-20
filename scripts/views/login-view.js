@@ -34,6 +34,23 @@
         $('#auth-view').show();
     };
 
+    const handleSubmit = e => {
+        e.preventDefault();
+        const credentials = {
+            username: $('#username').val(),
+            password: $('#password').val()
+        };
 
+        User[method](credentials)
+            .then(() => {
+                $('#auth-form')[0].reset();
+                page('/');
+            })
+            .catch(err => {
+                $('#auth-error').text(err.responseJSON.error);
+            });
+    };
+
+    module.loginView = loginView;
 
 })(window.module);
