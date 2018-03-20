@@ -22,6 +22,8 @@
 
     mapView.initMapView = () => {
 
+        $('#map-view').show();
+
     };
 
     module.mapView = mapView;
