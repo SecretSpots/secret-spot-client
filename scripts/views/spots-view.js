@@ -9,6 +9,8 @@
 
     const detailViewTemplate = Handlebars.compile($('#detail-view-template').html());
 
+    const updateViewTemplate = Handlebars.compile($('#update-view-template').html());
+
     const spotView = {};
     
     spotView.showMore = () => {
@@ -70,6 +72,40 @@
                     .catch(console.error);
             });
     };
+
+    spotView.initUpdateView = () => {
+        const spot = Spot.detail;
+        const html = updateViewTemplate(spot);
+
+        $('#update-view')
+            .empty()
+            .append(html)
+            .fadeIn();
+
+        $('#update-spot-form')
+            .off('submit')
+            .on('submit', event => {
+                event.preventDefault();
+
+                const data = {
+                    note: $('textarea[name=note]').val(),
+                    spot_id: spot.spot_id
+                };
+
+                Spot.update(data)
+                    .then( () => {
+                        $('#add-spot')[0].reset();
+                        page(`/spots/${spot.spot_id}`);
+                    })
+                    .catch(console.error);
+            });
+
+    };
+            
+
+
+
+    
 
     spotView.initDetailView = () => {
         resetView();

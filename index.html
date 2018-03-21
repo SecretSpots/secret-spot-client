@@ -44,6 +44,8 @@
 
     <section id="detail-view" class="view"></section>
 
+    <section id="update-view" class="view"></section>
+
     <section id="new-spot-view" class="view">
         <h2 class="view-title">Add New Spot</h2>
         <form id="add-spot">
@@ -81,6 +83,20 @@
       </footer>
 
     <!-- templates -->
+    <template id="update-view-template">
+        <h2>{{name}}</h2>
+        <p>{{address}}</p>
+        <form id="update-spot-form">
+            <label>Note:
+                <textarea id="note" placeholder="{{note}}" name="note"></textarea>
+            </label>
+            <div>
+                <input id="update-button" type="submit" value="Update">
+            </div>
+        </form>
+        <p>Added by {{user_id}} on {{date}}</p>
+    </template>
+
     <template id="spot-list-template">
             <div>
                 <h2>{{name}}</h2>
@@ -99,8 +115,10 @@
             <h3>{{address}}</h3>
             <p>{{note}}</p>
             <h3>Added by {{username}} on {{date}}</h3>
-            <button id="delete-spot">Delete This Spot</button>
+            <button id="delete-spot">Delete this Spot</button>
             <p id="delete-status"></p>
+            <button id="update-spot">Update this Spot</button>
+            <p id="update-status"></p>
         </div>
     </template>
 
