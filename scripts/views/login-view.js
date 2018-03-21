@@ -18,8 +18,6 @@
             $('#auth-type').attr('href', authTypeLink).text(switchLinkText).fadeIn();
             $('#auth-form').off('submit').on('submit', handleSubmit).fadeIn();
             $('#user-status').hide();
-            $('#current-username').hide();
-            $('#logout').hide();
         }
         $('#auth-view').fadeIn();
     }
@@ -50,14 +48,6 @@
                 $('#auth-form')[0].reset();
                 page('/');
                 $('#user-status').text('you are logged in').fadeIn();
-                $('#current-username').text(`${credentials.username}`).fadeIn();
-                $('#logout')
-                    .fadeIn()
-                    .off('click')
-                    .on('click', () => {
-                        User.logout();
-                        page('/auth/signin');
-                    });
             })
             .catch(err => {
                 $('#user-status').text(err.responseJSON.error).fadeIn();
