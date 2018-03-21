@@ -7,30 +7,45 @@
 
     const mapView = {};
     let infowindow = null; //define in outer scope to avoid duplicates
+    let markersAll = [];
 
     mapView.initMapView = () => {
+        setMarkers(null, markersAll);
+        markersAll = [];
         makeMarkers(Spot.all);
+        setMarkers(Map.mapObject, markersAll);
         $('#map-view').show();
     };
 
     const makeMarkers = (data) => {
-        if (infowindow === null) infowindow = new google.maps.InfoWindow();
-        
-        return data.forEach( spot => {
+        data.forEach( spot => {
             const marker = new google.maps.Marker({
                 position: new google.maps.LatLng(spot.lat, spot.lng),
-                map: Map.mapObject
+                name: spot.name,
+                id: spot.spot_id
             });
 
-            const contentString = `<h4>${spot.name}</h4><a href="/spots/${spot.spot_id}">Details</a>`;
+            markersAll.push(marker);
+        });
+    };
+
+    const setMarkers = (map, markers) => {
+
+        markers.forEach( marker => {
+            if (infowindow === null) infowindow = new google.maps.InfoWindow();
+
+            const contentString = `<h4>${marker.name}</h4><a href="/spots/${marker.id}">Details</a>`;
+            
+            marker.setMap(map);
 
             marker.addListener('click', function () {
                 infowindow.setContent(contentString);
                 infowindow.open(Map.mapObject, marker);
             });
 
+        });
+    };
 
-        });};
     module.mapView = mapView;
 
 })(window.module);
