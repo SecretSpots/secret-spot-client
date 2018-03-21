@@ -100,13 +100,13 @@
     <template id="spot-list-template">
             <div>
                 <h2>{{name}}</h2>
-                  <div class="hide">
-                    <p>{{address}}</p>
-                    <p>{{note}}</p>
-                    <p>Added by {{username}} on {{date}}</p>
-                  </div>
-                <button class="list-admin-options" id="list-delete-spot">Delete this Spot</button>
-                <a href="spots/{{spot_id}}/update"><button class="list-admin-options" id="list-update-spot">Update this Spot</button></a>
+                <div class="hide">
+                  <p>{{address}}</p>
+                  <p>{{note}}</p>
+                  <p>Added by {{username}} on {{date}}</p>
+                </div>
+                <button class="list-delete-spot" data-spot-id="{{spot_id}}">Delete this Spot</button>
+                <a href="spots/{{spot_id}}/update"><button class="list-update-spot">Update this Spot</button></a>
                 <a href="#" class="show-more" data-username="{{username}}">Show More</a>
             </div>
     </template>

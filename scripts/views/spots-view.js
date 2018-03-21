@@ -15,24 +15,27 @@
     
     spotView.showMore = () => {
         $('.hide').slideUp(0);
+        $('button').hide();
         $('#list-view').off('click', 'a.show-more');
         $('#list-view').on('click', 'a.show-more', function(e) {
             e.preventDefault();
             if ($(this).text() === 'Show More') {
                 console.log($(this).data('username'));
                 console.log(User.name);
-                $(this).parent().find('*').slideDown(200);
-                $(this).html('Show Less');
+                
                 if(User.name === $(this).data('username')) {
-                    $('#list-delete-spot').show();
-                    $('#list-update-spot').show();
+                    $(this).parent().find('button').show();
+                    $(this).parent().find('.hide').slideDown(200);
                 } else {
-                    $('#list-delete-spot').hide();
-                    $('#list-update-spot').hide();
+                    $(this).parent().find('button').hide();
+                    $(this).parent().find('.hide').slideDown(200);
                 }
+                $(this).html('Show Less');
             } else {
                 $(this).html('Show More');
                 $(this).parent().find('.hide').slideUp(200);
+                $('button').hide();
+                
             }
         });
     };
@@ -47,6 +50,19 @@
         $('#list-view').empty();
         spotView.loadSpots();
         spotView.showMore();
+
+        $('.list-delete-spot')
+            .off('click')
+            .on('click', function() {
+                Spot.delete($(this).data('spot-id'))
+                    .then(response => {
+                        console.log(response);
+                        page('/list-view');
+                    })
+                    .catch(err => {
+                        $('#delete-status').text(err.responseJSON.error).fadeIn();
+                    });
+            });
     };
 
     spotView.loadSpots = () => {
@@ -138,7 +154,7 @@
                     Spot.delete(Spot.detail.spot_id)
                         .then(response => {
                             console.log(response);
-                            page('/list-view');
+                            page('/map');
                         })
                         .catch(err => {
                             $('#delete-status').text(err.responseJSON.error).fadeIn();
