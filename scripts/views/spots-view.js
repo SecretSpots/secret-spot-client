@@ -10,12 +10,12 @@
     const spotView = {};
 
     function resetView() {
-        $('.view').hide();
+        $('.view').fadeOut();
     }
 
     spotView.initListView = () => {
         resetView();
-        $('#list-view').show();
+        $('#list-view').fadeIn();
         $('#list-view').empty();
         spotView.loadSpots();
     };
@@ -29,7 +29,7 @@
 
     spotView.initNewSpot = () => {
         resetView();
-        $('#new-spot-view').show();
+        $('#new-spot-view').fadeIn();
 
         $('#add-spot')
             .off('submit')
@@ -62,7 +62,7 @@
         $('#detail-view')
             .empty()
             .append(html)
-            .show();
+            .fadeIn();
     };
 
     module.spotView = spotView;

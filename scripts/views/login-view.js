@@ -10,30 +10,30 @@
 
     loginView.initSignup = () => {
         if(User.current) {
-            $('#auth-type').hide();
-            $('#auth-form').hide();
-            $('#logged-in').show();
+            $('#auth-type').fadeOut();
+            $('#auth-form').fadeOut();
+            $('#logged-in').fadeIn();
         } else {
             method = 'signup';
             $('#auth-type').attr('href', '/auth/signin').text('Have an account? Sign in.');
             $('#auth-form').off('submit').on('submit', handleSubmit);
-            $('#logged-in').hide();
+            $('#logged-in').fadeOut();
         }
-        $('#auth-view').show();
+        $('#auth-view').fadeIn();
     };
 
     loginView.initSignin = () => {
         if(User.current) {
-            $('#auth-type').hide();
-            $('#auth-form').hide();
-            $('#logged-in').show();
+            $('#auth-type').fadeOut();
+            $('#auth-form').fadeOut();
+            $('#logged-in').fadeIn();
         } else {
             method = 'signin';
             $('#auth-type').attr('href', '/auth/signup').text('No account? Sign up.');
             $('#auth-form').off('submit').on('submit', handleSubmit);
-            $('#logged-in').hide();
+            $('#logged-in').fadeOut();
         }
-        $('#auth-view').show();
+        $('#auth-view').fadeIn();
     };
 
     const handleSubmit = e => {
