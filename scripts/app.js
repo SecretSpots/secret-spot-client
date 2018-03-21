@@ -2,15 +2,21 @@
 
 (function(module) {
 
+    const mapView = module.mapView;
+    const Spot = module.Spot;
+    const User = module.User;
+    const spotView = module.spotView;
+    const loginView = module.loginView;
+    
+    User.tryToken();
+
     const resetView = () => {
         $('.view').hide();
     };
 
     const displayUser = () => {
-        if (localStorage.getItem('username')) {
-            User.current = true;
-            const username = localStorage.getItem('username');
-            $('#current-username').text(username).fadeIn();
+        if (User.current) {
+            $('#current-username').text(User.name).fadeIn();
             $('#logout')
                 .fadeIn()
                 .off('click')
@@ -19,17 +25,10 @@
                     page('/auth/signin');
                 });
         } else {
-            User.current = false;
             $('#current-username').empty().hide();
             $('#logout').hide();
         }
     };
-
-    const mapView = module.mapView;
-    const Spot = module.Spot;
-    const User = module.User;
-    const spotView = module.spotView;
-    const loginView = module.loginView;
 
     const loadSpots = (ctx, next) => {
         Spot.fetchAll().then(next);
@@ -51,7 +50,5 @@
     
     
     page({ hashbang: true });
-
-    User.tryToken();
 
 })(window.module);

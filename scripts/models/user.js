@@ -11,10 +11,15 @@
     };
 
     function letUserPass(response) {
-        User.current = true;
         localStorage.setItem('token', response.token);
         localStorage.setItem('username', response.username);
-        setTokenHeader(response.token);
+        setUser(response.username, response.token);
+    }
+    
+    function setUser(username, token) {
+        User.current = true;
+        User.name = username;
+        setTokenHeader(token);
     }
 
     User.signup = credentials => {
@@ -34,13 +39,16 @@
     User.tryToken = () => {
         const token = localStorage.getItem('token');
         if (!token) return;
-        setTokenHeader(token);
+        const username = localStorage.getItem('username');
+        setUser(username, token);
     };
 
     User.logout = () => {
         window.localStorage.removeItem('token');
         window.localStorage.removeItem('username');
+        setTokenHeader(null);
         User.current = false;
+        delete User.name;
     };
 
     module.User = User;
