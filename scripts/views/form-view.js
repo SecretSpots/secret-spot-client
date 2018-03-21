@@ -6,11 +6,16 @@
 
     const formView = {};
 
+    formView.autocomplete = {};
+
     formView.initForm = () => {
-        var input = document.getElementById('locationTextField');
-        autocomplete = new google.maps.places.Autocomplete(input);
-        autocomplete.addListener('place_changed', function() {
-            var place = autocomplete.getPlace();
+        $('#new-spot-view').show();
+        //empty form
+        
+        const input = document.getElementById('locationTextField');
+        formView.autocomplete = new google.maps.places.Autocomplete(input);
+        formView.autocomplete.addListener('place_changed', function() {
+            const place = formView.autocomplete.getPlace();
             console.log(place);
         });
     };

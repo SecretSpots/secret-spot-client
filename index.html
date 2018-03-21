@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/layout.css">
     <link rel="stylesheet" href="styles/modules.css">
+
     <title>Secret Spots</title>
 
     <nav class="nav-menu clearfix">
@@ -46,69 +47,31 @@
 
     <section id="new-spot-view" class="view">
         <h2 class="view-title">Add New Spot</h2>
-        <form id="add-spot">
-          <fieldset>
-            <label>
-              Name of Spot:
-              <input type="text" name="name">
-            </label>
-            <label>
-              User Id:
-              <input type="text" name="user_id">
-            </label>
-            <label>
-                Address:
-                <input type="text" name="address" class="autocomplete" on-focus="geolocate()">
-            </label>
-            <label>
-              Note:
-              <input type="text-area" name="note">
-            </label>
-            <label>
-                Date mm/dd/yy:
-                <input type="text" name="date">
-            </label>
-            <div>
-              <input id="form-button" type="submit" value="Add Spot">
-            </div>
-          </fieldset>
-        </form>
-        <div id="locationField">
-                <input id="locationTextField" placeholder="Enter your address"
-                       type="text"></input>
-              </div>
-              
-              <table id="address">
-                <tr>
-                  <td class="label">Street address</td>
-                  <td class="slimField"><input class="field" id="street_number"
-                        disabled="true"></input></td>
-                  <td class="wideField" colspan="2"><input class="field" id="route"
-                        disabled="true"></input></td>
-                </tr>
-                <tr>
-                  <td class="label">City</td>
-                  <!-- Note: Selection of address components in this example is typical.
-                       You may need to adjust it for the locations relevant to your app. See
-                       https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
-                  -->
-                  <td class="wideField" colspan="3"><input class="field" id="locality"
-                        disabled="true"></input></td>
-                </tr>
-                <tr>
-                  <td class="label">State</td>
-                  <td class="slimField"><input class="field"
-                        id="administrative_area_level_1" disabled="true"></input></td>
-                  <td class="label">Zip code</td>
-                  <td class="wideField"><input class="field" id="postal_code"
-                        disabled="true"></input></td>
-                </tr>
-                <tr>
-                  <td class="label">Country</td>
-                  <td class="wideField" colspan="3"><input class="field"
-                        id="country"></input></td>
-                </tr>
-              </table>
+        <input id="locationTextField" placeholder="Where's your spot?" type="text"></input>
+
+        <section id="form-view">
+            <form id="add-spot">
+                <label>
+                    Name of Spot:
+                    <input type="text" name="name">
+                </label>
+                <label>
+                    Address:
+                    <input type="text" name="address" class="autocomplete">
+                </label>
+                <label>
+                    Geolocation:
+                    <input type="text" name="address" class="autocomplete" disabled="disabled">
+                </label>
+                <label>
+                    Note:
+                    <input type="text-area" name="note">
+                </label>
+                <div>
+                    <input id="form-button" type="submit" value="Share">
+                  </div>
+            </form>
+        </section>
       </section>
 
       <footer>
@@ -149,18 +112,19 @@
             : 'http://localhost:3000/api/v1';
             
             window.module = {};
-            </script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrLufX8_DAF_wPD79dBtiMgnktq6nxAt4&libraries=places"></script>
+    </script>
+
     <script src="scripts/models/spots.js"></script>
     <script src="scripts/models/user.js"></script>
     <script src="scripts/models/map.js"></script>
+    <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBrLufX8_DAF_wPD79dBtiMgnktq6nxAt4&libraries=places&callback=module.Map.initMap'></script> 
+    <!-- leave google call between map js and form-view -->
     <script src="scripts/views/map-view.js"></script>
     <script src="scripts/views/spots-view.js"></script>
     <script src="scripts/views/login-view.js"></script>
     <script src="scripts/views/error-view.js"></script>
     <script src="scripts/views/form-view.js"></script>
     <script src="scripts/app.js"></script>
-    <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrLufX8_DAF_wPD79dBtiMgnktq6nxAt4&callback=module.Map.initMap"> -->
     </script>
 
 </body>
