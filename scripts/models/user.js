@@ -13,12 +13,13 @@
     function letUserPass(response) {
         localStorage.setItem('token', response.token);
         localStorage.setItem('username', response.username);
-        setUser(response.username, response.token);
+        setUser(response.username, response.user_id, response.token);
     }
     
-    function setUser(username, token) {
+    function setUser(username, id, token) {
         User.current = true;
         User.name = username;
+        User.id = id;
         setTokenHeader(token);
     }
 
@@ -49,6 +50,7 @@
         setTokenHeader(null);
         User.current = false;
         delete User.name;
+        delete User.id;
     };
 
     module.User = User;

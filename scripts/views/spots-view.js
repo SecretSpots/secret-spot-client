@@ -2,6 +2,7 @@
 
 (function(module) {
     
+    const User = module.User;
     const Spot = module.Spot;
     
     const listTemplate = Handlebars.compile($('#spot-list-template').html());
@@ -80,16 +81,23 @@
             .append(html)
             .fadeIn();
 
-        $('#delete-spot').off('click').on('click', () => {
-            Spot.delete(Spot.detail.spot_id)
-                .then(response => {
-                    console.log(response);
-                    page('/list-view');
-                })
-                .catch(err => {
-                    $('#delete-status').text(err.responseJSON.error).fadeIn();
+        if (User.name === Spot.detail.username) {
+            $('#delete-spot')
+                .show()
+                .off('click')
+                .on('click', () => {
+                    Spot.delete(Spot.detail.spot_id)
+                        .then(response => {
+                            console.log(response);
+                            page('/list-view');
+                        })
+                        .catch(err => {
+                            $('#delete-status').text(err.responseJSON.error).fadeIn();
+                        });
                 });
-        });
+        } else {
+            $('#delete-spot').hide();
+        }
 
     };
 
