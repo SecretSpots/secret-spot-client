@@ -6,6 +6,7 @@
     const Spot = module.Spot;
     const User = module.User;
     const spotView = module.spotView;
+    const formView = module.formView;
     const loginView = module.loginView;
     
     User.tryToken();
@@ -41,7 +42,7 @@
     });
   
     page('/list-view', loadSpots, spotView.initListView);
-    page('/spots/new', spotView.initNewSpot);
+    page('/spots/new', formView.initForm);
     page('/auth/signup', loginView.initSignup);
     page('/auth/signin', loginView.initSignin);
     page('/map', loadSpots, mapView.initMapView);
