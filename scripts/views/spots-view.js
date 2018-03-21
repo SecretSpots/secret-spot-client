@@ -44,6 +44,7 @@
         });
     };
 
+
     spotView.initNewSpot = () => {
         resetView();
         $('#new-spot-view').fadeIn();
