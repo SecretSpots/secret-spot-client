@@ -6,7 +6,6 @@
         $('.view').hide();
     };
 
-    const Map = module.Map;
     const mapView = module.mapView;
     const Spot = module.Spot;
     const User = module.User;

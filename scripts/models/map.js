@@ -16,7 +16,6 @@
             zoom: 13,
             center: center
         });
-
     };
 
     module.Map = Map;
