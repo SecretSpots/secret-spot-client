@@ -33,14 +33,13 @@
 
 
     <section id="auth-view" class="view">
-        <a id="auth-type" href="/auth/signin">sign in</a>
-        <form id="auth-form">
-            <input type="text" id="username" name="username" placeholder="username">
-            <input type="text" id="password" name="password" placeholder="password">
-            <button type="submit">enter</button>
-        </form>
-            <pre id="auth-error"></pre>
-            <p id="logged-in">you are logged in</p>
+      <form id="auth-form">
+        <input type="text" id="username" name="username" placeholder="username">
+        <input type="text" id="password" name="password" placeholder="password">
+        <button type="submit">enter</button>
+      </form>
+      <a id="auth-type" href="/auth/signin">sign in</a>
+      <p id="user-status">you are logged in</p>
     </section>
 
     <section id="detail-view" class="view"></section>
@@ -76,6 +75,11 @@
         </form>
       </section>
 
+      <footer>
+        <p id="current-username"></p>
+        <p id="logout">Log Out</p>
+      </footer>
+
     <!-- templates -->
     <template id="spot-list-template">
             <div>
@@ -94,7 +98,9 @@
             <h2>{{name}}</h2>
             <h3>{{address}}</h3>
             <p>{{note}}</p>
-            <h3>Added by {{user_id}} on {{date}}</h3>
+            <h3>Added by {{username}} on {{date}}</h3>
+            <button id="delete-spot">Delete This Spot</button>
+            <p id="delete-status"></p>
         </div>
     </template>
 

@@ -6,6 +6,25 @@
         $('.view').hide();
     };
 
+    const displayUser = () => {
+        if (localStorage.getItem('username')) {
+            User.current = true;
+            const username = localStorage.getItem('username');
+            $('#current-username').text(username).fadeIn();
+            $('#logout')
+                .fadeIn()
+                .off('click')
+                .on('click', () => {
+                    User.logout();
+                    page('/auth/signin');
+                });
+        } else {
+            User.current = false;
+            $('#current-username').empty().hide();
+            $('#logout').hide();
+        }
+    };
+
     const mapView = module.mapView;
     const Spot = module.Spot;
     const User = module.User;
@@ -18,6 +37,7 @@
 
     page('*', (ctx, next) => {
         resetView();
+        displayUser();
         next();
     });
   

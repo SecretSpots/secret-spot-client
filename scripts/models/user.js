@@ -4,8 +4,6 @@
 
     const User = {};
 
-    User.current = null;
-
     const setTokenHeader = token => {
         $.ajaxSetup({
             headers: { token: token }
@@ -15,6 +13,7 @@
     function letUserPass(response) {
         User.current = true;
         localStorage.setItem('token', response.token);
+        localStorage.setItem('username', response.username);
         setTokenHeader(response.token);
     }
 
@@ -36,11 +35,11 @@
         const token = localStorage.getItem('token');
         if (!token) return;
         setTokenHeader(token);
-        User.current = true;
     };
 
     User.logout = () => {
         window.localStorage.removeItem('token');
+        window.localStorage.removeItem('username');
         User.current = false;
     };
 

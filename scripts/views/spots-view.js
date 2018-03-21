@@ -12,6 +12,7 @@
     
     spotView.showMore = () => {
         $('.hide').slideUp(0);
+        $('#list-view').off('click', 'a.show-more');
         $('#list-view').on('click', 'a.show-more', function(e) {
             e.preventDefault();
             if ($(this).text() === 'Show More') {
@@ -78,6 +79,18 @@
             .empty()
             .append(html)
             .fadeIn();
+
+        $('#delete-spot').off('click').on('click', () => {
+            Spot.delete(Spot.detail.spot_id)
+                .then(response => {
+                    console.log(response);
+                    page('/list-view');
+                })
+                .catch(err => {
+                    $('#delete-status').text(err.responseJSON.error).fadeIn();
+                });
+        });
+
     };
 
     module.spotView = spotView;
