@@ -19,8 +19,17 @@
         $('#list-view').on('click', 'a.show-more', function(e) {
             e.preventDefault();
             if ($(this).text() === 'Show More') {
+                console.log($(this).data('username'));
+                console.log(User.name);
                 $(this).parent().find('*').slideDown(200);
                 $(this).html('Show Less');
+                if(User.name === $(this).data('username')) {
+                    $('#list-delete-spot').show();
+                    $('#list-update-spot').show();
+                } else {
+                    $('#list-delete-spot').hide();
+                    $('#list-update-spot').hide();
+                }
             } else {
                 $(this).html('Show More');
                 $(this).parent().find('.hide').slideUp(200);
@@ -82,23 +91,27 @@
             .append(html)
             .fadeIn();
 
-        $('#update-spot-form')
-            .off('submit')
-            .on('submit', event => {
-                event.preventDefault();
-
-                const data = {
-                    note: $('textarea[name=note]').val(),
-                    spot_id: spot.spot_id
-                };
-
-                Spot.update(data)
-                    .then( () => {
-                        $('#add-spot')[0].reset();
-                        page(`/spots/${spot.spot_id}`);
-                    })
-                    .catch(console.error);
-            });
+        if (User.name === spot.username) {
+            $('#update-spot-form')
+                .off('submit')
+                .on('submit', event => {
+                    event.preventDefault();
+    
+                    const data = {
+                        note: $('textarea[name=note]').val(),
+                        spot_id: spot.spot_id
+                    };
+    
+                    Spot.update(data)
+                        .then( () => {
+                            $('#add-spot')[0].reset();
+                            page(`/spots/${spot.spot_id}`);
+                        })
+                        .catch(console.error);
+                });
+        } else {
+            $('#update-spot').hide();
+        }
 
     };
             
@@ -133,6 +146,7 @@
                 });
         } else {
             $('#delete-spot').hide();
+            $('#update-spot').hide();
         }
 
     };

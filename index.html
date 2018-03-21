@@ -13,7 +13,7 @@
 
     <nav class="nav-menu clearfix">
         <ul>
-          <li><a href="/list-view">Home</a></li>
+          <li><a href="/list-view">List</a></li>
           <li><a href="/spots/new">Add Spot</a></li>
           <li><a href="/map">Map</a></li>
           <li><a href="/auth/signup">Sign Up</a></li>
@@ -88,7 +88,7 @@
         <p>{{address}}</p>
         <form id="update-spot-form">
             <label>Note:
-                <textarea id="note" placeholder="{{note}}" name="note"></textarea>
+                <textarea id="note" name="note">{{note}}</textarea>
             </label>
             <div>
                 <input id="update-button" type="submit" value="Update">
@@ -103,9 +103,11 @@
                   <div class="hide">
                     <p>{{address}}</p>
                     <p>{{note}}</p>
-                    <p>Added by {{user_id}} on {{date}}</p>
+                    <p>Added by {{username}} on {{date}}</p>
                   </div>
-                <a href="#" class="show-more">Show More</a>
+                <button class="list-admin-options" id="list-delete-spot">Delete this Spot</button>
+                <a href="spots/{{spot_id}}/update"><button class="list-admin-options" id="list-update-spot">Update this Spot</button></a>
+                <a href="#" class="show-more" data-username="{{username}}">Show More</a>
             </div>
     </template>
     
@@ -117,7 +119,7 @@
             <h3>Added by {{username}} on {{date}}</h3>
             <button id="delete-spot">Delete this Spot</button>
             <p id="delete-status"></p>
-            <button id="update-spot">Update this Spot</button>
+            <a href="spots/{{spot_id}}/update"><button id="update-spot">Update this Spot</button></a>
             <p id="update-status"></p>
         </div>
     </template>
