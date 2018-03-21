@@ -50,27 +50,30 @@
         <input id="locationTextField" placeholder="Where's your spot?" type="text"></input>
 
         <section id="form-view">
-            <form id="add-spot">
-                <label>
-                    Name of Spot:
-                    <input type="text" name="name">
-                </label>
-                <label>
-                    Address:
-                    <input type="text" name="address" class="autocomplete">
-                </label>
-                <label>
-                    Geolocation:
-                    <input type="text" name="address" class="autocomplete" disabled="disabled">
-                </label>
-                <label>
-                    Note:
-                    <input type="text-area" name="note">
-                </label>
-                <div>
-                    <input id="form-button" type="submit" value="Share">
-                  </div>
-            </form>
+
+          <div id="search-map"></div>
+
+          <form id="add-spot">
+              <label>
+                  Name of Spot:
+                  <input type="text" name="name" required>
+              </label>
+              <label>
+                  Address:
+                  <input type="text" name="address" required>
+              </label>
+              <label>
+                  Geolocation:
+                  <input type="text" name="address" disabled="disabled">
+              </label>
+              <label>
+                  Note:
+                  <input type="text-area" name="note" placeholder="Add a note about your spot!">
+              </label>
+              <div>
+                  <input id="form-button" type="submit" value="Share">
+                </div>
+          </form>
         </section>
       </section>
 

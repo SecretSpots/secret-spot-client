@@ -1,7 +1,7 @@
 'use strict';
 
 (function(module) {
-    
+
     const Map = {};
 
     Map.markers = [];
