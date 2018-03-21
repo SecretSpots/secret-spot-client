@@ -4,8 +4,6 @@
 
     const User = {};
 
-    User.current = null;
-
     const setTokenHeader = token => {
         $.ajaxSetup({
             headers: { token: token }
@@ -13,9 +11,15 @@
     };
 
     function letUserPass(response) {
-        User.current = true;
         localStorage.setItem('token', response.token);
-        setTokenHeader(response.token);
+        localStorage.setItem('username', response.username);
+        setUser(response.username, response.token);
+    }
+    
+    function setUser(username, token) {
+        User.current = true;
+        User.name = username;
+        setTokenHeader(token);
     }
 
     User.signup = credentials => {
@@ -35,13 +39,17 @@
     User.tryToken = () => {
         const token = localStorage.getItem('token');
         if (!token) return;
-        setTokenHeader(token);
-        User.current = true;
+        const username = localStorage.getItem('username');
+        setUser(username, token);
     };
 
     User.logout = () => {
         window.localStorage.removeItem('token');
+        window.localStorage.removeItem('username');
+        setTokenHeader(null);
         User.current = false;
+        delete User.name;
+        delete User.id;
     };
 
     module.User = User;

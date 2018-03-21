@@ -29,6 +29,21 @@
         return $.post(`${API_URL}/spots/new`, data);
     };
 
+    Spot.update = data => {
+        return $.ajax({
+            url: `${API_URL}/spots/${data.spot_id}`,
+            method: 'PUT',
+            data: data
+        });
+    };
+
+    Spot.delete = (id) => {
+        return $.ajax({
+            url: `${API_URL}/spots/${id}`,
+            method: 'DELETE'
+        });
+    };
+
     module.Spot = Spot;
 
 })(window.module);

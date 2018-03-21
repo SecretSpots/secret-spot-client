@@ -8,32 +8,32 @@
 
     let method = '';
 
-    loginView.initSignup = () => {
+    function handleViewToggle(methodType, authTypeLink, switchLinkText) {
         if(User.current) {
-            $('#auth-type').fadeOut();
-            $('#auth-form').fadeOut();
-            $('#logged-in').fadeIn();
+            $('#auth-type').hide();
+            $('#auth-form').hide();
+            $('#user-status').fadeIn();
         } else {
-            method = 'signup';
-            $('#auth-type').attr('href', '/auth/signin').text('Have an account? Sign in.');
-            $('#auth-form').off('submit').on('submit', handleSubmit);
-            $('#logged-in').fadeOut();
+            method = methodType;
+            $('#auth-type').attr('href', authTypeLink).text(switchLinkText).fadeIn();
+            $('#auth-form').off('submit').on('submit', handleSubmit).fadeIn();
+            $('#user-status').hide();
         }
         $('#auth-view').fadeIn();
+    }
+
+    loginView.initSignup = () => {
+        const methodType = 'signup';
+        const authTypeLink = '/auth/signin';
+        const switchLinkText = 'Have an account? Click here to sign in instead.';
+        handleViewToggle(methodType, authTypeLink, switchLinkText);
     };
 
     loginView.initSignin = () => {
-        if(User.current) {
-            $('#auth-type').fadeOut();
-            $('#auth-form').fadeOut();
-            $('#logged-in').fadeIn();
-        } else {
-            method = 'signin';
-            $('#auth-type').attr('href', '/auth/signup').text('No account? Sign up.');
-            $('#auth-form').off('submit').on('submit', handleSubmit);
-            $('#logged-in').fadeOut();
-        }
-        $('#auth-view').fadeIn();
+        const methodType = 'signin';
+        const authTypeLink = '/auth/signup';
+        const switchLinkText = 'No account? Click here to sign up instead.';
+        handleViewToggle(methodType, authTypeLink, switchLinkText);
     };
 
     const handleSubmit = e => {
@@ -46,10 +46,11 @@
         User[method](credentials)
             .then(() => {
                 $('#auth-form')[0].reset();
-                page('/');
+                page('/map');
+                $('#user-status').text('you are logged in').fadeIn();
             })
             .catch(err => {
-                $('#auth-error').text(err.responseJSON.error);
+                $('#user-status').text(err.responseJSON.error).fadeIn();
             });
     };
 
