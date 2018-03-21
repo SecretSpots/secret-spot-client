@@ -9,21 +9,22 @@
     const spotView = {};
     
     spotView.showMore = () => {
-        $('.hide').hide();
+        $('.hide').slideUp(0);
         $('#list-view').on('click', 'a.show-more', function(e) {
             e.preventDefault();
             if ($(this).text() === 'Show More') {
-                $(this).parent().find('*').slideDown();
+                $(this).parent().find('*').slideDown(200);
                 $(this).html('Show Less');
             } else {
                 $(this).html('Show More');
-                $(this).parent().find('.hide').slideUp();
+                $(this).parent().find('.hide').slideUp(200);
             }
         });
     };
 
     function resetView() {
         $('.view').hide();
+
     }
 
     spotView.initListView = () => {
