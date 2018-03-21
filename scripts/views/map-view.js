@@ -6,6 +6,7 @@
     const Spot = module.Spot;
 
     const mapView = {};
+    let infowindow = null; //define in outer scope to avoid duplicates
 
     mapView.initMapView = () => {
         makeMarkers(Spot.all);
@@ -13,8 +14,8 @@
     };
 
     const makeMarkers = (data) => {
-        const infowindow = new google.maps.InfoWindow();
-
+        if (infowindow === null) infowindow = new google.maps.InfoWindow();
+        
         return data.forEach( spot => {
             const marker = new google.maps.Marker({
                 position: new google.maps.LatLng(spot.lat, spot.lng),
