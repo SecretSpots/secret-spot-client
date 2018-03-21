@@ -79,6 +79,18 @@
             .empty()
             .append(html)
             .fadeIn();
+
+        $('#delete-spot').off('click').on('click', () => {
+            Spot.delete(Spot.detail.spot_id)
+                .then(response => {
+                    console.log(response);
+                    page('/list-view');
+                })
+                .catch(err => {
+                    $('#delete-status').text(err.responseJSON.error).fadeIn();
+                });
+        });
+
     };
 
     module.spotView = spotView;

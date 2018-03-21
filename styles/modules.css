@@ -5,3 +5,7 @@
 #logout:hover {
     cursor: pointer;
 }
+
+#delete-status {
+    color: red;
+}
