@@ -12,6 +12,7 @@
     
     spotView.showMore = () => {
         $('.hide').slideUp(0);
+        $('#list-view').off('click', 'a.show-more');
         $('#list-view').on('click', 'a.show-more', function(e) {
             e.preventDefault();
             if ($(this).text() === 'Show More') {
