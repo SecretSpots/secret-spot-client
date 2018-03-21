@@ -1,13 +1,28 @@
 'use strict';
 
 (function(module) {
-
+    
     const Spot = module.Spot;
-
+    
     const listTemplate = Handlebars.compile($('#spot-list-template').html());
+
     const detailViewTemplate = Handlebars.compile($('#detail-view-template').html());
 
     const spotView = {};
+    
+    spotView.showMore = () => {
+        $('.hide').slideUp(0);
+        $('#list-view').on('click', 'a.show-more', function(e) {
+            e.preventDefault();
+            if ($(this).text() === 'Show More') {
+                $(this).parent().find('*').slideDown(200);
+                $(this).html('Show Less');
+            } else {
+                $(this).html('Show More');
+                $(this).parent().find('.hide').slideUp(200);
+            }
+        });
+    };
 
     function resetView() {
         $('.view').fadeOut();
@@ -18,6 +33,7 @@
         $('#list-view').fadeIn();
         $('#list-view').empty();
         spotView.loadSpots();
+        spotView.showMore();
     };
 
     spotView.loadSpots = () => {

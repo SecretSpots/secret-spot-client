@@ -80,8 +80,12 @@
     <template id="spot-list-template">
             <div>
                 <h2>{{name}}</h2>
-                <h3>{{location}}</h3>
-                <p>{{note}}</p>
+                  <div class="hide">
+                    <p>{{address}}</p>
+                    <p>{{note}}</p>
+                    <p>Added by {{user_id}} on {{date}}</p>
+                  </div>
+                <a href="#" class="show-more">Show More</a>
             </div>
     </template>
     

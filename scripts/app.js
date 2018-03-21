@@ -26,12 +26,10 @@
     page('/auth/signup', loginView.initSignup);
     page('/auth/signin', loginView.initSignin);
     page('/map', loadSpots, mapView.initMapView);
-
     page('/spots/:id', ctx => Spot.fetchOne(ctx.params.id).then(spotView.initDetailView));
-
     page('*', () => page.redirect('/list-view'));
-
-
+    
+    
     page({ hashbang: true });
 
     User.tryToken();
