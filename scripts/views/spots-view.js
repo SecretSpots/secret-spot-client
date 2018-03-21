@@ -5,7 +5,9 @@
     const Spot = module.Spot;
     
     const listTemplate = Handlebars.compile($('#spot-list-template').html());
-    
+
+    const detailViewTemplate = Handlebars.compile($('#detail-view-template').html());
+
     const spotView = {};
     
     spotView.showMore = () => {
@@ -23,13 +25,12 @@
     };
 
     function resetView() {
-        $('.view').hide();
-
+        $('.view').fadeOut();
     }
 
     spotView.initListView = () => {
         resetView();
-        $('#list-view').show();
+        $('#list-view').fadeIn();
         $('#list-view').empty();
         spotView.loadSpots();
         spotView.showMore();
@@ -44,7 +45,7 @@
 
     spotView.initNewSpot = () => {
         resetView();
-        $('#new-spot-view').show();
+        $('#new-spot-view').fadeIn();
 
         $('#add-spot')
             .off('submit')
@@ -55,7 +56,6 @@
                     name: $('input[name=name]').val(),
                     user_id: $('input[name=user_id]').val(),
                     address: $('input[name=address]').val(),
-                    location: $('input[name=location]').val(),
                     note: $('input[name=note]').val(),
                     date: $('input[name=date]').val()
                 };
@@ -69,6 +69,16 @@
             });
     };
 
+    spotView.initDetailView = () => {
+        resetView();
+
+        const html = detailViewTemplate(Spot.detail);
+
+        $('#detail-view')
+            .empty()
+            .append(html)
+            .fadeIn();
+    };
 
     module.spotView = spotView;
 

@@ -43,6 +43,8 @@
             <p id="logged-in">you are logged in</p>
     </section>
 
+    <section id="detail-view" class="view"></section>
+
     <section id="new-spot-view" class="view">
         <h2 class="view-title">Add New Spot</h2>
         <form id="add-spot">
@@ -58,10 +60,6 @@
             <label>
                 Address:
                 <input type="text" name="address">
-                </label>
-            <label>
-              Location:
-              <input type="text" name="location">
             </label>
             <label>
               Note:
@@ -80,16 +78,26 @@
 
     <!-- templates -->
     <template id="spot-list-template">
-        <div>
-            <h2>{{name}}</h2>
-            <div class="hide">
-                <p>{{address}}</p>
-                <p>{{note}}</p>
+            <div>
+                <h2>{{name}}</h2>
+                  <div class="hide">
+                    <p>{{address}}</p>
+                    <p>{{note}}</p>
+                    <p>Added by {{user_id}} on {{date}}</p>
+                  </div>
+                <a href="#" class="show-more">Show More</a>
             </div>
-            <a href="#" class="show-more">Show More</a>
-        </div>
     </template>
     
+    <template id="detail-view-template">
+        <div>
+            <h2>{{name}}</h2>
+            <h3>{{address}}</h3>
+            <p>{{note}}</p>
+            <h3>Added by {{user_id}} on {{date}}</h3>
+        </div>
+    </template>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
@@ -100,15 +108,15 @@
     
             window.module = {};
     </script>
+    <script src="scripts/models/spots.js"></script>
     <script src="scripts/models/user.js"></script>
     <script src="scripts/models/map.js"></script>
-    <script src="scripts/models/spots.js"></script>
     <script src="scripts/views/map-view.js"></script>
     <script src="scripts/views/spots-view.js"></script>
     <script src="scripts/views/login-view.js"></script>
     <script src="scripts/views/error-view.js"></script>
     <script src="scripts/app.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrLufX8_DAF_wPD79dBtiMgnktq6nxAt4&callback=module.mapView.initMap">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrLufX8_DAF_wPD79dBtiMgnktq6nxAt4&callback=module.Map.initMap">
     </script>
 
 </body>
