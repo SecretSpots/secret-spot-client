@@ -20,12 +20,14 @@
         resetView();
         next();
     });
-    page('/', loadSpots, spotView.initListView);
+  
     page('/list-view', loadSpots, spotView.initListView);
     page('/spots/new', spotView.initNewSpot);
     page('/auth/signup', loginView.initSignup);
     page('/auth/signin', loginView.initSignin);
     page('/map', loadSpots, mapView.initMapView);
+
+    page('/spots/:id', ctx => Spot.fetchOne(ctx.params.id).then(spotView.initDetailView));
 
     page('*', () => page.redirect('/list-view'));
 

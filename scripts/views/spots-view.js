@@ -5,16 +5,17 @@
     const Spot = module.Spot;
 
     const listTemplate = Handlebars.compile($('#spot-list-template').html());
+    const detailViewTemplate = Handlebars.compile($('#detail-view-template').html());
 
     const spotView = {};
 
     function resetView() {
-        $('.view').hide();
+        $('.view').fadeOut();
     }
 
     spotView.initListView = () => {
         resetView();
-        $('#list-view').show();
+        $('#list-view').fadeIn();
         $('#list-view').empty();
         spotView.loadSpots();
     };
@@ -28,7 +29,7 @@
 
     spotView.initNewSpot = () => {
         resetView();
-        $('#new-spot-view').show();
+        $('#new-spot-view').fadeIn();
 
         $('#add-spot')
             .off('submit')
@@ -50,6 +51,17 @@
                     })
                     .catch(console.error);
             });
+    };
+
+    spotView.initDetailView = () => {
+        resetView();
+
+        const html = detailViewTemplate(Spot.detail);
+
+        $('#detail-view')
+            .empty()
+            .append(html)
+            .fadeIn();
     };
 
     module.spotView = spotView;
