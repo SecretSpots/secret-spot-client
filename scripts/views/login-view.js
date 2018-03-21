@@ -10,28 +10,32 @@
 
     loginView.initSignup = () => {
         if(User.current) {
-            $('#auth-type').fadeOut();
-            $('#auth-form').fadeOut();
-            $('#logged-in').fadeIn();
+            $('#auth-type').hide();
+            $('#auth-form').hide();
+            $('#user-status').fadeIn();
         } else {
             method = 'signup';
-            $('#auth-type').attr('href', '/auth/signin').text('Have an account? Sign in.');
+            $('#auth-type').attr('href', '/auth/signin').text('Have an account? Click here to sign in instead.');
             $('#auth-form').off('submit').on('submit', handleSubmit);
-            $('#logged-in').fadeOut();
+            $('#user-status').hide();
+            $('#current-username').hide();
+            $('#logout').hide();
         }
         $('#auth-view').fadeIn();
     };
 
     loginView.initSignin = () => {
         if(User.current) {
-            $('#auth-type').fadeOut();
-            $('#auth-form').fadeOut();
-            $('#logged-in').fadeIn();
+            $('#auth-type').hide();
+            $('#auth-form').hide();
+            $('#user-status').fadeIn();
         } else {
             method = 'signin';
-            $('#auth-type').attr('href', '/auth/signup').text('No account? Sign up.');
+            $('#auth-type').attr('href', '/auth/signup').text('No account? Click here to sign up instead.');
             $('#auth-form').off('submit').on('submit', handleSubmit);
-            $('#logged-in').fadeOut();
+            $('#user-status').hide();
+            $('#current-username').hide();
+            $('#logout').hide();
         }
         $('#auth-view').fadeIn();
     };
@@ -47,9 +51,12 @@
             .then(() => {
                 $('#auth-form')[0].reset();
                 page('/');
+                $('#user-status').text('you are logged in').fadeIn();
+                $('#current-username').text(`${credentials.username}`).fadeIn();
+                $('#logout').fadeIn().off('click').on('click', User.logout);
             })
             .catch(err => {
-                $('#auth-error').text(err.responseJSON.error);
+                $('#user-status').text(err.responseJSON.error).fadeIn();
             });
     };
 
