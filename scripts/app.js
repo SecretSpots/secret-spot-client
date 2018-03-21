@@ -41,7 +41,7 @@
     });
   
     page('/list-view', loadSpots, spotView.initListView);
-    page('/spots/new', spotView.initNewSpot);
+    // page('/spots/new', spotView.initNewSpot);
     page('/auth/signup', loginView.initSignup);
     page('/auth/signin', loginView.initSignin);
     page('/map', loadSpots, mapView.initMapView);

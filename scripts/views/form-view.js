@@ -1,5 +1,23 @@
 'use strict';
 
+'use strict';
+
+(function(module) {
+
+    const formView = {};
+
+
+
+
+
+
+
+    
+    module.formView = formView;
+
+
+})(window.module);
+
 
 let placeSearch, autocomplete;
 const componentForm = {
@@ -60,3 +78,29 @@ function geolocate() {
         });
     }
 }
+
+spotView.initNewSpot = () => {
+    resetView();
+    $('#new-spot-view').fadeIn();
+
+    $('#add-spot')
+        .off('submit')
+        .on('submit', event => {
+            event.preventDefault();
+
+            const data = {
+                name: $('input[name=name]').val(),
+                user_id: $('input[name=user_id]').val(),
+                address: $('input[name=address]').val(),
+                note: $('input[name=note]').val(),
+                date: $('input[name=date]').val()
+            };
+
+            Spot.create(data)
+                .then( () => {
+                    $('#add-spot')[0].reset();
+                    page(`/list-view`);
+                })
+                .catch(console.error);
+        });
+};
