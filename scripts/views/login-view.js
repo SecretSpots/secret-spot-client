@@ -46,7 +46,7 @@
         User[method](credentials)
             .then(() => {
                 $('#auth-form')[0].reset();
-                page('/');
+                page('/map');
                 $('#user-status').text('you are logged in').fadeIn();
             })
             .catch(err => {

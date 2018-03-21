@@ -49,6 +49,7 @@
         setTokenHeader(null);
         User.current = false;
         delete User.name;
+        delete User.id;
     };
 
     module.User = User;

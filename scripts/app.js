@@ -47,7 +47,8 @@
     page('/auth/signin', loginView.initSignin);
     page('/map', loadSpots, mapView.initMapView);
     page('/spots/:id', ctx => Spot.fetchOne(ctx.params.id).then(spotView.initDetailView));
-    page('*', () => page.redirect('/list-view'));
+    page('/spots/:id/update', ctx => Spot.fetchOne(ctx.params.id).then(spotView.initUpdateView));
+    page('*', () => page.redirect('/map'));
     
     
     page({ hashbang: true });
