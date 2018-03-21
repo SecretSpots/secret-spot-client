@@ -15,6 +15,20 @@
             });
     };
 
+    Spot.detail = null;
+
+    Spot.fetchOne = (id) => {
+        return $.getJSON(`${API_URL}/spots/${id}`)
+            .then(data => {
+                Spot.detail = new Spot(data);
+            });
+
+    };
+
+    Spot.create = data => {
+        return $.post(`${API_URL}/spots/new`, data);
+    };
+
     module.Spot = Spot;
 
 })(window.module);

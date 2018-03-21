@@ -1,11 +1,37 @@
 'use strict';
 
 (function(module) {
+
+    const resetView = () => {
+        $('.view').hide();
+    };
+
+    const mapView = module.mapView;
     const Spot = module.Spot;
+    const User = module.User;
     const spotView = module.spotView;
+    const loginView = module.loginView;
 
-    page('/', () => Spot.fetchAll().then(spotView.initListView));
+    const loadSpots = (ctx, next) => {
+        Spot.fetchAll().then(next);
+    };
 
+    page('*', (ctx, next) => {
+        resetView();
+        next();
+    });
+  
+    page('/list-view', loadSpots, spotView.initListView);
+    page('/spots/new', spotView.initNewSpot);
+    page('/auth/signup', loginView.initSignup);
+    page('/auth/signin', loginView.initSignin);
+    page('/map', loadSpots, mapView.initMapView);
+    page('/spots/:id', ctx => Spot.fetchOne(ctx.params.id).then(spotView.initDetailView));
+    page('*', () => page.redirect('/list-view'));
+    
+    
     page({ hashbang: true });
+
+    User.tryToken();
 
 })(window.module);

@@ -1,13 +1,14 @@
 {
     "globals" : {
-      "rawData": true,
-      "app": true,
-      "Handlebars": true,
-      "page": true,
-      "$": true,
-      "marked": true,
-      "hljs": true,
-      "API_URL": true
+      "rawData": false,
+      "app": false,
+      "Handlebars": false,
+      "page": false,
+      "$": false,
+      "marked": false,
+      "hljs": false,
+      "API_URL": false,
+      "google" : false
     },
     "extends": "eslint:recommended",
     "parserOptions": {
