@@ -21,7 +21,7 @@
                 map: Map.mapObject
             });
 
-            const contentString = `<h4>${spot.name}</h4><a href="/spots/{{spot_id}}">Details</a>`;
+            const contentString = `<h4>${spot.name}</h4><a href="/spots/${spot.id}">Details</a>`;
 
             marker.addListener('click', function () {
                 infowindow.setContent(contentString);
