@@ -2,8 +2,6 @@
 
 (function(module) {
 
-    // const Spot = module.Spot;
-
     const Map = {};
 
     Map.markers = [];
