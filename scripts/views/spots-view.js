@@ -13,9 +13,6 @@
 
     const spotView = {};
 
-    spotView.populateFilter = () => {
-        $()
-    };
     
     spotView.showMore = () => {
         $('.hide').slideUp(0);
@@ -38,17 +35,27 @@
             }
         });
     };
-
+    
     function resetView() {
         $('.view').fadeOut();
     }
-
+    
+    spotView.populateFilter = () => {
+        if (User.current) {
+            console.log('hello', User.name);
+        }
+        else {
+            $('#filter').hide();
+        }
+    };
+    
     spotView.initListView = () => {
         resetView();
         $('#list-view').fadeIn();
         $('.spot').empty();
         spotView.loadSpots();
         spotView.showMore();
+        spotView.populateFilter();
 
         $('.list-delete-spot')
             .off('click')
