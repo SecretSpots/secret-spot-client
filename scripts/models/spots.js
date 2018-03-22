@@ -44,6 +44,18 @@
         });
     };
 
+    Spot.collectBeen = (id) => {
+        return $.get(`${API_URL}/spots/${id}/been`);
+    };
+
+    Spot.reportBeen = (id) => {
+        return $.post(`${API_URL}/spots/${id}/been`);
+    };
+
+    Spot.reportGood = (id) => {
+        return $.post(`${API_URL}/spots/${id}/good`);
+    };
+
     module.Spot = Spot;
 
 })(window.module);
