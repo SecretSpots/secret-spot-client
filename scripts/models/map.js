@@ -4,9 +4,12 @@
 
     const Map = {};
 
-    Map.markers = [];
+    Map.markersAll = [];
 
     Map.mapObject = null;
+    Map.tempMarker = null; //define in outer scope to avoid duplicates
+    Map.infoWindow = null; //define in outer scope to avoid duplicates
+
 
     Map.initMap = () => {
         const center = { lat: 45.519900, lng: -122.678316 };

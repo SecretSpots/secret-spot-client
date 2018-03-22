@@ -8,10 +8,6 @@
 
     const mapView = {};
 
-    mapView.tempMarker = null; //define in outer scope to avoid duplicates
-    let infoWindow = null; //define in outer scope to avoid duplicates
-    let markersAll = [];
-
     mapView.initMapView = () => {
         $('#map-view').show();
         buildMarkers();
@@ -31,10 +27,10 @@
     };
 
     const buildMarkers = () => {
-        setMarkers(null, markersAll); //remove current markers from map
-        markersAll = []; //delete current markers
+        setMarkers(null, Map.markersAll); //remove current markers from map
+        Map.markersAll = []; //delete current markers
         makeMarkers(Spot.all); // make new markers
-        setMarkers(Map.mapObject, markersAll); //set new markers on map
+        setMarkers(Map.mapObject, Map.markersAll); //set new markers on map
     };
 
     const onAutocomplete = () => {
@@ -95,15 +91,15 @@
                 id: spot.spot_id
             });
 
-            markersAll.push(marker);
+            Map.markersAll.push(marker);
         });
     };
 
     const setMarkers = (map, markers) => {
 
         markers.forEach( marker => {
-            if (infoWindow === null) {
-                infoWindow = new google.maps.InfoWindow(infoWindowInner);
+            if (Map.infoWindow === null) {
+                Map.infoWindow = new google.maps.InfoWindow(infoWindowInner);
             }
 
             const contentString = `<h4>${marker.name}</h4><a href="/spots/${marker.id}">Details</a>`;
@@ -111,10 +107,10 @@
             marker.setMap(map);
 
             marker.addListener('click', function () {
-                infoWindow.setContent(contentString);
-                infoWindow.open(Map.mapObject, marker);
+                Map.infoWindow.setContent(contentString);
+                Map.infoWindow.open(Map.mapObject, marker);
 
-                if (mapView.tempMarker) mapView.tempMarker.setMap(null);
+                if (Map.tempMarker) Map.tempMarker.setMap(null);
 
                 marker.setAnimation(google.maps.Animation.BOUNCE);
                 setTimeout(function(){ marker.setAnimation(null); }, 375);
@@ -133,7 +129,7 @@
     };
 
     const mapSearch = () => {
-        mapView.tempMarker = new google.maps.Marker({
+        Map.tempMarker = new google.maps.Marker({
             position: new google.maps.LatLng(place.lat, place.lng),
             map: Map.mapObject,
             icon: markerSVG,
@@ -142,20 +138,20 @@
             store_id: 'temp',
         });
 
-        if (infoWindow === null) {
-            infoWindow = new google.maps.InfoWindow(infoWindowInner);
+        if (Map.infoWindow === null) {
+            Map.infoWindow = new google.maps.InfoWindow(Map.infoWindowInner);
         }
         const tempContent = `<h3>${place.name}</h3><h4>Add me!</h4>`;
 
-        infoWindow.setContent(tempContent);
-        infoWindow.open(Map.mapObject, mapView.tempMarker);
+        Map.infoWindow.setContent(tempContent);
+        Map.infoWindow.open(Map.mapObject, Map.tempMarker);
 
-        mapView.tempMarker.addListener('click', function () {
-            infoWindow.setContent(tempContent);
-            infoWindow.open(Map.mapObject, mapView.tempMarker);
+        Map.tempMarker.addListener('click', function () {
+            Map.infoWindow.setContent(tempContent);
+            Map.infoWindow.open(Map.mapObject, Map.tempMarker);
         });
 
-        Map.mapObject.setCenter(mapView.tempMarker.getPosition());
+        Map.mapObject.setCenter(Map.tempMarker.getPosition());
     };
 
     const infoWindowInner = {
