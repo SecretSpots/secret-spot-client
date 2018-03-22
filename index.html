@@ -17,8 +17,8 @@
           <li><a href="/list-view" class="icon-list2"></a></li>
           <li><a href="#" class="icon-plus" id="add-link"></a></li>
           <li><a href="/map" class="icon-earth"></a></li>
-          <li><a href="/auth/signup">Sign Up</a></li>
-          <li><a href="/auth/signin">Sign In</a></li>
+          <li><a href="/auth/signup" class="login-options">Sign Up</a></li>
+          <li><a href="/auth/signin" class="login-options">Sign In</a></li>
         </ul>
       </nav>
 
@@ -57,33 +57,43 @@
         <section id="map-view" class="view">
             <div id="map"></div>
         </section>
-
     <section id="list-view" class="view">
         <div id="filter">
             <form>
                 <input type="checkbox" id="filter-authour" name="filter-by-author" value="filter-by-author">
                 <label for="filter-by-author">Show only my spots</label>
             </form>
-        </div>
+        </div id="drop-down">
+            <form>
+                <select id="sort">
+                    <option value="data-title">-- Sort by Title --</option>
+                    <option value="data-popularity">-- Sort by Popularity --</option>
+                    <option value="data-recommended">-- Sort by Recommended --</option>
+                    <option value="data-spot-id">-- Sort by Newest --</option>
+                    <option value="data-date">-- Sort by Oldest --</option>
+                </select>
+            </form>
     </section>
 
         <section id="auth-view" class="view">
-        <form id="auth-form">
-            <input type="text" id="username" name="username" placeholder="username">
-            <input type="password" id="password" name="password" placeholder="password">
-            <button type="submit">enter</button>
-        </form>
-        <a id="auth-type" href="/auth/signin">sign in</a>
-        <p id="user-status">you are logged in</p>
+            <form id="auth-form">
+                <input type="text" id="username" name="username" placeholder="username">
+                <input type="password" id="password" name="password" placeholder="password">
+                <button type="submit">enter</button>
+            </form>
+            <a id="auth-type" href="/auth/signin">sign in</a>
+            <p id="user-status">you are logged in</p>
         </section>
 
     <section id="detail-view" class="view">
       <div id="detail-holder"></div>
       <div id="been-here-holder"></div>
+      <div id="good-spot-holder"></div>
     </section>
 
         <section id="update-view" class="view"></section>
     </main>
+
     <footer>
         <p id="current-username"></p>
         <p id="logout">Log Out</p>
@@ -91,27 +101,30 @@
 
     <!-- templates -->
     <template id="update-view-template">
-        <h2>{{name}}</h2>
-        <p>{{address}}</p>
-        <form id="update-spot-form">
-            <label>Note:
-                <textarea id="note" name="note">{{note}}</textarea>
-            </label>
-            <div>
-              <button id="cancel-update">Cancel</button>
-              <input id="update-button" type="submit" value="Update">
-            </div>
-        </form>
-        <p>Added by {{user_id}} on {{date}}</p>
+        <div class="update-div">
+            <h2>{{name}}</h2>
+            <h3>{{address}}</h3>
+            <form id="update-spot-form">
+                <label>
+                    <textarea rows="6" cols="40" id="note" name="note">{{note}}</textarea>
+                </label>
+                <div class="update-button-div">
+                <button id="cancel-update">Cancel</button>
+                <input id="update-button" type="submit" value="Update">
+                </div>
+            </form>
+            <p>Added by <span class="list-user-name">{{username}}</span> on {{date}}</p>
+        </div>
     </template>
 
     <template id="spot-list-template">
-            <div class="spot-info spot {{username}}" data-spot-id="{{spot_id}}" data-author="{{username}}">
-                <h2>{{name}}</h2>
+            <div class="spot-info spot {{username}}" data-spot-id="{{spot_id}}" data-title="{{name}}" data-author="{{username}}" data-date="{{date}}" data-popularity="" data-recommended="">
+                <h2 class="list-view-header">{{name}}</h2>
+                <a href="#" class="show-more icon-circle-down" data-username="{{username}}"></a>
                 <div class="hide">
-                  <p>{{address}}</p>
-                  <p>{{note}}</p>
-                  <p>Added by {{username}} on {{date}}</p>
+                  <h3>{{address}}</h3>
+                  <p class="list-view-notes">{{note}}</p>
+                  <p>Added by <span class="list-user-name">{{username}}</span> on {{date}}</p>
                   <div class="editing-buttons">                
                     <button class="list-delete-spot" >Delete this Spot</button>
                     <a href="/spots/{{spot_id}}/update"><button>Update this Spot</button></a>
@@ -121,16 +134,15 @@
                     <button class="list-good-spot">Good tip</button></a>
                   </div>
                 </div>
-                <a href="#" class="show-more" data-username="{{username}}">Show More</a>
             </div>
     </template>
     
     <template id="detail-view-template">
-        <div>
+        <div class="detail-div">
             <h2>{{name}}</h2>
             <h3>{{address}}</h3>
             <p>{{note}}</p>
-            <h3>Added by {{username}} on {{date}}</h3>
+            <h3>Added by <span class="list-user-name">{{username}}</span> on {{date}}</h3>
             <div class="editing-buttons">                
               <button id="delete-spot">Delete this Spot</button>
               <a href="/spots/{{spot_id}}/update"><button id="update-spot">Update this Spot</button></a>
@@ -144,6 +156,10 @@
 
     <template id="been-here-template">
       <p>{{beenHereCount}} {{peopleHaveGrammar}} reported visiting this spot.</p>
+    </template>
+    
+    <template id="good-spot-template">
+      <p>{{goodSpotCount}} {{peopleLikeGrammar}} this recommendation.</p>
     </template>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

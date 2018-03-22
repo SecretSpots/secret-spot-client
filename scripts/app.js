@@ -15,8 +15,11 @@
         if (Map.tempMarker) Map.tempMarker.setMap(null);
     };
 
+
+
     const displayUser = () => {
         if (User.current) {
+            $('.login-options').hide();
             $('#current-username').text(User.name).fadeIn();
             $('#logout')
                 .fadeIn()
@@ -28,6 +31,7 @@
         } else {
             $('#current-username').empty().hide();
             $('#logout').hide();
+            $('.login-options').show();
         }
     };
 
