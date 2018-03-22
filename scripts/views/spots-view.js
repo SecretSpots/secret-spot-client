@@ -12,6 +12,7 @@
     const updateViewTemplate = Handlebars.compile($('#update-view-template').html());
 
     const spotView = {};
+
     
     spotView.showMore = () => {
         $('.hide').slideUp(0);
@@ -34,18 +35,46 @@
             }
         });
     };
-
+    
     function resetView() {
         $('.view').fadeOut();
     }
+    
+    spotView.populateFilter = () => {
+        if (User.current) {
+            console.log('hello', User.name);
+            spotView.filterHandler();
+        }
+        else {
+            $('#filter').hide();
+            console.log('hiding filter...');
+        }
+    };
 
+    spotView.filterHandler = () => {
+        const filterAction = function (){
+            if ($('input:checkbox').is(':checked')) {
+                $('.spot').hide();
+                $(`.${User.name}`).fadeIn();
+            }
+            else {
+                $('.spot').fadeIn();
+            }
+        };
+        filterAction();
+        $('input:checkbox').change(function(){
+            filterAction();
+        });
+    };
+    
     spotView.initListView = () => {
         resetView();
         $('#list-view').fadeIn();
-        $('#list-view').empty();
+        $('.spot').empty();
         spotView.loadSpots();
         spotView.showMore();
-
+        spotView.populateFilter();
+        
         $('.list-delete-spot')
             .off('click')
             .on('click', function() {
@@ -58,8 +87,9 @@
                         $('#delete-status').text(err.responseJSON.error).fadeIn();
                     });
             });
-    };
 
+    };
+    
     spotView.loadSpots = () => {
         Spot.all.forEach(spot => {
             const html = listTemplate(spot);
