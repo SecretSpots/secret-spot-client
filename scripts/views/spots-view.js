@@ -6,40 +6,35 @@
     const Spot = module.Spot;
     
     const listTemplate = Handlebars.compile($('#spot-list-template').html());
-
     const detailViewTemplate = Handlebars.compile($('#detail-view-template').html());
-
     const updateViewTemplate = Handlebars.compile($('#update-view-template').html());
+    const beenHereTemplate = Handlebars.compile($('#been-here-template').html());
 
     const spotView = {};
 
     
     spotView.showMore = () => {
         $('.hide').slideUp(0);
-        $('#list-view button').hide();
+        $('.editing-buttons, .voting-buttons').hide();
         $('#list-view').off('click', 'a.show-more');
         $('#list-view').on('click', 'a.show-more', function(e) {
             e.preventDefault();
             if ($(this).text() === 'Show More') {
                 if(User.name === $(this).data('username')) {
-                    $(this).parent().find('button').show();
-                } else {
-                    $(this).parent().find('button').hide();
+                    $(this).parent().find('.editing-buttons').show();
+                } else if (User.current) {
+                    $(this).parent().find('.voting-buttons').show();
                 }
                 $(this).parent().find('.hide').slideDown(200);
                 $(this).html('Show Less');
             } else {
                 $(this).html('Show More');
                 $(this).parent().find('.hide').slideUp(200);
-                $('#list-view button').hide();
+                $(this).parent().find('.editing-buttons, .voting-buttons').hide();
             }
         });
     };
-    
-    function resetView() {
-        $('.view').fadeOut();
-    }
-    
+  
     spotView.populateFilter = () => {
         if (User.current) {
             console.log('hello', User.name);
@@ -66,26 +61,30 @@
             filterAction();
         });
     };
-    
+  
     spotView.initListView = () => {
-        resetView();
         $('#list-view').fadeIn();
         $('.spot').empty();
         spotView.loadSpots();
         spotView.showMore();
-        spotView.populateFilter();
+
+        $('#list-view')
+            .off('click', '.list-delete-spot')
+            .on('click', '.list-delete-spot', function() {
+                handleDelete($(this).parents('.spot-info').data('spot-id'), '/list-view');
+            });
         
-        $('.list-delete-spot')
-            .off('click')
-            .on('click', function() {
-                Spot.delete($(this).data('spot-id'))
-                    .then(response => {
-                        console.log(response);
-                        page('/list-view');
-                    })
-                    .catch(err => {
-                        $('#delete-status').text(err.responseJSON.error).fadeIn();
-                    });
+        $('#list-view')
+            .off('click', '.list-been-spot')
+            .on('click', '.list-been-spot', function() {
+                handleBeen($(this).parents('.spot-info').data('spot-id'));
+            });
+
+        $('#list-view')
+            .off('click', '.list-good-spot')
+            .on('click', '.list-good-spot', function() {
+                handleGood($(this).parents('.spot-info').data('spot-id'));
+        spotView.populateFilter();
             });
 
     };
@@ -105,6 +104,12 @@
             .empty()
             .append(html)
             .fadeIn();
+
+        $('#cancel-update')
+            .off('click')
+            .on('click'), () => {
+            history.back();
+        };
 
         if (User.name === spot.username) {
             $('#update-spot-form')
@@ -131,35 +136,91 @@
     };
             
     spotView.initDetailView = () => {
-        resetView();
 
         const html = detailViewTemplate(Spot.detail);
 
-        $('#detail-view')
+        $('#detail-view').show();
+
+        $('#detail-holder')
             .empty()
             .append(html)
             .fadeIn();
 
+        Spot.collectBeen(Spot.detail.spot_id)
+            .then(response => {
+                const beenReport = {
+                    beenHereCount: response,
+                    peopleHaveGrammar: response !== '1' ? 'people have' : 'person has'
+                };
+
+                const html = beenHereTemplate(beenReport);
+                
+                $('#been-here-holder')
+                    .empty()
+                    .append(html)
+                    .fadeIn();
+            });
+
+        $('.editing-buttons, .voting-buttons').hide();
+
         if (User.name === Spot.detail.username) {
+            $('.editing-buttons').show();
             $('#delete-spot')
-                .show()
                 .off('click')
                 .on('click', () => {
-                    Spot.delete(Spot.detail.spot_id)
-                        .then(response => {
-                            console.log(response);
-                            page('/map');
-                        })
-                        .catch(err => {
-                            $('#delete-status').text(err.responseJSON.error).fadeIn();
-                        });
+                    handleDelete(Spot.detail.spot_id, '/map');
                 });
-        } else {
-            $('#delete-spot').hide();
-            $('#update-spot').hide();
+        } else if (User.current) {
+            $('.voting-buttons').show();
+            $('#been-spot')
+                .off('click')
+                .on('click', () => {
+                    handleBeen(Spot.detail.spot_id);
+                });
+            $('#good-spot')
+                .off('click')
+                .on('click', () => {
+                    handleGood(Spot.detail.spot_id);
+                });
         }
-
     };
+
+    function handleDelete(id, newView) {
+        if (confirm('Do you really want to delete this spot permanently?')) {
+            Spot.delete(id)
+                .then(response => {
+                    console.log(response);
+                    page(newView);
+                })
+                .catch(console.error);
+        }
+    }
+
+    function handleBeen(id) {
+        Spot.reportBeen(id)
+            .then(response => {
+                const beenReport = {
+                    beenHereCount: response,
+                    peopleHaveGrammar: response !== '1' ? 'people have' : 'person has'
+                };
+
+                const html = beenHereTemplate(beenReport);
+                
+                $('#been-here-holder')
+                    .empty()
+                    .append(html)
+                    .fadeIn();
+            })
+            .catch(console.error);
+    }
+
+    function handleGood(id) {
+        Spot.reportGood(id)
+            .then(response => {
+                console.log(response);
+            })
+            .catch(console.error);
+    }
 
     module.spotView = spotView;
 

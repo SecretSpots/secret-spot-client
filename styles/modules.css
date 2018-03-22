@@ -6,10 +6,6 @@
     cursor: pointer;
 }
 
-#delete-status {
-    color: red;
-}
-
 .show-more {
     display: block;
 }

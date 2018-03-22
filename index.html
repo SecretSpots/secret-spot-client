@@ -77,7 +77,8 @@
     </section>
 
     <section id="detail-view" class="view">
-            
+      <div id="detail-holder"></div>
+      <div id="been-here-holder"></div>
     </section>
 
     <section id="update-view" class="view"></section>
@@ -96,22 +97,29 @@
                 <textarea id="note" name="note">{{note}}</textarea>
             </label>
             <div>
-                <input id="update-button" type="submit" value="Update">
+              <button id="cancel-update">Cancel</button>
+              <input id="update-button" type="submit" value="Update">
             </div>
         </form>
         <p>Added by {{user_id}} on {{date}}</p>
     </template>
 
     <template id="spot-list-template">
-            <div class="spot {{username}}" data-author='{{username}}'>
+            <div class="spot-info spot {{username}}" data-spot-id="{{spot_id}}" data-author="{{username}}">
                 <h2>{{name}}</h2>
                 <div class="hide">
                   <p>{{address}}</p>
                   <p>{{note}}</p>
                   <p>Added by {{username}} on {{date}}</p>
+                  <div class="editing-buttons">                
+                    <button class="list-delete-spot" >Delete this Spot</button>
+                    <a href="/spots/{{spot_id}}/update"><button>Update this Spot</button></a>
+                  </div>
+                  <div class="voting-buttons">
+                    <button class="list-been-spot">I've been here</button>
+                    <button class="list-good-spot">Good tip</button></a>
+                  </div>
                 </div>
-                <button class="list-delete-spot" data-spot-id="{{spot_id}}">Delete this Spot</button>
-                <a href="/spots/{{spot_id}}/update"><button class="list-update-spot">Update this Spot</button></a>
                 <a href="#" class="show-more" data-username="{{username}}">Show More</a>
             </div>
     </template>
@@ -122,11 +130,19 @@
             <h3>{{address}}</h3>
             <p>{{note}}</p>
             <h3>Added by {{username}} on {{date}}</h3>
-            <button id="delete-spot">Delete this Spot</button>
-            <p id="delete-status"></p>
-            <a href="/spots/{{spot_id}}/update"><button id="update-spot">Update this Spot</button></a>
-            <p id="update-status"></p>
+            <div class="editing-buttons">                
+              <button id="delete-spot">Delete this Spot</button>
+              <a href="/spots/{{spot_id}}/update"><button id="update-spot">Update this Spot</button></a>
+            </div>
+            <div class="voting-buttons">
+                <button id="been-spot">I've been here</button>
+                <button id="good-spot">Good tip</button></a>
+            </div>
         </div>
+    </template>
+
+    <template id="been-here-template">
+      <p>{{beenHereCount}} {{peopleHaveGrammar}} reported visiting this spot.</p>
     </template>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
