@@ -9,6 +9,9 @@
     const detailViewTemplate = Handlebars.compile($('#detail-view-template').html());
     const updateViewTemplate = Handlebars.compile($('#update-view-template').html());
     const beenHereTemplate = Handlebars.compile($('#been-here-template').html());
+    const goodSpotTemplate = Handlebars.compile($('#good-spot-template').html());
+    Handlebars.registerPartial('beenReport', $('#been-here-template').html());
+    Handlebars.registerPartial('goodReport', $('#good-spot-template').html());
 
     const spotView = {};
     
@@ -97,18 +100,18 @@
                 handleDelete($(this).parents('.spot-info').data('spot-id'), '/list-view');
             });
         
-        $('#list-view')
-            .off('click', '.list-been-spot')
-            .on('click', '.list-been-spot', function() {
-                handleBeen($(this).parents('.spot-info').data('spot-id'));
-            });
+        // $('#list-view')
+        //     .off('click', '.list-been-spot')
+        //     .on('click', '.list-been-spot', function() {
+        //         handleListBeen($(this).parents('.spot-info').data('spot-id'));
+        //     });
 
-        $('#list-view')
-            .off('click', '.list-good-spot')
-            .on('click', '.list-good-spot', function() {
-                handleGood($(this).parents('.spot-info').data('spot-id'));
-            });
-
+        // $('#list-view')
+        //     .off('click', '.list-good-spot')
+        //     .on('click', '.list-good-spot', function() {
+        //         handleListGood($(this).parents('.spot-info').data('spot-id'));
+        //     });
+        
     };
     
     spotView.loadSpots = () => {
@@ -129,9 +132,9 @@
 
         $('#cancel-update')
             .off('click')
-            .on('click'), () => {
-            history.back();
-        };
+            .on('click', () => {
+                history.back();
+            });
 
         if (User.name === spot.username) {
             $('#update-spot-form')
@@ -170,18 +173,15 @@
 
         Spot.collectBeen(Spot.detail.spot_id)
             .then(response => {
-                const beenReport = {
-                    beenHereCount: response,
-                    peopleHaveGrammar: response !== '1' ? 'people have' : 'person has'
-                };
-
-                const html = beenHereTemplate(beenReport);
-                
-                $('#been-here-holder')
-                    .empty()
-                    .append(html)
-                    .fadeIn();
-            });
+                displayBeen(response);
+            })
+            .catch(console.error);
+        
+        Spot.collectGood(Spot.detail.spot_id)
+            .then(response => {
+                displayDetailGood(response);
+            })
+            .catch(console.error);
 
         $('.editing-buttons, .voting-buttons').hide();
 
@@ -202,7 +202,7 @@
             $('#good-spot')
                 .off('click')
                 .on('click', () => {
-                    handleGood(Spot.detail.spot_id);
+                    handleDetailGood(Spot.detail.spot_id);
                 });
         }
     };
@@ -219,29 +219,47 @@
     }
 
     function handleBeen(id) {
-        Spot.reportBeen(id)
+        Spot.recordBeen(id)
             .then(response => {
-                const beenReport = {
-                    beenHereCount: response,
-                    peopleHaveGrammar: response !== '1' ? 'people have' : 'person has'
-                };
-
-                const html = beenHereTemplate(beenReport);
-                
-                $('#been-here-holder')
-                    .empty()
-                    .append(html)
-                    .fadeIn();
+                displayBeen(response);
             })
             .catch(console.error);
     }
 
-    function handleGood(id) {
-        Spot.reportGood(id)
+    function displayBeen(response) {
+        const beenReport = {
+            beenHereCount: response,
+            peopleHaveGrammar: response !== '1' ? 'people have' : 'person has'
+        };
+
+        const html = beenHereTemplate(beenReport);
+        
+        $('#been-here-holder')
+            .empty()
+            .append(html)
+            .fadeIn();
+    }
+
+    function handleDetailGood(id) {
+        Spot.recordGood(id)
             .then(response => {
-                console.log(response);
+                displayDetailGood(response);
             })
             .catch(console.error);
+    }
+
+    function displayDetailGood(response) {
+        const goodReport = {
+            goodSpotCount: response,
+            peopleLikeGrammar: response !== '1' ? 'people like' : 'person likes'
+        };
+
+        const html = goodSpotTemplate(goodReport);
+        
+        $('#good-spot-holder')
+            .empty()
+            .append(html)
+            .fadeIn();
     }
 
     module.spotView = spotView;

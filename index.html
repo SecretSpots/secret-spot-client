@@ -85,10 +85,11 @@
             <p id="user-status">you are logged in</p>
         </section>
 
-        <section id="detail-view" class="view">
-            <div id="detail-holder"></div>
-            <div id="been-here-holder"></div>
-        </section>
+    <section id="detail-view" class="view">
+      <div id="detail-holder"></div>
+      <div id="been-here-holder"></div>
+      <div id="good-spot-holder"></div>
+    </section>
 
         <section id="update-view" class="view"></section>
     </main>
@@ -155,6 +156,10 @@
 
     <template id="been-here-template">
       <p>{{beenHereCount}} {{peopleHaveGrammar}} reported visiting this spot.</p>
+    </template>
+    
+    <template id="good-spot-template">
+      <p>{{goodSpotCount}} {{peopleLikeGrammar}} this recommendation.</p>
     </template>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

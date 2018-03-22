@@ -48,11 +48,15 @@
         return $.get(`${API_URL}/spots/${id}/been`);
     };
 
-    Spot.reportBeen = (id) => {
+    Spot.recordBeen = (id) => {
         return $.post(`${API_URL}/spots/${id}/been`);
     };
 
-    Spot.reportGood = (id) => {
+    Spot.collectGood = (id) => {
+        return $.get(`${API_URL}/spots/${id}/good`);
+    };
+
+    Spot.recordGood = (id) => {
         return $.post(`${API_URL}/spots/${id}/good`);
     };
 
