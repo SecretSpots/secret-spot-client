@@ -67,6 +67,7 @@
         $('.spot').empty();
         spotView.loadSpots();
         spotView.showMore();
+        spotView.populateFilter();
 
         $('#list-view')
             .off('click', '.list-delete-spot')
@@ -84,7 +85,6 @@
             .off('click', '.list-good-spot')
             .on('click', '.list-good-spot', function() {
                 handleGood($(this).parents('.spot-info').data('spot-id'));
-        spotView.populateFilter();
             });
 
     };
