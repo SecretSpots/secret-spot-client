@@ -14,9 +14,9 @@
 
     <nav class="nav-menu clearfix">
         <ul>
-          <li><a href="/list-view">List</a></li>
-          <li><a href="#" id="add-link">Add Spot</a></li>
-          <li><a href="/map">Map</a></li>
+          <li><a href="/list-view" class="icon-list2"></a></li>
+          <li><a href="#" class="icon-plus" id="add-link"></a></li>
+          <li><a href="/map" class="icon-earth"></a></li>
           <li><a href="/auth/signup">Sign Up</a></li>
           <li><a href="/auth/signin">Sign In</a></li>
         </ul>
@@ -52,10 +52,11 @@
         </section>
 </head>
 <body>
-    <!-- views -->
-    <section id="map-view" class="view">
-        <div id="map"></div>
-    </section>
+    <main class="content">
+        <!-- views -->
+        <section id="map-view" class="view">
+            <div id="map"></div>
+        </section>
 
     <section id="list-view" class="view">
         <div id="filter">
@@ -66,27 +67,27 @@
         </div>
     </section>
 
-    <section id="auth-view" class="view">
-      <form id="auth-form">
-        <input type="text" id="username" name="username" placeholder="username">
-        <input type="password" id="password" name="password" placeholder="password">
-        <button type="submit">enter</button>
-      </form>
-      <a id="auth-type" href="/auth/signin">sign in</a>
-      <p id="user-status">you are logged in</p>
-    </section>
+        <section id="auth-view" class="view">
+        <form id="auth-form">
+            <input type="text" id="username" name="username" placeholder="username">
+            <input type="password" id="password" name="password" placeholder="password">
+            <button type="submit">enter</button>
+        </form>
+        <a id="auth-type" href="/auth/signin">sign in</a>
+        <p id="user-status">you are logged in</p>
+        </section>
 
     <section id="detail-view" class="view">
       <div id="detail-holder"></div>
       <div id="been-here-holder"></div>
     </section>
 
-    <section id="update-view" class="view"></section>
-
-      <footer>
+        <section id="update-view" class="view"></section>
+    </main>
+    <footer>
         <p id="current-username"></p>
         <p id="logout">Log Out</p>
-      </footer>
+    </footer>
 
     <!-- templates -->
     <template id="update-view-template">
@@ -148,6 +149,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
+    
     <script>
             const API_URL = window.location.protocol === 'https:'
             ? 'https://secret-spots.herokuapp.com/api/v1'
