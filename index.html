@@ -15,12 +15,41 @@
     <nav class="nav-menu clearfix">
         <ul>
           <li><a href="/list-view">List</a></li>
-          <li><a href="/spots/new">Add Spot</a></li>
+          <li><a href="#" id="add-link">Add Spot</a></li>
           <li><a href="/map">Map</a></li>
           <li><a href="/auth/signup">Sign Up</a></li>
           <li><a href="/auth/signin">Sign In</a></li>
         </ul>
       </nav>
+
+      <section id="new-spot-view" class="view">
+          <h2 class="view-title">Add New Spot</h2>
+          <input id="locationTextField" placeholder="Where's your spot?" type="text"></input>
+  
+          <section id="form-view">
+            <form id="add-spot">
+                <label>
+                    Name of Spot:
+                    <input type="text" name="name" required>
+                </label>
+                <label>
+                    Address:
+                    <input type="text" name="address" required>
+                </label>
+                <label>
+                    Geolocation:
+                    <input type="text" name="address" disabled="disabled">
+                </label>
+                <label>
+                    Note:
+                    <input type="text-area" name="note" placeholder="Add a note about your spot!">
+                </label>
+                <div>
+                    <input id="form-button" type="submit" value="Share">
+                  </div>
+            </form>
+          </section>
+        </section>
 </head>
 <body>
     <!-- views -->
@@ -43,35 +72,6 @@
     <section id="detail-view" class="view"></section>
 
     <section id="update-view" class="view"></section>
-
-    <section id="new-spot-view" class="view">
-        <h2 class="view-title">Add New Spot</h2>
-        <input id="locationTextField" placeholder="Where's your spot?" type="text"></input>
-
-        <section id="form-view">
-          <form id="add-spot">
-              <label>
-                  Name of Spot:
-                  <input type="text" name="name" required>
-              </label>
-              <label>
-                  Address:
-                  <input type="text" name="address" required>
-              </label>
-              <label>
-                  Geolocation:
-                  <input type="text" name="address" disabled="disabled">
-              </label>
-              <label>
-                  Note:
-                  <input type="text-area" name="note" placeholder="Add a note about your spot!">
-              </label>
-              <div>
-                  <input id="form-button" type="submit" value="Share">
-                </div>
-          </form>
-        </section>
-      </section>
 
       <footer>
         <p id="current-username"></p>
@@ -102,7 +102,7 @@
                   <p>Added by {{username}} on {{date}}</p>
                 </div>
                 <button class="list-delete-spot" data-spot-id="{{spot_id}}">Delete this Spot</button>
-                <a href="spots/{{spot_id}}/update"><button class="list-update-spot">Update this Spot</button></a>
+                <a href="/spots/{{spot_id}}/update"><button class="list-update-spot">Update this Spot</button></a>
                 <a href="#" class="show-more" data-username="{{username}}">Show More</a>
             </div>
     </template>
@@ -115,7 +115,7 @@
             <h3>Added by {{username}} on {{date}}</h3>
             <button id="delete-spot">Delete this Spot</button>
             <p id="delete-status"></p>
-            <a href="spots/{{spot_id}}/update"><button id="update-spot">Update this Spot</button></a>
+            <a href="/spots/{{spot_id}}/update"><button id="update-spot">Update this Spot</button></a>
             <p id="update-status"></p>
         </div>
     </template>
@@ -135,12 +135,11 @@
     <script src="scripts/models/user.js"></script>
     <script src="scripts/models/map.js"></script>
     <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBrLufX8_DAF_wPD79dBtiMgnktq6nxAt4&libraries=places&callback=module.Map.initMap'></script> 
-    <!-- leave google call between map js and form-view -->
+    <!-- leave google call between map js and map-view -->
     <script src="scripts/views/map-view.js"></script>
     <script src="scripts/views/spots-view.js"></script>
     <script src="scripts/views/login-view.js"></script>
     <script src="scripts/views/error-view.js"></script>
-    <script src="scripts/views/form-view.js"></script>
     <script src="scripts/app.js"></script>
     </script>
 
