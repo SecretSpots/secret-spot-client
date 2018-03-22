@@ -6,7 +6,6 @@
     const Spot = module.Spot;
     const User = module.User;
     const spotView = module.spotView;
-    const formView = module.formView;
     const loginView = module.loginView;
     
     User.tryToken();
@@ -37,12 +36,28 @@
 
     page('*', (ctx, next) => {
         resetView();
+
+        $('#add-link').off('click');
+        if (ctx.pathname === '/map') {
+            $('#add-link').on('click', (event)=>{
+                event.preventDefault();
+                $('#new-spot-view').slideToggle(200);
+            });
+            if (ctx.querystring === 'add'){
+                $('#new-spot-view').slideDown(200);
+            }
+        } else {
+            $('#add-link').on('click', (event) => {
+                event.preventDefault();
+                page('/map?add');
+            });
+        }
+
         displayUser();
         next();
     });
   
     page('/list-view', loadSpots, spotView.initListView);
-    page('/spots/new', formView.initForm);
     page('/auth/signup', loginView.initSignup);
     page('/auth/signin', loginView.initSignin);
     page('/map', loadSpots, mapView.initMapView);
