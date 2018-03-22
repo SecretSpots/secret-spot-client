@@ -55,6 +55,51 @@
     margin-top:0;
 }
 
+#update-spot {
+    background-color: black;
+    color: white;
+}
+
+#delete-spot {
+    background-color: #f05454;
+    color: #150000;
+}
+
+#update-button {
+    background-color: black;
+    color: white;
+}
+
+.list-update-button {
+    background-color: black;
+    color: white;
+}
+
+.list-delete-spot {
+    background-color: #f05454;
+    color: #150000;
+}
+
+.list-been-spot {
+    background-color: #01bd66;
+    color: #004a27;
+}
+
+#been-spot {
+    background-color: #01bd66;
+    color: #004a27;
+}
+
+#good-spot {
+    background-color: #5bd79d;
+    color: #004a27;
+}
+
+.list-good-spot {
+    background-color: #5bd79d;
+    color: #004a27;
+}
+
 .hide p {
     padding-left: 1em;
 }

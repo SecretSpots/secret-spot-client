@@ -14,11 +14,11 @@
 
     <nav class="nav-menu clearfix">
         <ul>
+          <li><a href="/auth/signup" class="login-options">Sign Up</a></li>
+          <li><a href="/auth/signin" class="login-options">Sign In</a></li>
           <li><a href="/list-view" class="icon-list2"></a></li>
           <li><a href="#" class="icon-plus" id="add-link"></a></li>
           <li><a href="/map" class="icon-earth"></a></li>
-          <li><a href="/auth/signup" class="login-options">Sign Up</a></li>
-          <li><a href="/auth/signin" class="login-options">Sign In</a></li>
         </ul>
       </nav>
 
@@ -127,7 +127,7 @@
                   <p>Added by <span class="list-user-name">{{username}}</span> on {{date}}</p>
                   <div class="editing-buttons">                
                     <button class="list-delete-spot" >Delete this Spot</button>
-                    <a href="/spots/{{spot_id}}/update"><button>Update this Spot</button></a>
+                    <a href="/spots/{{spot_id}}/update"><button class="list-update-button">Update this Spot</button></a>
                   </div>
                   <div class="voting-buttons">
                     <button class="list-been-spot">I've been here</button>
