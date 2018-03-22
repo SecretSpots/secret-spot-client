@@ -34,6 +34,23 @@
             }
         });
     };
+
+    spotView.sortBy = () => {
+        // const posts = $('.spot');
+        // console.log(posts);
+        // const dataAttr = posts.each(function() {
+        //     const authors = $(this).attr('data-author');
+        //     return authors;
+        // });
+        // console.log(dataAttr);
+        const $posts = $('#list-view');
+        console.log($posts);
+
+        $posts.find('.spot').sort(function (a, b) {
+            return +a.getAttribute('data-spot-id') - +b.getAttribute('data-spot-id');
+        })
+            .appendTo($posts);
+    };
   
     spotView.populateFilter = () => {
         if (User.current) {
@@ -68,6 +85,7 @@
         spotView.loadSpots();
         spotView.showMore();
         spotView.populateFilter();
+        // spotView.sortBy();
 
         $('#list-view')
             .off('click', '.list-delete-spot')
