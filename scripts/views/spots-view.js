@@ -15,22 +15,24 @@
     
     spotView.showMore = () => {
         $('.hide').slideUp(0);
-        $('#list-view button').hide();
+        $('.editing-buttons, .voting-buttons').hide();
         $('#list-view').off('click', 'a.show-more');
         $('#list-view').on('click', 'a.show-more', function(e) {
             e.preventDefault();
             if ($(this).text() === 'Show More') {
                 if(User.name === $(this).data('username')) {
-                    $(this).parent().find('button').show();
+                    $(this).parent().find('.voting-buttons').hide();
+                    $(this).parent().find('.editing-buttons').show();
                 } else {
-                    $(this).parent().find('button').hide();
+                    $(this).parent().find('.voting-buttons').show();
+                    $(this).parent().find('.editing-buttons').hide();
                 }
                 $(this).parent().find('.hide').slideDown(200);
                 $(this).html('Show Less');
             } else {
                 $(this).html('Show More');
                 $(this).parent().find('.hide').slideUp(200);
-                $('#list-view button').hide();
+                $(this).parent().find('.editing-buttons, .voting-buttons').hide();
             }
         });
     };
@@ -46,9 +48,9 @@
         spotView.loadSpots();
         spotView.showMore();
 
-        $('.list-delete-spot')
-            .off('click')
-            .on('click', function() {
+        $('#list-view')
+            .off('click', '.list-delete-spot')
+            .on('click', '.list-delete-spot', function() {
                 Spot.delete($(this).data('spot-id'))
                     .then(response => {
                         console.log(response);

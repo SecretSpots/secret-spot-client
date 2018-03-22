@@ -100,9 +100,15 @@
                   <p>{{address}}</p>
                   <p>{{note}}</p>
                   <p>Added by {{username}} on {{date}}</p>
+                  <div class="editing-buttons">                
+                    <button class="list-delete-spot" data-spot-id="{{spot_id}}">Delete this Spot</button>
+                    <a href="/spots/{{spot_id}}/update"><button>Update this Spot</button></a>
+                  </div>
+                  <div class="voting-buttons">
+                    <button class="list-delete-spot" data-spot-id="{{spot_id}}">I've been here</button>
+                    <a href="/spots/{{spot_id}}/update"><button>Good tip</button></a>
+                  </div>
                 </div>
-                <button class="list-delete-spot" data-spot-id="{{spot_id}}">Delete this Spot</button>
-                <a href="/spots/{{spot_id}}/update"><button class="list-update-spot">Update this Spot</button></a>
                 <a href="#" class="show-more" data-username="{{username}}">Show More</a>
             </div>
     </template>
