@@ -31,6 +31,7 @@
         } else {
             $('#current-username').empty().hide();
             $('#logout').hide();
+            $('.login-options').show();
         }
     };
 
