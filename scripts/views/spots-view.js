@@ -14,38 +14,58 @@
     Handlebars.registerPartial('goodReport', $('#good-spot-template').html());
 
     const spotView = {};
-
     
     spotView.showMore = () => {
         $('.hide').slideUp(0);
         $('.editing-buttons, .voting-buttons').hide();
-        $('#list-view').off('click', 'a.show-more');
-        $('#list-view').on('click', 'a.show-more', function(e) {
+        $('#list-view').off('click', 'a.show-more, a.icon-circle-down, a.show-less');
+        $('#list-view').on('click', 'a.show-more, a.icon-circle-down, a.show-less', function(e) {
             e.preventDefault();
-            if ($(this).text() === 'Show More') {
+            if ($(this).hasClass('show-more')) {
                 if(User.name === $(this).data('username')) {
                     $(this).parent().find('.editing-buttons').show();
                 } else if (User.current) {
                     $(this).parent().find('.voting-buttons').show();
                 }
                 $(this).parent().find('.hide').slideDown(200);
-                $(this).html('Show Less');
-            } else {
-                $(this).html('Show More');
+                $(this).addClass('show-less');
+                $(this).removeClass('show-more');
+            } else if ($(this).hasClass('show-less')) {
                 $(this).parent().find('.hide').slideUp(200);
                 $(this).parent().find('.editing-buttons, .voting-buttons').hide();
+                $(this).addClass('show-more');
+                $(this).removeClass('show-less');
             }
         });
+    };
+
+    spotView.sortListener = () => {
+        $('select').change(function(){
+            const sortVal = $('#sort option:selected').val();
+            spotView.sortBy(sortVal);
+        });
+    };
+
+    spotView.sortBy = (sortVal) => {
+        const $posts = $('#list-view');
+
+        $posts.find('.spot').sort(function (a, b) {
+            if (sortVal !== 'data-spot-id'){
+                return $(a).attr(`${sortVal}`).toLowerCase() > $(b).attr(`${sortVal}`).toLowerCase();
+            } else {
+                return $(a).attr(`${sortVal}`).toLowerCase() < $(b).attr(`${sortVal}`).toLowerCase();
+            }
+        })
+            .appendTo($posts).hide().fadeIn(500);
     };
   
     spotView.populateFilter = () => {
         if (User.current) {
-            console.log('hello', User.name);
+            $('#filter').show();
             spotView.filterHandler();
         }
         else {
             $('#filter').hide();
-            console.log('hiding filter...');
         }
     };
 
@@ -67,10 +87,12 @@
   
     spotView.initListView = () => {
         $('#list-view').fadeIn();
-        $('.spot').empty();
+        $('.spot').empty().remove();
         spotView.loadSpots();
         spotView.showMore();
         spotView.populateFilter();
+        spotView.sortListener();
+        // spotView.sortBy();
 
         $('#list-view')
             .off('click', '.list-delete-spot')

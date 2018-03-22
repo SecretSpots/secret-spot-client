@@ -18,3 +18,114 @@
 .show-more {
     display: block;
 }
+
+.icon-circle-down {
+    -moz-transition: all .5s ease;
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
+}
+
+.icon-circle-down.up {
+    -ms-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    transform-origin: center;
+}
+
+.spot-info {
+    background-color: #407887;
+    border-bottom: solid 1px black;
+    color: #163142;
+}
+
+.spot-info h2 {
+    color: black;
+}
+
+.spot-info a.icon-circle-down {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 1em;
+    padding-bottom: .2em;
+}
+
+.list-view-header {
+    padding-top: .3em;
+    padding-left: .5em;
+    margin-bottom: 0;
+    margin-top:0;
+}
+
+.hide p {
+    padding-left: 1em;
+}
+
+.hide h3 {
+    padding-left: 1em;
+}
+
+.list-user-name {
+    font-style: italic;
+}
+
+.hide p.list-view-notes {
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+#filter {
+    background-color: #163142;
+    color: #407887;
+    padding: 1em;
+}
+
+.update-div h2 {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: .5em;
+    padding-top: 1em;
+    color: #163142;
+}
+
+.update-div h3 {
+    margin-top: 0;
+    padding-left: 1.5em;
+    padding-top: 1em;
+    color: #163142;
+}
+
+.update-div p {
+    padding-left: 1.5em;
+    color: #163142;
+}
+
+.update-div form {
+    margin-top: 0;
+    padding-left: 2.5em;
+    padding-top: 1em;
+}
+
+.update-button-div {
+    padding-top: 1em;
+
+}
+
+.update-button-div input {
+    border-style: none;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    padding: .3em
+}
+
+.content {
+    background-color:  #407887;;
+}
+
+textarea {
+    background-color: #bddde6;
+    border: none;
+}
