@@ -54,17 +54,15 @@
             }
         })
             .appendTo($posts);
-        
     };
   
     spotView.populateFilter = () => {
         if (User.current) {
-            console.log('hello', User.name);
+            $('#filter').show();
             spotView.filterHandler();
         }
         else {
             $('#filter').hide();
-            console.log('hiding filter...');
         }
     };
 
