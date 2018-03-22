@@ -52,18 +52,18 @@
     };
 
     spotView.filterHandler = () => {
-        const checkedCheck = function (){
+        const filterAction = function (){
             if ($('input:checkbox').is(':checked')) {
-                $('.spot').fadeOut();
+                $('.spot').hide();
                 $(`.${User.name}`).fadeIn();
             }
             else {
                 $('.spot').fadeIn();
             }
         };
-        checkedCheck();
+        filterAction();
         $('input:checkbox').change(function(){
-            checkedCheck();
+            filterAction();
         });
     };
     
