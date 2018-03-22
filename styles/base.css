@@ -65,4 +65,31 @@
       padding-right: 2%;
       padding-left: 2%;
       }
+    
+    button {
+      border-style: none;
+      border-radius: 5px;
+      background-color: black;
+      color: white;
+      padding: .3em
+    }
+
+    .editing-buttons {
+      padding-left: 1em;
+      padding-bottom: 1em;
+    }
+
+    .voting-buttons {
+      padding-left: 1em;
+      padding-bottom: 1em;
+    }
+
+    #list-view {
+      background-color:  #407887;
+    }
+
+    #update-view {
+      background-color:  #407887;
+    }
+  
 

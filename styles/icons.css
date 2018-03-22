@@ -59,6 +59,7 @@
 }
 .icon-circle-down:before {
   content: "\ea43";
+  font-size: 1.5em;
 }
 .icon-paragraph-left:before {
   content: "\ea77";

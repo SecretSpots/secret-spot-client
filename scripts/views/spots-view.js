@@ -66,7 +66,7 @@
   
     spotView.initListView = () => {
         $('#list-view').fadeIn();
-        $('.spot').empty();
+        $('.spot').empty().remove();
         spotView.loadSpots();
         spotView.showMore();
         spotView.populateFilter();

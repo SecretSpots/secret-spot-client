@@ -14,8 +14,11 @@
         $('.view').hide();
     };
 
+
+
     const displayUser = () => {
         if (User.current) {
+            $('.login-options').hide();
             $('#current-username').text(User.name).fadeIn();
             $('#logout')
                 .fadeIn()
