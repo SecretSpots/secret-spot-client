@@ -37,12 +37,7 @@
         });
     };
 
-    function resetView() {
-        $('.view').fadeOut();
-    }
-
     spotView.initListView = () => {
-        resetView();
         $('#list-view').fadeIn();
         $('#list-view').empty();
         spotView.loadSpots();
@@ -51,15 +46,20 @@
         $('#list-view')
             .off('click', '.list-delete-spot')
             .on('click', '.list-delete-spot', function() {
-                Spot.delete($(this).data('spot-id'))
-                    .then(response => {
-                        console.log(response);
-                        page('/list-view');
-                    })
-                    .catch(err => {
-                        $('#delete-status').text(err.responseJSON.error).fadeIn();
-                    });
+                handleDelete($(this).parents('.spot-info').data('spot-id'), '/list-view');
             });
+        
+        // $('#list-view')
+        //     .off('click', '.list-delete-spot')
+        //     .on('click', '.list-delete-spot', function() {
+        //         handleDelete($(this).data('spot-id'), '/list-view');
+        //     });
+
+        // $('#list-view')
+        //     .off('click', '.list-delete-spot')
+        //     .on('click', '.list-delete-spot', function() {
+        //         handleDelete($(this).data('spot-id'), '/list-view');
+        //     });
     };
 
     spotView.loadSpots = () => {
@@ -103,7 +103,6 @@
     };
             
     spotView.initDetailView = () => {
-        resetView();
 
         const html = detailViewTemplate(Spot.detail);
 
@@ -117,14 +116,7 @@
                 .show()
                 .off('click')
                 .on('click', () => {
-                    Spot.delete(Spot.detail.spot_id)
-                        .then(response => {
-                            console.log(response);
-                            page('/map');
-                        })
-                        .catch(err => {
-                            $('#delete-status').text(err.responseJSON.error).fadeIn();
-                        });
+                    handleDelete(Spot.detail.spot_id, '/map');
                 });
         } else {
             $('#delete-spot').hide();
@@ -132,6 +124,19 @@
         }
 
     };
+
+    function handleDelete(id, newView) {
+        if (confirm('Do you really want to delete this spot permanently?')) {
+            Spot.delete(id)
+                .then(response => {
+                    console.log(response);
+                    page(newView);
+                })
+                .catch(err => {
+                    $('#delete-status').text(err.responseJSON.error).fadeIn();
+                });
+        }
+    }
 
     module.spotView = spotView;
 

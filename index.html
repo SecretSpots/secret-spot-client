@@ -94,19 +94,19 @@
     </template>
 
     <template id="spot-list-template">
-            <div>
+            <div class="spot-info" data-spot-id="{{spot_id}}">
                 <h2>{{name}}</h2>
                 <div class="hide">
                   <p>{{address}}</p>
                   <p>{{note}}</p>
                   <p>Added by {{username}} on {{date}}</p>
                   <div class="editing-buttons">                
-                    <button class="list-delete-spot" data-spot-id="{{spot_id}}">Delete this Spot</button>
+                    <button class="list-delete-spot" >Delete this Spot</button>
                     <a href="/spots/{{spot_id}}/update"><button>Update this Spot</button></a>
                   </div>
                   <div class="voting-buttons">
-                    <button class="list-delete-spot" data-spot-id="{{spot_id}}">I've been here</button>
-                    <a href="/spots/{{spot_id}}/update"><button>Good tip</button></a>
+                    <button>I've been here</button>
+                    <button>Good tip</button></a>
                   </div>
                 </div>
                 <a href="#" class="show-more" data-username="{{username}}">Show More</a>
