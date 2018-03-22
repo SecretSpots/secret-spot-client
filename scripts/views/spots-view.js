@@ -78,17 +78,17 @@
                 handleDelete($(this).parents('.spot-info').data('spot-id'), '/list-view');
             });
         
-        $('#list-view')
-            .off('click', '.list-been-spot')
-            .on('click', '.list-been-spot', function() {
-                handleListBeen($(this).parents('.spot-info').data('spot-id'));
-            });
+        // $('#list-view')
+        //     .off('click', '.list-been-spot')
+        //     .on('click', '.list-been-spot', function() {
+        //         handleListBeen($(this).parents('.spot-info').data('spot-id'));
+        //     });
 
-        $('#list-view')
-            .off('click', '.list-good-spot')
-            .on('click', '.list-good-spot', function() {
-                handleListGood($(this).parents('.spot-info').data('spot-id'));
-            });
+        // $('#list-view')
+        //     .off('click', '.list-good-spot')
+        //     .on('click', '.list-good-spot', function() {
+        //         handleListGood($(this).parents('.spot-info').data('spot-id'));
+        //     });
         
     };
     
