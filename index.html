@@ -30,6 +30,7 @@
 
     <section id="list-view" class="view">
         <div id="filter">
+            <!-- <a href="#" id="filter-author">Hello</a> -->
             <form>
                 <input type="checkbox" id="filter-authour" name="filter-by-author" value="filter-by-author">
                 <label for="filter-by-author">Show only my spots</label>
@@ -103,7 +104,7 @@
     </template>
 
     <template id="spot-list-template">
-            <div class="spot">
+            <div class="spot {{username}}">
                 <h2>{{name}}</h2>
                 <div class="hide">
                   <p>{{address}}</p>

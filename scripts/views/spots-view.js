@@ -43,10 +43,22 @@
     spotView.populateFilter = () => {
         if (User.current) {
             console.log('hello', User.name);
+            spotView.filterHandler();
         }
         else {
             $('#filter').hide();
         }
+    };
+
+    spotView.filterHandler = () => {
+        $('input:checkbox').change(
+            function(){
+                if ($(this).is(':checked')) {
+                    alert('checked');
+                    $('.spot').hide();
+                    $(`.${User.name}`).show();
+                }
+            });
     };
     
     spotView.initListView = () => {
@@ -56,7 +68,7 @@
         spotView.loadSpots();
         spotView.showMore();
         spotView.populateFilter();
-
+        
         $('.list-delete-spot')
             .off('click')
             .on('click', function() {
@@ -69,8 +81,9 @@
                         $('#delete-status').text(err.responseJSON.error).fadeIn();
                     });
             });
-    };
 
+    };
+    
     spotView.loadSpots = () => {
         Spot.all.forEach(spot => {
             const html = listTemplate(spot);
