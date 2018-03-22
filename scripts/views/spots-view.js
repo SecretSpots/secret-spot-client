@@ -12,6 +12,10 @@
     const updateViewTemplate = Handlebars.compile($('#update-view-template').html());
 
     const spotView = {};
+
+    spotView.populateFilter = () => {
+        $()
+    };
     
     spotView.showMore = () => {
         $('.hide').slideUp(0);
@@ -42,7 +46,7 @@
     spotView.initListView = () => {
         resetView();
         $('#list-view').fadeIn();
-        $('#list-view').empty();
+        $('#list-view').not(':first').empty();
         spotView.loadSpots();
         spotView.showMore();
 
