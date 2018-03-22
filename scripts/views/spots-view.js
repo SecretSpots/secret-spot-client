@@ -12,6 +12,11 @@
 
     const spotView = {};
 
+    // const cleanDivs = () => {
+    //     if( $('.spot').is(':empty') ) {
+    //         console.log('empty div');
+    //     }
+    // }
     
     spotView.showMore = () => {
         $('.hide').slideUp(0);
@@ -84,7 +89,7 @@
   
     spotView.initListView = () => {
         $('#list-view').fadeIn();
-        $('.spot').empty();
+        $('.spot').empty().remove();
         spotView.loadSpots();
         spotView.showMore();
         spotView.populateFilter();
