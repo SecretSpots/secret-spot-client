@@ -48,11 +48,10 @@
             if (sortVal !== 'data-spot-id'){
                 return $(a).attr(`${sortVal}`).toLowerCase() > $(b).attr(`${sortVal}`).toLowerCase();
             } else {
-                console.log('spot-id is checked');
                 return $(a).attr(`${sortVal}`).toLowerCase() < $(b).attr(`${sortVal}`).toLowerCase();
             }
         })
-            .appendTo($posts);
+            .appendTo($posts).hide().fadeIn(500);
     };
   
     spotView.populateFilter = () => {
