@@ -47,9 +47,11 @@
         console.log($posts);
 
         $posts.find('.spot').sort(function (a, b) {
-            return +a.getAttribute('data-spot-id') - +b.getAttribute('data-spot-id');
+            // return +a.getAttribute('data-spot-id') - +b.getAttribute('data-spot-id');
+            return $(a).attr('data-author').toLowerCase() > $(b).attr('data-author').toLowerCase();
         })
             .appendTo($posts);
+        
     };
   
     spotView.populateFilter = () => {
