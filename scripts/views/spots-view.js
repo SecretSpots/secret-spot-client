@@ -46,7 +46,7 @@
     spotView.initListView = () => {
         resetView();
         $('#list-view').fadeIn();
-        $('#list-view').not(':first').empty();
+        $('.spot').empty();
         spotView.loadSpots();
         spotView.showMore();
 
