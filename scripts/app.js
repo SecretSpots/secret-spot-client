@@ -12,10 +12,14 @@
 
     const resetView = () => {
         $('.view').hide();
+        if (mapView.tempMarker) mapView.tempMarker.setMap(null);
     };
+
+
 
     const displayUser = () => {
         if (User.current) {
+            $('.login-options').hide();
             $('#current-username').text(User.name).fadeIn();
             $('#logout')
                 .fadeIn()
