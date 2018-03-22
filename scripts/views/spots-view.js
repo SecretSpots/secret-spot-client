@@ -46,7 +46,12 @@
         const $posts = $('#list-view');
 
         $posts.find('.spot').sort(function (a, b) {
-            return $(a).attr(`${sortVal}`).toLowerCase() > $(b).attr(`${sortVal}`).toLowerCase();
+            if (sortVal != 'data-spot-id'){
+                return $(a).attr(`${sortVal}`).toLowerCase() > $(b).attr(`${sortVal}`).toLowerCase();
+            } else {
+                console.log('spot-id is checked');
+                return $(a).attr(`${sortVal}`).toLowerCase() < $(b).attr(`${sortVal}`).toLowerCase();
+            }
         })
             .appendTo($posts);
         
