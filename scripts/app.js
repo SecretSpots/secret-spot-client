@@ -58,7 +58,6 @@
     });
   
     page('/list-view', loadSpots, spotView.initListView);
-    // page('/spots/new', mapView.initMapView);
     page('/auth/signup', loginView.initSignup);
     page('/auth/signin', loginView.initSignin);
     page('/map', loadSpots, mapView.initMapView);

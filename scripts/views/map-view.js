@@ -8,8 +8,9 @@
 
     const mapView = {};
 
-    let infowindow = null; //define in outer scope to avoid duplicates
+    let infoWindow = null; //define in outer scope to avoid duplicates
     let markersAll = [];
+    let tempMarker = null;
 
     mapView.initMapView = () => {
         $('#map-view').show();
@@ -37,15 +38,17 @@
     const setMarkers = (map, markers) => {
 
         markers.forEach( marker => {
-            if (infowindow === null) infowindow = new google.maps.InfoWindow();
+            if (infoWindow === null) infoWindow = new google.maps.InfoWindow();
 
             const contentString = `<h4>${marker.name}</h4><a href="/spots/${marker.id}">Details</a>`;
             
             marker.setMap(map);
 
             marker.addListener('click', function () {
-                infowindow.setContent(contentString);
-                infowindow.open(Map.mapObject, marker);
+                infoWindow.setContent(contentString);
+                infoWindow.open(Map.mapObject, marker);
+
+                if (tempMarker) tempMarker.setMap(null);
             });
 
         });
@@ -98,6 +101,23 @@
             lat : place.geometry.location.lat(),
             lng : place.geometry.location.lng()
         };
+
+        tempMarker = new google.maps.Marker({
+            position: new google.maps.LatLng(place.lat, place.lng),
+            map: Map.mapObject,
+
+            store_id: 'temp',
+        });
+
+        if (infoWindow === null) infoWindow = new google.maps.InfoWindow();
+        const tempContent = `<h3>${place.name}</h3><h4>Add me!</h4>`;
+        infoWindow.setContent(tempContent);
+        infoWindow.open(Map.mapObject, tempMarker);
+        tempMarker.addListener('click', function () {
+            infoWindow.setContent(tempContent);
+            infoWindow.open(Map.mapObject, tempMarker);
+        });
+        
 
         const form = $('#add-spot input');
 
