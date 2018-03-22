@@ -11,12 +11,6 @@
     const beenHereTemplate = Handlebars.compile($('#been-here-template').html());
 
     const spotView = {};
-
-    // const cleanDivs = () => {
-    //     if( $('.spot').is(':empty') ) {
-    //         console.log('empty div');
-    //     }
-    // }
     
     spotView.showMore = () => {
         $('.hide').slideUp(0);
@@ -89,7 +83,7 @@
   
     spotView.initListView = () => {
         $('#list-view').fadeIn();
-        $('.spot').empty().remove();
+        $('.spot').empty();
         spotView.loadSpots();
         spotView.showMore();
         spotView.populateFilter();
