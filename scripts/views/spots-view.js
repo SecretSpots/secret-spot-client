@@ -11,7 +11,6 @@
     const beenHereTemplate = Handlebars.compile($('#been-here-template').html());
 
     const spotView = {};
-
     
     spotView.showMore = () => {
         $('.hide').slideUp(0);
@@ -36,15 +35,34 @@
             }
         });
     };
+
+    spotView.sortListener = () => {
+        $('select').change(function(){
+            const sortVal = $('#sort option:selected').val();
+            spotView.sortBy(sortVal);
+        });
+    };
+
+    spotView.sortBy = (sortVal) => {
+        const $posts = $('#list-view');
+
+        $posts.find('.spot').sort(function (a, b) {
+            if (sortVal !== 'data-spot-id'){
+                return $(a).attr(`${sortVal}`).toLowerCase() > $(b).attr(`${sortVal}`).toLowerCase();
+            } else {
+                return $(a).attr(`${sortVal}`).toLowerCase() < $(b).attr(`${sortVal}`).toLowerCase();
+            }
+        })
+            .appendTo($posts).hide().fadeIn(500);
+    };
   
     spotView.populateFilter = () => {
         if (User.current) {
-            console.log('hello', User.name);
+            $('#filter').show();
             spotView.filterHandler();
         }
         else {
             $('#filter').hide();
-            console.log('hiding filter...');
         }
     };
 
@@ -70,6 +88,8 @@
         spotView.loadSpots();
         spotView.showMore();
         spotView.populateFilter();
+        spotView.sortListener();
+        // spotView.sortBy();
 
         $('#list-view')
             .off('click', '.list-delete-spot')

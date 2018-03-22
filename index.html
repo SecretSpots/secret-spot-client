@@ -57,15 +57,23 @@
         <section id="map-view" class="view">
             <div id="map"></div>
         </section>
-
-        <section id="list-view" class="view">
-            <div id="filter">
-                <form>
-                    <input type="checkbox" id="filter-authour" name="filter-by-author" value="filter-by-author">
-                    <label for="filter-by-author">Show only my spots</label>
-                </form>
-            </div>
-        </section>
+    <section id="list-view" class="view">
+        <div id="filter">
+            <form>
+                <input type="checkbox" id="filter-authour" name="filter-by-author" value="filter-by-author">
+                <label for="filter-by-author">Show only my spots</label>
+            </form>
+        </div>
+            <form>
+                <select id="sort">
+                    <option value="data-title">-- Sort by Title --</option>
+                    <option value="data-popularity">-- Sort by Popularity --</option>
+                    <option value="data-recommended">-- Sort by Recommended --</option>
+                    <option value="data-spot-id">-- Sort by Newest --</option>
+                    <option value="data-date">-- Sort by Oldest --</option>
+                </select>
+            </form>
+    </section>
 
         <section id="auth-view" class="view">
             <form id="auth-form">
@@ -109,7 +117,7 @@
     </template>
 
     <template id="spot-list-template">
-            <div class="spot-info spot {{username}}" data-spot-id="{{spot_id}}" data-author="{{username}}">
+            <div class="spot-info spot {{username}}" data-spot-id="{{spot_id}}" data-title="{{name}}" data-author="{{username}}" data-date="{{date}}" data-popularity="" data-recommended="">
                 <h2 class="list-view-header">{{name}}</h2>
                 <a href="#" class="show-more icon-circle-down" data-username="{{username}}"></a>
                 <div class="hide">
