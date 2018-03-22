@@ -46,7 +46,7 @@
         const $posts = $('#list-view');
 
         $posts.find('.spot').sort(function (a, b) {
-            if (sortVal != 'data-spot-id'){
+            if (sortVal !== 'data-spot-id'){
                 return $(a).attr(`${sortVal}`).toLowerCase() > $(b).attr(`${sortVal}`).toLowerCase();
             } else {
                 console.log('spot-id is checked');
