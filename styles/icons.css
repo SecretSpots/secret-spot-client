@@ -1,69 +1,68 @@
 @font-face {
-	font-family: 'icomoon';
-	src:url('fonts/icomoon.eot?wfb79s');
-	src:url('fonts/icomoon.eot?wfb79s#iefix') format('embedded-opentype'),
-		url('fonts/icomoon.ttf?wfb79s') format('truetype'),
-		url('fonts/icomoon.woff?wfb79s') format('woff'),
-		url('fonts/icomoon.svg?wfb79s#icomoon') format('svg');
-	font-weight: normal;
-	font-style: normal;
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?8xkvxq');
+  src:  url('fonts/icomoon.eot?8xkvxq#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?8xkvxq') format('truetype'),
+    url('fonts/icomoon.woff?8xkvxq') format('woff'),
+    url('fonts/icomoon.svg?8xkvxq#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
 
 [class^="icon-"], [class*=" icon-"] {
-	font-family: 'icomoon';
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1;
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
 
-	/* Better Font Rendering =========== */
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-home:before {
-	content: "\e908";
+.icon-location:before {
+  content: "\e947";
 }
-.icon-home3:before {
-	content: "\e900";
+.icon-location2:before {
+  content: "\e948";
 }
-.icon-address-book:before {
-	content: "\e901";
+.icon-compass:before {
+  content: "\e949";
 }
-.icon-rocket:before {
-	content: "\e909";
+.icon-undo2:before {
+  content: "\e967";
 }
-.icon-power:before {
-	content: "\e90a";
+.icon-spinner11:before {
+  content: "\e984";
 }
-.icon-menu:before {
-	content: "\e902";
+.icon-equalizer:before {
+  content: "\e992";
 }
-.icon-link:before {
-	content: "\e903";
+.icon-bin:before {
+  content: "\e9ac";
 }
-.icon-happy:before {
-	content: "\e904";
+.icon-list2:before {
+  content: "\e9bb";
 }
-.icon-happy2:before {
-	content: "\e905";
+.icon-earth:before {
+  content: "\e9ca";
 }
 .icon-plus:before {
-	content: "\e90b";
-}
-.icon-minus:before {
-	content: "\e90c";
-}
-.icon-cross:before {
-	content: "\e90d";
+  content: "\ea0a";
 }
 .icon-checkmark:before {
-	content: "\e90e";
+  content: "\ea10";
 }
-.icon-twitter3:before {
-	content: "\e906";
+.icon-paragraph-left:before {
+  content: "\ea77";
 }
 .icon-github:before {
-	content: "\e907";
+  content: "\eab0";
+}
+.icon-linkedin2:before {
+  content: "\eaca";
 }
