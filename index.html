@@ -80,6 +80,7 @@
     <section id="detail-view" class="view">
       <div id="detail-holder"></div>
       <div id="been-here-holder"></div>
+      <div id="good-spot-holder"></div>
     </section>
 
         <section id="update-view" class="view"></section>
@@ -120,6 +121,8 @@
                     <button class="list-been-spot">I've been here</button>
                     <button class="list-good-spot">Good tip</button></a>
                   </div>
+                  <!-- {{> beenReport}}
+                  {{> goodReport}} -->
                 </div>
                 <a href="#" class="show-more" data-username="{{username}}">Show More</a>
             </div>
@@ -144,6 +147,10 @@
 
     <template id="been-here-template">
       <p>{{beenHereCount}} {{peopleHaveGrammar}} reported visiting this spot.</p>
+    </template>
+    
+    <template id="good-spot-template">
+      <p>{{goodSpotCount}} {{peopleLikeGrammar}} this recommendation.</p>
     </template>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
