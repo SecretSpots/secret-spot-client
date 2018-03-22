@@ -50,8 +50,7 @@
         const $posts = $('#list-view');
 
         $posts.find('.spot').sort(function (a, b) {
-            if (sortVal === 'data-title'){ // sort 1-10...
-                console.log(sortVal, 'must equal data-title');
+            if (sortVal === 'data-title' || sortVal === 'data-date') { // sort 1-10...
                 return $(a).attr(`${sortVal}`).toLowerCase() > $(b).attr(`${sortVal}`).toLowerCase();
             } else { // sort 10-1...
                 return $(a).attr(`${sortVal}`).toLowerCase() < $(b).attr(`${sortVal}`).toLowerCase();
