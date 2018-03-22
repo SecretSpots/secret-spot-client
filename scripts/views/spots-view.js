@@ -15,27 +15,22 @@
     
     spotView.showMore = () => {
         $('.hide').slideUp(0);
-        $('button').hide();
+        $('#list-view button').hide();
         $('#list-view').off('click', 'a.show-more');
         $('#list-view').on('click', 'a.show-more', function(e) {
             e.preventDefault();
             if ($(this).text() === 'Show More') {
-                console.log($(this).data('username'));
-                console.log(User.name);
-                
                 if(User.name === $(this).data('username')) {
                     $(this).parent().find('button').show();
-                    $(this).parent().find('.hide').slideDown(200);
                 } else {
                     $(this).parent().find('button').hide();
-                    $(this).parent().find('.hide').slideDown(200);
                 }
+                $(this).parent().find('.hide').slideDown(200);
                 $(this).html('Show Less');
             } else {
                 $(this).html('Show More');
                 $(this).parent().find('.hide').slideUp(200);
-                $('button').hide();
-                
+                $('#list-view button').hide();
             }
         });
     };
