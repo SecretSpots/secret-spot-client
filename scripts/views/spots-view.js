@@ -47,18 +47,20 @@
         }
         else {
             $('#filter').hide();
+            console.log('hiding filter...');
         }
     };
 
     spotView.filterHandler = () => {
-        $('input:checkbox').change(
-            function(){
-                if ($(this).is(':checked')) {
-                    alert('checked');
-                    $('.spot').hide();
-                    $(`.${User.name}`).show();
-                }
-            });
+        $('input:checkbox').change(function(){
+            if ($(this).is(':checked')) {
+                $('.spot').fadeOut();
+                $(`.${User.name}`).fadeIn();
+            }
+            else {
+                $('.spot').fadeIn();
+            }
+        });
     };
     
     spotView.initListView = () => {
