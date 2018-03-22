@@ -58,32 +58,33 @@
             <div id="map"></div>
         </section>
 
-    <section id="list-view" class="view">
-        <div id="filter">
-            <form>
-                <input type="checkbox" id="filter-authour" name="filter-by-author" value="filter-by-author">
-                <label for="filter-by-author">Show only my spots</label>
-            </form>
-        </div>
-    </section>
-
-        <section id="auth-view" class="view">
-        <form id="auth-form">
-            <input type="text" id="username" name="username" placeholder="username">
-            <input type="password" id="password" name="password" placeholder="password">
-            <button type="submit">enter</button>
-        </form>
-        <a id="auth-type" href="/auth/signin">sign in</a>
-        <p id="user-status">you are logged in</p>
+        <section id="list-view" class="view">
+            <div id="filter">
+                <form>
+                    <input type="checkbox" id="filter-authour" name="filter-by-author" value="filter-by-author">
+                    <label for="filter-by-author">Show only my spots</label>
+                </form>
+            </div>
         </section>
 
-    <section id="detail-view" class="view">
-      <div id="detail-holder"></div>
-      <div id="been-here-holder"></div>
-    </section>
+        <section id="auth-view" class="view">
+            <form id="auth-form">
+                <input type="text" id="username" name="username" placeholder="username">
+                <input type="password" id="password" name="password" placeholder="password">
+                <button type="submit">enter</button>
+            </form>
+            <a id="auth-type" href="/auth/signin">sign in</a>
+            <p id="user-status">you are logged in</p>
+        </section>
+
+        <section id="detail-view" class="view">
+            <div id="detail-holder"></div>
+            <div id="been-here-holder"></div>
+        </section>
 
         <section id="update-view" class="view"></section>
     </main>
+
     <footer>
         <p id="current-username"></p>
         <p id="logout">Log Out</p>
@@ -107,7 +108,8 @@
 
     <template id="spot-list-template">
             <div class="spot-info spot {{username}}" data-spot-id="{{spot_id}}" data-author="{{username}}">
-                <h2>{{name}}</h2>
+                <h2 class="list-view-header">{{name}}</h2>
+                <a href="#" class="show-more icon-circle-down" data-username="{{username}}"></a>
                 <div class="hide">
                   <p>{{address}}</p>
                   <p>{{note}}</p>
@@ -121,7 +123,6 @@
                     <button class="list-good-spot">Good tip</button></a>
                   </div>
                 </div>
-                <a href="#" class="show-more" data-username="{{username}}">Show More</a>
             </div>
     </template>
     

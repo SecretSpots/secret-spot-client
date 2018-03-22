@@ -18,3 +18,26 @@
 .show-more {
     display: block;
 }
+
+.icon-circle-down {
+    -moz-transition: all .5s ease;
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
+}
+
+.icon-circle-down.up {
+    -ms-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    transform-origin: center;
+}
+
+
+.spot-info a.icon-circle-down {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 1em;
+}
