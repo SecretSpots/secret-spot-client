@@ -14,8 +14,6 @@
 
     <nav class="nav-menu clearfix">
         <ul>
-          <li><a href="/auth/signup" class="login-options">Sign Up</a></li>
-          <li><a href="/auth/signin" class="login-options">Sign In</a></li>
           <li><a href="/list-view" class="icon-list2"></a></li>
           <li><a href="#" class="icon-plus" id="add-link"></a></li>
           <li><a href="/map" class="icon-earth"></a></li>
@@ -24,29 +22,30 @@
 
       <section id="new-spot-view" class="view">
           <h2 class="view-title">Add New Spot</h2>
-          <input id="locationTextField" placeholder="Where's your spot?" type="text"></input>
+          <div id="search-new-spot">
+            <input id="locationTextField" placeholder="Where's your spot?" type="text"></input>
+          </div>
   
           <section id="form-view">
             <form id="add-spot">
                 <label>
                     Name of Spot:
-                    <input type="text" name="name" required>
+                    <input type="text" name="name" style="width:229px" required>
                 </label>
                 <label>
                     Address:
-                    <input type="text" name="address" required>
+                    <input type="text" name="address" style="width:264px" required>
                 </label>
                 <label>
                     Marker:
-                    <input type="text" name="address" disabled="disabled">
+                    <input type="text" name="address" disabled="disabled" style="width:269px">
                 </label>
                 <label>
-                    Note:
-                    <input type="text-area" name="note" placeholder="Add a note about your spot!">
+                    <textarea rows="10" cols="40" name="note" placeholder="Add a note about your spot!"></textarea>
                 </label>
-                <div>
+                <div id="share-button-div">
                     <input id="form-button" type="submit" value="Share">
-                  </div>
+                </div>
             </form>
           </section>
         </section>
@@ -96,6 +95,8 @@
 
     <footer>
         <p id="current-username"></p>
+        <p><a href="/auth/signin" class="login-options">Sign In</a></p>
+        <p><a href="/auth/signup" class="login-options">Sign Up</a></p>
         <p id="logout">Log Out</p>
     </footer>
 

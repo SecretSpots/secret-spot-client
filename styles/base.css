@@ -64,7 +64,7 @@
       align-items: center;
       padding-right: 2%;
       padding-left: 2%;
-      }
+    }
     
     button {
       border-style: none;
@@ -95,5 +95,12 @@
     #update-view {
       background-color:  #407887;
     }
+
+    footer a {
+      background-color: none;
+      text-decoration: none;
+      color:white
+    }
+    
   
 
