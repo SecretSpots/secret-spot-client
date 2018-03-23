@@ -130,3 +130,11 @@
         width: 95%;
     }
 } 
+
+@media screen and (max-width: 400px){
+    #auth-form {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+} 
