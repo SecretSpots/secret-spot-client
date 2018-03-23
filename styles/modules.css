@@ -118,7 +118,7 @@
 }
 
 #filter {
-    background-color: black;
+    display: inline-block;
     color: white;
     padding: .5em;
 }
@@ -207,7 +207,7 @@ textarea {
 }
 
 #auth-view h1 {
-    color: #407887;
+    color: #52d0f3;
     font-family: 'Amatic SC', cursive;
     width: 75%;
     font-size: 6em;
