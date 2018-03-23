@@ -116,6 +116,7 @@
         Spot.all.forEach(spot => {
             spot.peopleHaveGrammar = spot.beenHereCount !== '1' ? 'people have' : 'person has';
             spot.peopleLikeGrammar = spot.goodSpotCount !== '1' ? 'people like' : 'person likes';
+            spot.date = formatDate(new Date(Date.parse(spot.date)));
             const html = listTemplate(spot);
             $('#list-view').append(html);
         });
@@ -137,14 +138,6 @@
       
         return `${monthNames[monthIndex]} ${day}, ${year} ${hour}:${minutes}`;
     }
-
-    spotView.loadSpots = () => {
-        Spot.all.forEach(spot => {
-            spot.date = formatDate(new Date(Date.parse(spot.date)));
-            const html = listTemplate(spot);
-            $('#list-view').append(html);
-        });
-    };
 
     spotView.initUpdateView = () => {
         const spot = Spot.detail;
