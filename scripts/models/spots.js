@@ -21,7 +21,7 @@
         const monthIndex = formattedDate.getMonth();
         const year = formattedDate.getFullYear();
         const hour = formattedDate.getHours();
-        const minutes = formattedDate.getMinutes();
+        const minutes = ('0'+formattedDate.getMinutes()).slice(-2);
       
         return `${monthNames[monthIndex]} ${day}, ${year} ${hour}:${minutes}`;
     }

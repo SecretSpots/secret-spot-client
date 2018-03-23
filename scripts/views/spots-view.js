@@ -116,13 +116,14 @@
         Spot.all.forEach(spot => {
             spot.peopleHaveGrammar = spot.beenHereCount !== '1' ? 'people have' : 'person has';
             spot.peopleLikeGrammar = spot.goodSpotCount !== '1' ? 'people like' : 'person likes';
-            spot.date = formatDate(new Date(Date.parse(spot.date)));
+            spot.date = formatDate(spot.date);
             const html = listTemplate(spot);
             $('#list-view').append(html);
         });
     };
     
     function formatDate(date) {
+        const formattedDate = new Date(Date.parse(date));
         const monthNames = [
             'January', 'February', 'March',
             'April', 'May', 'June', 'July',
@@ -130,11 +131,11 @@
             'November', 'December'
         ];
       
-        const day = date.getDate();
-        const monthIndex = date.getMonth();
-        const year = date.getFullYear();
-        const hour = date.getHours();
-        const minutes = date.getMinutes();
+        const day = formattedDate.getDate();
+        const monthIndex = formattedDate.getMonth();
+        const year = formattedDate.getFullYear();
+        const hour = formattedDate.getHours();
+        const minutes = ('0' + formattedDate.getMinutes()).slice(-2);
       
         return `${monthNames[monthIndex]} ${day}, ${year} ${hour}:${minutes}`;
     }
