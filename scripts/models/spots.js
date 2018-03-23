@@ -8,23 +8,23 @@
 
     Spot.all = [];
 
-    // function formatDate(date) {
-    //     const formattedDate = new Date(Date.parse(date));
-    //     const monthNames = [
-    //         'January', 'February', 'March',
-    //         'April', 'May', 'June', 'July',
-    //         'August', 'September', 'October',
-    //         'November', 'December'
-    //     ];
+    function formatDate(date) {
+        const formattedDate = new Date(Date.parse(date));
+        const monthNames = [
+            'January', 'February', 'March',
+            'April', 'May', 'June', 'July',
+            'August', 'September', 'October',
+            'November', 'December'
+        ];
       
-    //     const day = formattedDate.getDate();
-    //     const monthIndex = formattedDate.getMonth();
-    //     const year = formattedDate.getFullYear();
-    //     const hour = date.getHours();
-    //     const minutes = date.getMinutes();
+        const day = formattedDate.getDate();
+        const monthIndex = formattedDate.getMonth();
+        const year = formattedDate.getFullYear();
+        const hour = formattedDate.getHours();
+        const minutes = formattedDate.getMinutes();
       
-    //     return `${monthNames[monthIndex]} ${day}, ${year} ${hour}:${minutes}`;
-    // }
+        return `${monthNames[monthIndex]} ${day}, ${year} ${hour}:${minutes}`;
+    }
 
     Spot.fetchAll = () => {
         return $.getJSON(`${API_URL}/spots`)
@@ -39,7 +39,7 @@
         return $.getJSON(`${API_URL}/spots/${id}`)
             .then(data => {
                 Spot.detail = new Spot(data);
-                // Spot.detail.date = formatDate(Spot.detail.date);
+                Spot.detail.date = formatDate(Spot.detail.date);
             });
 
     };
