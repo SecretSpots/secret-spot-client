@@ -124,12 +124,14 @@
                             if (beenInfo.includes(spot.spot_id)) {
                                 $(div).off('click', '.list-been-spot');
                                 $(`${div} .list-been-spot`).fadeTo(200, 0.3);
+                                $(`${div} .been-you`).text(', including you!');
                             } else if (spot.username !== User.name) {
                                 $(`${div} .list-been-spot`).fadeTo(200, 1);
                             }
                             if (goodInfo.includes(spot.spot_id)) {
                                 $(div).off('click', '.list-good-spot');
                                 $(`${div} .list-good-spot`).fadeTo(200, 0.3);
+                                $(`${div} .good-you`).text(', including you!');
                             } else if (spot.username !== User.name) {
                                 $(`${div} .list-good-spot`).fadeTo(200, 1);
                             }
@@ -255,11 +257,13 @@
                             activateBeenButton(spot);
                         } else {
                             $('#been-spot').fadeTo(200, 0.3);
+                            $('#detail-view').find('.been-you').text(', including you!');
                         }
                         if (!voteInfo.likedHere) {
                             activateGoodButton(spot);
                         } else {
                             $('#good-spot').fadeTo(200, 0.3);
+                            $('#detail-view').find('.good-you').text(', including you!');
                         }
                     }
                 })
@@ -290,7 +294,7 @@
     }
 
     function updateText(trigger, parent, voteType) {
-        trigger.parents(parent).find(`.${voteType}-you`).text(' + now you have, too');
+        trigger.parents(parent).find(`.${voteType}-you`).text(' + now you have, too.');
     }
 
     function handleDelete(id, newView) {
