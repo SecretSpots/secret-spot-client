@@ -8,6 +8,24 @@
 
     Spot.all = [];
 
+    function formatDate(date) {
+        const formattedDate = new Date(Date.parse(date));
+        const monthNames = [
+            'January', 'February', 'March',
+            'April', 'May', 'June', 'July',
+            'August', 'September', 'October',
+            'November', 'December'
+        ];
+      
+        const day = formattedDate.getDate();
+        const monthIndex = formattedDate.getMonth();
+        const year = formattedDate.getFullYear();
+        const hour = formattedDate.getHours();
+        const minutes = formattedDate.getMinutes();
+      
+        return `${monthNames[monthIndex]} ${day}, ${year} ${hour}:${minutes}`;
+    }
+
     Spot.fetchAll = () => {
         return $.getJSON(`${API_URL}/spots`)
             .then(data => {
@@ -21,6 +39,7 @@
         return $.getJSON(`${API_URL}/spots/${id}`)
             .then(data => {
                 Spot.detail = new Spot(data);
+                Spot.detail.date = formatDate(Spot.detail.date);
             });
 
     };
@@ -42,6 +61,22 @@
             url: `${API_URL}/spots/${id}`,
             method: 'DELETE'
         });
+    };
+
+    Spot.checkVotesSingle = (id) => {
+        return $.getJSON(`${API_URL}/check/${id}/votes`);
+    };
+    
+    Spot.checkVotesAll = () => {
+        return $.getJSON(`${API_URL}/check/votes`);
+    };
+    
+    Spot.recordBeen = (id) => {
+        return $.post(`${API_URL}/spots/${id}/been`);
+    };
+
+    Spot.recordGood = (id) => {
+        return $.post(`${API_URL}/spots/${id}/good`);
     };
 
     module.Spot = Spot;
