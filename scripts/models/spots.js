@@ -63,16 +63,16 @@
         });
     };
 
-    Spot.collectBeen = (id) => {
-        return $.get(`${API_URL}/spots/${id}/been`);
+    Spot.checkVotesSingle = (id) => {
+        return $.getJSON(`${API_URL}/check/${id}/votes`);
     };
-
+    
+    Spot.checkVotesAll = () => {
+        return $.getJSON(`${API_URL}/check/votes`);
+    };
+    
     Spot.recordBeen = (id) => {
         return $.post(`${API_URL}/spots/${id}/been`);
-    };
-
-    Spot.collectGood = (id) => {
-        return $.get(`${API_URL}/spots/${id}/good`);
     };
 
     Spot.recordGood = (id) => {

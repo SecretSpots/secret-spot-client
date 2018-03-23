@@ -6,6 +6,10 @@
     cursor: pointer;
 }
 
+#drop-down{
+    display: flex;
+}
+
 #delete-status {
     color: red;
 }
@@ -170,15 +174,15 @@ textarea {
     border: none;
 }
 
-.detail-div h2 {
+#detail-view h2 {
     padding-left: .5em;
 }
 
-.detail-div h3 {
+#detail-view h3 {
     padding-left: 1em;
 }
 
-.detail-div p {
+#detail-view p {
     padding-left: 2em;
 }
 
@@ -219,5 +223,9 @@ textarea {
 #auth-type {
     padding-top: .8em;
     color:  white;
+}
+
+#user-status {
+    color: white;
 }
 
