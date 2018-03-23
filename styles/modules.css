@@ -125,6 +125,7 @@
 
 #update-view {
     color: black;
+    padding: .5em;
 }
 
 .update-div h2 {
@@ -164,51 +165,9 @@
     padding: .3em
 }
 
-
-
 textarea {
     background-color: #ffffff;
     border: none;
-}
-
-#new-spot-view {
-    background-color: black;
-    color: white;
-    padding-bottom: 1em;
-}
-
-#search-new-spot {
-    padding-left: 2em;
-}
-
-#new-spot-view h2 {
-    padding-left: 1em;
-}
-
-#new-spot-view form {
-    display: flex;
-    flex-flow: column;
-    padding-left: 2em;
-    padding-top: .5em;
-}
-
-#new-spot-view form label {
-    padding-top: .5em
-}
-
-#new-spot-view textarea {
-    background-color: white;
-}
-
-#form-button {
-    padding: .3em;
-    background-color: white
-}
-
-#share-button-div {
-    border-style: none;
-    border-radius: 15px;
-    padding-top: .5em;
 }
 
 .detail-div h2 {

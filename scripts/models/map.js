@@ -4,17 +4,28 @@
 
     const Map = {};
 
-    Map.markers = [];
+    Map.markersAll = [];
 
     Map.mapObject = null;
+    Map.tempMarker = null; //define in outer scope to avoid duplicates
+    Map.infoWindow = null; //define in outer scope to avoid duplicates
 
     Map.initMap = () => {
         const center = { lat: 45.519900, lng: -122.678316 };
+        
         Map.mapObject = new google.maps.Map(document.getElementById('map'), {
             zoom: 13,
             center: center,
-            styles: mapStyle
+            styles: mapStyle,
+            gestureHandling: 'greedy',
+            mapTypeControl: false,
+            scaleControl: true,
+            streetViewControl: false,
+            rotateControl: true,
+            fullscreenControl: true
         });
+
+        Map.infoWindow = new google.maps.InfoWindow();
     };
 
     const cyan = '#407887';
