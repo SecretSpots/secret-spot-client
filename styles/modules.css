@@ -170,15 +170,15 @@ textarea {
     border: none;
 }
 
-.detail-div h2 {
+#detail-view h2 {
     padding-left: .5em;
 }
 
-.detail-div h3 {
+#detail-view h3 {
     padding-left: 1em;
 }
 
-.detail-div p {
+#detail-view p {
     padding-left: 2em;
 }
 
