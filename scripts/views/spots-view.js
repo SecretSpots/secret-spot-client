@@ -90,7 +90,6 @@
         spotView.showMore();
         spotView.populateFilter();
         spotView.sortListener();
-        // spotView.sortBy();
 
         $('#list-view')
             .off('click', '.list-delete-spot')
@@ -119,6 +118,7 @@
             spot.date = formatDate(spot.date);
             const html = listTemplate(spot);
             $('#list-view').append(html);
+            console.log(Spot.all);
         });
     };
     
