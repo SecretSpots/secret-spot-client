@@ -51,7 +51,6 @@
         delete User.name;
         delete User.id;
     };
-    console.log(User.name);
     module.User = User;
 
 })(window.module);

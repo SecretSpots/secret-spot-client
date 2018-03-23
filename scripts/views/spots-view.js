@@ -48,9 +48,9 @@
         const $posts = $('#list-view');
 
         $posts.find('.spot').sort(function (a, b) {
-            if (sortVal !== 'data-spot-id'){
+            if (sortVal === 'data-title' || sortVal === 'data-date') { // sort 1-10...
                 return $(a).attr(`${sortVal}`).toLowerCase() > $(b).attr(`${sortVal}`).toLowerCase();
-            } else {
+            } else { // sort 10-1...
                 return $(a).attr(`${sortVal}`).toLowerCase() < $(b).attr(`${sortVal}`).toLowerCase();
             }
         })
@@ -116,6 +116,31 @@
         Spot.all.forEach(spot => {
             spot.peopleHaveGrammar = spot.beenHereCount !== '1' ? 'people have' : 'person has';
             spot.peopleLikeGrammar = spot.goodSpotCount !== '1' ? 'people like' : 'person likes';
+            const html = listTemplate(spot);
+            $('#list-view').append(html);
+        });
+    };
+    
+    function formatDate(date) {
+        const monthNames = [
+            'January', 'February', 'March',
+            'April', 'May', 'June', 'July',
+            'August', 'September', 'October',
+            'November', 'December'
+        ];
+      
+        const day = date.getDate();
+        const monthIndex = date.getMonth();
+        const year = date.getFullYear();
+        const hour = date.getHours();
+        const minutes = date.getMinutes();
+      
+        return `${monthNames[monthIndex]} ${day}, ${year} ${hour}:${minutes}`;
+    }
+
+    spotView.loadSpots = () => {
+        Spot.all.forEach(spot => {
+            spot.date = formatDate(new Date(Date.parse(spot.date)));
             const html = listTemplate(spot);
             $('#list-view').append(html);
         });

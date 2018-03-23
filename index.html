@@ -122,13 +122,13 @@
     </template>
 
     <template id="spot-list-template">
-            <div class="spot-info spot {{username}}" data-spot-id="{{spot_id}}" data-title="{{name}}" data-author="{{username}}" data-date="{{date}}" data-popularity="" data-recommended="">
+            <div class="spot-info spot {{username}}" data-spot-id="{{spot_id}}" data-title="{{name}}" data-author="{{username}}" data-date="{{date}}" data-popularity="{{beenHereCount}}" data-recommended="{{goodSpotCount}}">
                 <h2 class="list-view-header">{{name}}</h2>
                 <a href="#" class="show-more icon-circle-down" data-username="{{username}}"></a>
                 <div class="hide">
                   <h3>{{address}}</h3>
                   <p class="list-view-notes">{{note}}</p>
-                  <p>Added by <span class="list-user-name">{{username}}</span> on {{date}}</p>
+                  <p>Added by <span class="list-user-name">{{username}}</span> on <a href="/spots/{{spot_id}}">{{date}}</a></p>
                   <div class="editing-buttons">                
                     <button class="list-delete-spot" >Delete this Spot</button>
                     <a href="/spots/{{spot_id}}/update"><button>Update this Spot</button></a>
