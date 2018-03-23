@@ -107,7 +107,6 @@
         $('.spot-info')
             .off('click', '.list-good-spot')
             .on('click', '.list-good-spot', function() {
-                console.log('clicked');
                 handleGood($(this).parents('.spot-info').data('spot-id'));
                 $(this).fadeTo(200, 0.3);
                 updateText($(this), '.spot-info', 'good');
@@ -294,7 +293,15 @@
     }
 
     function updateText(trigger, parent, voteType) {
-        trigger.parents(parent).find(`.${voteType}-you`).text(' + now you have, too.');
+        const p = trigger.parents(parent).find(`.${voteType}-you`).parent('p');
+        const text = p.text();
+        if (text.charAt(0) !== '0') {
+            trigger.parents(parent).find(`.${voteType}-you`).text(' + now you have, too.');
+        } else if (voteType === 'been') {
+            p.text('You are the first person to mark this spot as visited!');
+        } else if (voteType === 'good') {
+            p.text('You are the first person to like this recommendation!');
+        }
     }
 
     function handleDelete(id, newView) {
