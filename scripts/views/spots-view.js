@@ -41,16 +41,17 @@
     };
 
     spotView.sortBy = (sortVal) => {
-        const $posts = $('#list-view');
+        const posts = $('#list-view');
 
-        $posts.find('.spot').sort(function (a, b) {
-            if (sortVal === 'data-title' || sortVal === 'data-date' || sortVal === 'data-popularity') { // sort 1-10...
-                return $(a).attr(`${sortVal}`).toLowerCase() > $(b).attr(`${sortVal}`).toLowerCase();
-            } else { // sort 10-1...
-                return $(a).attr(`${sortVal}`).toLowerCase() < $(b).attr(`${sortVal}`).toLowerCase();
-            }
+        posts.find('.spot').sort(function (a, b) {                
+            const a2 = $(a).attr(`${sortVal}`).toLowerCase();
+            const b2 = $(b).attr(`${sortVal}`).toLowerCase();
+
+            if (a2 === b2) return 0;
+            if (a2 > b2) return 1;
+            return -1;
         })
-            .appendTo($posts).hide().fadeIn(500);
+            .appendTo(posts).hide().fadeIn(500);
     };
   
     spotView.populateFilter = () => {
