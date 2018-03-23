@@ -11,6 +11,10 @@
     <link rel="stylesheet" href="styles/modules.css">
     <link rel="stylesheet" href="styles/layout.css">
 
+    <link rel="icon" type="image/png" href="assets/favicon-16x16.png" sizes="16x16">  
+    <link rel="icon" type="image/png" href="assets/favicon-32x32.png" sizes="32x32">  
+    <link rel="icon" type="image/png" href="assets/favicon-96x96.png" sizes="96x96"> 
+
     <title>Secret Spots</title>
 
     <nav class="nav-menu clearfix">
@@ -92,11 +96,7 @@
             <p id="user-status">you are logged in</p>
         </section>
 
-        <section id="detail-view" class="view">
-            <div id="detail-holder"></div>
-            <div id="been-here-holder"></div>
-            <div id="good-spot-holder"></div>
-        </section>
+        <section id="detail-view" class="view"></section>
 
         <section id="update-view" class="view"></section>
     </main>
@@ -140,17 +140,16 @@
                     <a href="/spots/{{spot_id}}/update"><button>Update this Spot</button></a>
                   </div>
                   <div class="voting-buttons">
-                    <button class="list-been-spot">I've been here</button>
-                    <button class="list-good-spot">Good tip</button></a>
+                    <button class="list-been-spot">Mark as visited</button>
+                    <button class="list-good-spot">Like this tip</button></a>
                   </div>
-                  <p><span class="been-val">{{beenHereCount}}</span> {{peopleHaveGrammar}} reported visiting this spot.</p>
-                  <p><span class="good-val">{{goodSpotCount}}</span> {{peopleLikeGrammar}} this recommendation.</p>
+                  <p>{{beenHereCount}} {{peopleBeenGrammar}} marked this spot as visited<span class="been-you"></span>.</p>
+                  <p>{{goodSpotCount}} {{peopleGoodGrammar}} liked this recommendation<span class="good-you"></span>.</p>
                 </div>
             </div>
     </template>
     
     <template id="detail-view-template">
-        <div class="detail-div">
             <h2>{{name}}</h2>
             <h3>{{address}}</h3>
             <p>{{note}}</p>
@@ -160,19 +159,12 @@
               <a href="/spots/{{spot_id}}/update"><button id="update-spot">Update this Spot</button></a>
             </div>
             <div class="voting-buttons">
-                <button id="been-spot">I've been here</button>
-                <button id="good-spot">Good tip</button></a>
+                <button id="been-spot">Mark as visited</button>
+                <button id="good-spot">Like this tip</button></a>
             </div>
-        </div>
-    </template>
-
-    <template id="been-here-template">
-      <p>{{beenHereCount}} {{peopleHaveGrammar}} reported visiting this spot.</p>
-    </template>
-    
-    <template id="good-spot-template">
-      <p>{{goodSpotCount}} {{peopleLikeGrammar}} this recommendation.</p>
-    </template>
+            <p>{{beenHereCount}} {{peopleBeenGrammar}} marked this spot as visited<span class="been-you"></span>.</p>
+            <p>{{goodSpotCount}} {{peopleGoodGrammar}} liked this recommendation<span class="good-you"></span>.</p>
+        </template>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>

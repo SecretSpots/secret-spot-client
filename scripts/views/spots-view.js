@@ -8,29 +8,24 @@
     const listTemplate = Handlebars.compile($('#spot-list-template').html());
     const detailViewTemplate = Handlebars.compile($('#detail-view-template').html());
     const updateViewTemplate = Handlebars.compile($('#update-view-template').html());
-    const beenHereTemplate = Handlebars.compile($('#been-here-template').html());
-    const goodSpotTemplate = Handlebars.compile($('#good-spot-template').html());
 
     const spotView = {};
     
     spotView.showMore = () => {
         $('.hide').slideUp(0);
-        $('.editing-buttons, .voting-buttons').hide();
+        $('.editing-buttons').hide();
         $('#list-view').off('click', 'a.show-more, a.icon-circle-down, a.show-less');
         $('#list-view').on('click', 'a.show-more, a.icon-circle-down, a.show-less', function(e) {
             e.preventDefault();
             if ($(this).hasClass('show-more')) {
                 if(User.name === $(this).data('username')) {
                     $(this).parent().find('.editing-buttons').show();
-                } else if (User.current) {
-                    $(this).parent().find('.voting-buttons').show();
                 }
                 $(this).parent().find('.hide').slideDown(200);
                 $(this).addClass('show-less');
                 $(this).removeClass('show-more');
             } else if ($(this).hasClass('show-less')) {
                 $(this).parent().find('.hide').slideUp(200);
-                $(this).parent().find('.editing-buttons, .voting-buttons').hide();
                 $(this).addClass('show-more');
                 $(this).removeClass('show-less');
             }
@@ -86,11 +81,10 @@
     spotView.initListView = () => {
         $('#list-view').fadeIn();
         $('.spot').empty().remove();
+        
         spotView.loadSpots();
-        spotView.showMore();
-        spotView.populateFilter();
-        spotView.sortListener();
-        // spotView.sortBy();
+
+        $('.list-good-spot, .list-been-spot').hide();
 
         $('#list-view')
             .off('click', '.list-delete-spot')
@@ -98,29 +92,71 @@
                 handleDelete($(this).parents('.spot-info').data('spot-id'), '/list-view');
             });
         
-        $('#list-view')
+        $('.spot-info')
             .off('click', '.list-been-spot')
             .on('click', '.list-been-spot', function() {
-                handleListBeen($(this).parents('.spot-info').data('spot-id'));
+                handleBeen($(this).parents('.spot-info').data('spot-id'));
+                $(this).fadeTo(200, 0.3);
+                updateText($(this), '.spot-info', 'been');
             });
 
-        $('#list-view')
+        $('.spot-info')
             .off('click', '.list-good-spot')
             .on('click', '.list-good-spot', function() {
-                handleListGood($(this).parents('.spot-info').data('spot-id'));
+                console.log('clicked');
+                handleGood($(this).parents('.spot-info').data('spot-id'));
+                $(this).fadeTo(200, 0.3);
+                updateText($(this), '.spot-info', 'good');
             });
+
+        if (User.current) {
+            Spot.checkVotesAll()
+                .then(response => {
+                    if (response.rows.length) {
+                        const beenInfo = response.rows[0].beenArray;
+                        const goodInfo = response.rows[0].goodArray;
+                        Spot.all.forEach(spot => {
+                            const div = `div[data-spot-id=${spot.spot_id}]`;
+                            if (beenInfo.includes(spot.spot_id)) {
+                                $(div).off('click', '.list-been-spot');
+                                $(`${div} .list-been-spot`).fadeTo(200, 0.3);
+                            } else if (spot.username !== User.name) {
+                                $(`${div} .list-been-spot`).fadeTo(200, 1);
+                            }
+                            if (goodInfo.includes(spot.spot_id)) {
+                                $(div).off('click', '.list-good-spot');
+                                $(`${div} .list-good-spot`).fadeTo(200, 0.3);
+                            } else if (spot.username !== User.name) {
+                                $(`${div} .list-good-spot`).fadeTo(200, 1);
+                            }
+                        });
+                    }
+                })
+                .catch(console.error);
+        }
         
+        spotView.showMore();
+        spotView.populateFilter();
+        spotView.sortListener();
+        // spotView.sortBy();
+
     };
     
     spotView.loadSpots = () => {
         Spot.all.forEach(spot => {
-            spot.peopleHaveGrammar = spot.beenHereCount !== '1' ? 'people have' : 'person has';
-            spot.peopleLikeGrammar = spot.goodSpotCount !== '1' ? 'people like' : 'person likes';
+            formatVotes(spot);
             spot.date = formatDate(new Date(Date.parse(spot.date)));
             const html = listTemplate(spot);
             $('#list-view').append(html);
         });
     };
+
+    function formatVotes(spot) {
+        spot.peopleBeenGrammar = spot.beenHereCount !== '1' ? 'people have' : 'person has';
+        spot.peopleGoodGrammar = spot.goodSpotCount !== '1' ? 'people have' : 'person has';
+        if (!spot.beenHereCount) spot.beenHereCount = '0';
+        if (!spot.goodSpotCount) spot.goodSpotCount = '0';
+    }
     
     function formatDate(date) {
         const monthNames = [
@@ -179,51 +215,79 @@
     };
             
     spotView.initDetailView = () => {
+        const spot = Spot.detail;
 
-        const html = detailViewTemplate(Spot.detail);
+        formatVotes(spot);
 
-        $('#detail-view').show();
+        const html = detailViewTemplate(spot);
 
-        $('#detail-holder')
+        $('#detail-view')
             .empty()
             .append(html)
             .fadeIn();
 
-        Spot.collectBeen(Spot.detail.spot_id)
-            .then(response => {
-                displayDetailBeen(response);
-            })
-            .catch(console.error);
-        
-        Spot.collectGood(Spot.detail.spot_id)
-            .then(response => {
-                displayDetailGood(response);
-            })
-            .catch(console.error);
+        $('.editing-buttons, #good-spot, #been-spot').hide();
 
-        $('.editing-buttons, .voting-buttons').hide();
-
-        if (User.name === Spot.detail.username) {
+        if (User.name === spot.username) {
             $('.editing-buttons').show();
             $('#delete-spot')
                 .off('click')
                 .on('click', () => {
-                    handleDelete(Spot.detail.spot_id, '/map');
-                });
-        } else if (User.current) {
-            $('.voting-buttons').show();
-            $('#been-spot')
-                .off('click')
-                .on('click', () => {
-                    handleDetailBeen(Spot.detail.spot_id);
-                });
-            $('#good-spot')
-                .off('click')
-                .on('click', () => {
-                    handleDetailGood(Spot.detail.spot_id);
+                    handleDelete(spot.spot_id, '/map');
+                    
                 });
         }
+        if (User.name !== spot.username && User.current) {
+            Spot.checkVotesSingle(spot.spot_id)
+                .then(response => {
+                    $('.voting-buttons').show();
+                    $('#good-spot, #been-spot').show().fadeTo(200, 0.3);
+                    if (!response.rows.length) {
+                        activateBeenButton(spot);
+                        activateGoodButton(spot);
+                    } else {
+                        const voteInfo = response.rows[0];
+                        if (!voteInfo.beenHere) {
+                            activateBeenButton(spot);
+                        } else {
+                            $('#been-spot').fadeTo(200, 0.3);
+                        }
+                        if (!voteInfo.likedHere) {
+                            activateGoodButton(spot);
+                        } else {
+                            $('#good-spot').fadeTo(200, 0.3);
+                        }
+                    }
+                })
+                .catch(console.error);
+        }
     };
+
+    function activateBeenButton(spot) {
+        $('#been-spot')
+            .fadeTo(200, 1)
+            .off('click')
+            .on('click', function() {
+                handleBeen(spot.spot_id);
+                $(this).fadeTo(200, 0.3);
+                updateText($(this), '#detail-view', 'been');
+            });
+    }
+
+    function activateGoodButton(spot) {
+        $('#good-spot')
+            .fadeTo(200, 1)
+            .off('click')
+            .on('click', function() {
+                handleGood(spot.spot_id);
+                $(this).fadeTo(200, 0.3);
+                updateText($(this), '#detail-view', 'good');
+            });
+    }
+
+    function updateText(trigger, parent, voteType) {
+        trigger.parents(parent).find(`.${voteType}-you`).text(' + now you have, too');
+    }
 
     function handleDelete(id, newView) {
         if (confirm('Do you really want to delete this spot permanently?')) {
@@ -236,68 +300,21 @@
         }
     }
 
-    function handleDetailBeen(id) {
+    function handleBeen(id) {
         Spot.recordBeen(id)
             .then(response => {
-                displayDetailBeen(response);
+                console.log(response);
             })
             .catch(console.error);
     }
 
-    function displayDetailBeen(response) {
-        const beenReport = {
-            beenHereCount: response,
-            peopleHaveGrammar: response !== '1' ? 'people have' : 'person has'
-        };
-
-        const html = beenHereTemplate(beenReport);
-        
-        $('#been-here-holder')
-            .empty()
-            .append(html)
-            .fadeIn();
-    }
-
-    function handleDetailGood(id) {
+    function handleGood(id) {
         Spot.recordGood(id)
             .then(response => {
-                displayDetailGood(response);
+                console.log(response);
             })
             .catch(console.error);
     }
-
-    function displayDetailGood(response) {
-        const goodReport = {
-            goodSpotCount: response,
-            peopleLikeGrammar: response !== '1' ? 'people like' : 'person likes'
-        };
-
-        const html = goodSpotTemplate(goodReport);
-        
-        $('#good-spot-holder')
-            .empty()
-            .append(html)
-            .fadeIn();
-    }
-
-    function handleListBeen(id) {
-        Spot.recordBeen(id)
-            .then(response => {
-                const beenReport = {
-                    beenHereCount: response,
-                    peopleHaveGrammar: response !== '1' ? 'people have' : 'person has'
-                };
-        
-                const html = listTemplate(beenReport);
-                
-                $('#list-view').find(`div[data-spot-id=${id}]`)
-                    .empty()
-                    .append(html)
-                    .fadeIn();
-            })
-            .catch(console.error);
-    }
-
 
     module.spotView = spotView;
 
