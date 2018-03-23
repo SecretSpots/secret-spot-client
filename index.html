@@ -17,36 +17,35 @@
           <li><a href="/list-view" class="icon-list2"></a></li>
           <li><a href="#" class="icon-plus" id="add-link"></a></li>
           <li><a href="/map" class="icon-earth"></a></li>
-          <li><a href="/auth/signup" class="login-options">Sign Up</a></li>
-          <li><a href="/auth/signin" class="login-options">Sign In</a></li>
         </ul>
       </nav>
 
       <section id="new-spot-view" class="view">
           <h2 class="view-title">Add New Spot</h2>
-          <input id="locationTextField" placeholder="Where's your spot?" type="text"></input>
+          <div id="search-new-spot">
+            <input id="locationTextField" placeholder="Where's your spot?" type="text"></input>
+          </div>
   
           <section id="form-view">
             <form id="add-spot">
                 <label>
                     Name of Spot:
-                    <input type="text" name="name" required>
+                    <input type="text" name="name" style="width:229px" required>
                 </label>
                 <label>
                     Address:
-                    <input type="text" name="address" required>
+                    <input type="text" name="address" style="width:264px" required>
                 </label>
                 <label>
                     Marker:
-                    <input type="text" name="address" disabled="disabled">
+                    <input type="text" name="address" disabled="disabled" style="width:269px">
                 </label>
                 <label>
-                    Note:
                     <input type="text-area" name="note" placeholder="Add a note about your spot!">
                 </label>
-                <div>
+                <div id="share-button-div">
                     <input id="form-button" type="submit" value="Share">
-                  </div>
+                </div>
             </form>
           </section>
         </section>
@@ -57,23 +56,23 @@
         <section id="map-view" class="view">
             <div id="map"></div>
         </section>
-    <section id="list-view" class="view">
-        <div id="filter">
-            <form>
-                <input type="checkbox" id="filter-authour" name="filter-by-author" value="filter-by-author">
-                <label for="filter-by-author">Show only my spots</label>
-            </form>
-        </div id="drop-down">
-            <form>
-                <select id="sort">
-                    <option value="data-title">-- Sort by Title --</option>
-                    <option value="data-popularity">-- Sort by Popularity --</option>
-                    <option value="data-recommended">-- Sort by Recommended --</option>
-                    <option value="data-spot-id">-- Sort by Newest --</option>
-                    <option value="data-date">-- Sort by Oldest --</option>
-                </select>
-            </form>
-    </section>
+        <section id="list-view" class="view">
+            <div id="filter">
+                <form>
+                    <input type="checkbox" id="filter-authour" name="filter-by-author" value="filter-by-author">
+                    <label for="filter-by-author">Show only my spots</label>
+                </form>
+            </div id="drop-down">
+                <form>
+                    <select id="sort">
+                        <option value="data-title">-- Sort by Title --</option>
+                        <option value="data-popularity">-- Sort by Popularity --</option>
+                        <option value="data-recommended">-- Sort by Recommended --</option>
+                        <option value="data-spot-id">-- Sort by Newest --</option>
+                        <option value="data-date">-- Sort by Oldest --</option>
+                    </select>
+                </form>
+        </section>
 
         <section id="auth-view" class="view">
             <form id="auth-form">
@@ -85,17 +84,19 @@
             <p id="user-status">you are logged in</p>
         </section>
 
-    <section id="detail-view" class="view">
-      <div id="detail-holder"></div>
-      <div id="been-here-holder"></div>
-      <div id="good-spot-holder"></div>
-    </section>
+        <section id="detail-view" class="view">
+            <div id="detail-holder"></div>
+            <div id="been-here-holder"></div>
+            <div id="good-spot-holder"></div>
+        </section>
 
         <section id="update-view" class="view"></section>
     </main>
 
     <footer>
         <p id="current-username"></p>
+        <p><a href="/auth/signin" class="login-options">Sign In</a></p>
+        <p><a href="/auth/signup" class="login-options">Sign Up</a></p>
         <p id="logout">Log Out</p>
     </footer>
 

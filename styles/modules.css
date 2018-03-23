@@ -55,6 +55,51 @@
     margin-top:0;
 }
 
+#update-spot {
+    background-color: black;
+    color: white;
+}
+
+#delete-spot {
+    background-color: #f05454;
+    color: #150000;
+}
+
+#update-button {
+    background-color: black;
+    color: white;
+}
+
+.list-update-button {
+    background-color: black;
+    color: white;
+}
+
+.list-delete-spot {
+    background-color: #f05454;
+    color: #150000;
+}
+
+.list-been-spot {
+    background-color: #01bd66;
+    color: #004a27;
+}
+
+#been-spot {
+    background-color: #01bd66;
+    color: #004a27;
+}
+
+#good-spot {
+    background-color: #5bd79d;
+    color: #004a27;
+}
+
+.list-good-spot {
+    background-color: #5bd79d;
+    color: #004a27;
+}
+
 .hide p {
     padding-left: 1em;
 }
@@ -117,11 +162,70 @@
     padding: .3em
 }
 
-.content {
-    background-color:  #407887;;
-}
-
 textarea {
-    background-color: #bddde6;
+    background-color: #ffffff;
     border: none;
 }
+
+#new-spot-view {
+    background-color: black;
+    color: white;
+    padding-bottom: 1em;
+}
+
+#search-new-spot {
+    padding-left: 2em;
+}
+
+#new-spot-view h2 {
+    padding-left: 1em;
+}
+
+#new-spot-view form {
+    display: flex;
+    flex-flow: column;
+    padding-left: 2em;
+    padding-top: .5em;
+}
+
+#new-spot-view form label {
+    padding-top: .5em
+}
+
+#new-spot-view textarea {
+    background-color: white;
+}
+
+#form-button {
+    padding: .3em;
+    background-color: white
+}
+
+#share-button-div {
+    border-style: none;
+    border-radius: 15px;
+    padding-top: .5em;
+}
+
+.detail-div h2 {
+    padding-left: .5em;
+}
+
+.detail-div h3 {
+    padding-left: 1em;
+}
+
+.detail-div p {
+    padding-left: 2em;
+}
+
+#auth-view {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    padding-top: 17em
+
+}
+

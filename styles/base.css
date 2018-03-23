@@ -4,6 +4,15 @@
         height: 90vh;
         width:100%
       }
+
+      html {
+        background-image:  url("./images/map-background.png");
+        background-size: 200%;
+      }
+
+      body {
+        background: rgba(0, 0, 0, 0.694)
+      }
       /* Optional: Makes the sample page fill the window. */
       html, body {
         height: 100%;
@@ -27,7 +36,6 @@
       }
 
       nav ul {
-        float: right;
         margin: 0;
         display: flex;
         list-style-type: none;
@@ -35,7 +43,7 @@
         justify-content: flex-end;
         justify-content: space-between;
         align-items: center;
-        padding-right: 2%;
+        padding-right: 1em;
         height: 100% 
 
       }
@@ -65,14 +73,18 @@
       align-items: center;
       padding-right: 2%;
       padding-left: 2%;
-      }
+    }
     
     button {
       border-style: none;
       border-radius: 5px;
       background-color: black;
       color: white;
-      padding: .3em
+      padding: .3em;
+    }
+
+    button:focus {
+      outline:0;
     }
 
     .editing-buttons {
@@ -92,5 +104,12 @@
     #update-view {
       background-color:  #407887;
     }
+
+    footer a {
+      background-color: none;
+      text-decoration: none;
+      color:white
+    }
+
   
 
