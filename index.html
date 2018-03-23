@@ -28,28 +28,33 @@
           </div>
   
           <section id="form-view">
-            <div id="add-spot-container">
                 <form id="add-spot">
-                    <label>
-                        <h3>Name of Spot:</h3>
-                        <input type="text" name="name" required>
-                    </label>
-                    <label>
-                        <h3>Address:</h3>
-                        <input type="text" name="address" required>
-                    </label>
-                    <label>
-                        <h3>Marker:</h3>
-                        <input type="text" name="address" disabled="disabled" required>
-                    </label>
-                    <label>
-                        <input type="text-area" name="note" placeholder="Add a note about your spot!">
-                    </label>
+                    <div id="form-top">
+                        <div class="left">
+                            <label for="spot-name"> 
+                                <h3>Name of Spot:</h3>
+                                <input type="text" name="name" required>
+                            </label>
+                            <label for="address">
+                                <h3>Address:</h3>
+                                <input type="text" name="address" required>
+                            </label>
+                            <label for="marker">
+                                <h3>Marker Loc:</h3>
+                                <input type="text" name="address" disabled="disabled" required>
+                            </label>
+                        </div>
+                        <div class="right">
+                            <label for="note">
+                                <h3>Note:</h3>
+                                <input type="text-area" name="note" placeholder="Add a note about your spot!">
+                             </label>
+                        </div>
+                    </div>  
                     <div id="share-button-div">
                         <input id="form-button" type="submit" value="Share">
                     </div>
                 </form>
-            </div>
           </section>
         </section>
 </head>

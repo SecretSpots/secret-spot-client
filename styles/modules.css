@@ -6,6 +6,10 @@
     cursor: pointer;
 }
 
+#drop-down{
+    display: flex;
+}
+
 #delete-status {
     color: red;
 }
