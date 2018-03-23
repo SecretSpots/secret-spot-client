@@ -17,7 +17,7 @@
             zoom: 13,
             center: center,
             styles: mapStyle,
-            // gestureHandling: 'greedy',
+            gestureHandling: 'greedy',
             mapTypeControl: false,
             scaleControl: true,
             streetViewControl: false,

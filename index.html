@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta https-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
     <link rel="stylesheet" href="styles/vendors/normalize.css">
     <link rel="stylesheet" href="styles/icons.css">
     <link rel="stylesheet" href="styles/base.css">
-    <link rel="stylesheet" href="styles/layout.css">
     <link rel="stylesheet" href="styles/modules.css">
+    <link rel="stylesheet" href="styles/layout.css">
 
     <title>Secret Spots</title>
 
@@ -21,32 +22,34 @@
       </nav>
 
       <section id="new-spot-view" class="view">
-          <h2 class="view-title">Add New Spot</h2>
+          <h2 class="view-title">Add Your Spot:</h2>
           <div id="search-new-spot">
             <input id="locationTextField" placeholder="Where's your spot?" type="text"></input>
           </div>
   
           <section id="form-view">
-            <form id="add-spot">
-                <label>
-                    Name of Spot:
-                    <input type="text" name="name" style="width:229px" required>
-                </label>
-                <label>
-                    Address:
-                    <input type="text" name="address" style="width:264px" required>
-                </label>
-                <label>
-                    Marker:
-                    <input type="text" name="address" disabled="disabled" style="width:269px">
-                </label>
-                <label>
-                    <input type="text-area" name="note" placeholder="Add a note about your spot!">
-                </label>
-                <div id="share-button-div">
-                    <input id="form-button" type="submit" value="Share">
-                </div>
-            </form>
+            <div id="add-spot-container">
+                <form id="add-spot">
+                    <label>
+                        <h3>Name of Spot:</h3>
+                        <input type="text" name="name" required>
+                    </label>
+                    <label>
+                        <h3>Address:</h3>
+                        <input type="text" name="address" required>
+                    </label>
+                    <label>
+                        <h3>Marker:</h3>
+                        <input type="text" name="address" disabled="disabled" required>
+                    </label>
+                    <label>
+                        <input type="text-area" name="note" placeholder="Add a note about your spot!">
+                    </label>
+                    <div id="share-button-div">
+                        <input id="form-button" type="submit" value="Share">
+                    </div>
+                </form>
+            </div>
           </section>
         </section>
 </head>
@@ -56,14 +59,9 @@
         <section id="map-view" class="view">
             <div id="map"></div>
         </section>
-        <section id="list-view" class="view">
-            <div id="filter">
-                <form>
-                    <input type="checkbox" id="filter-authour" name="filter-by-author" value="filter-by-author">
-                    <label for="filter-by-author">Show only my spots</label>
-                </form>
-            </div id="drop-down">
-                <form>
+        <section id="list-view" class="view">                
+            <div id="drop-down">
+                <form id="sort-form">
                     <select id="sort">
                         <option value="data-title">-- Sort by Title --</option>
                         <option value="data-popularity">-- Sort by Popularity --</option>
@@ -71,6 +69,10 @@
                         <option value="data-spot-id">-- Sort by Newest --</option>
                         <option value="data-date">-- Sort by Oldest --</option>
                     </select>
+                </form>
+                <form id="filter">
+                    <input type="checkbox" id="filter-authour" name="filter-by-author" value="filter-by-author">
+                    <label for="filter-by-author">Show only my spots</label>
                 </form>
         </section>
 

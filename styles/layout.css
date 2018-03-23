@@ -1,3 +1,27 @@
+#drop-down{
+    display: flex;
+}
+
+#search-new-spot {
+    padding-left: 1.4em;
+}
+
+#locationTextField{
+    width: 22em;
+    border-radius: .1em;
+    padding: .2em;
+    max-width: 80%;
+}
+
+#sort-form {
+    margin: .2em;
+    display: inline-block;
+}
+
+#filter {
+    display: inline-block;
+}
+
 .info-triangle{
     background-color: #000000d2 !important;
 }
@@ -19,4 +43,79 @@
 .info-text, .info-text a, .info-text a:visited{
     color: #dadada;
     font-style: italic;
+}
+
+#new-spot-view {
+    background-color: black;
+    color: white;
+    padding-bottom: 1em;
+}
+
+#new-spot-view h2 {
+    padding-left: 1em;
+}
+
+#new-spot-view form {
+    display: flex;
+    flex-flow: column;
+    padding-left: 2em;
+    padding-top: .5em;
+}
+
+#new-spot-view form label {
+    padding-top: .5em
+}
+
+#new-spot-view textarea {
+    background-color: white;
+}
+
+#form-button {
+    padding: .3em;
+    background-color: white
+}
+
+#share-button-div {
+    border-style: none;
+    border-radius: 15px;
+    padding-top: .5em;
+}
+
+#add-spot-container{
+    width: 80%;
+    margin: auto;
+}
+
+#add-spot h3{
+    display: inline-flex;
+    flex: 1 0 auto;
+    padding-right: .5em;
+}
+
+#add-spot input[type=text]{
+    display: inline-flex;
+    flex: 0 1 auto;
+    width: 80%;
+}
+
+input[type=text-area]{
+    flex: 0 0 auto;
+    width: 100%;
+    height: 2em;
+}
+
+#share-button-div{
+    margin: auto;
+}
+
+#share-button-div input{
+    background-color: #c1af48; 
+    border: none;
+    color: white;
+    padding: 1em 2em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: .2em;
 }
