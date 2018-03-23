@@ -139,7 +139,6 @@
     spotView.loadSpots = () => {
         Spot.all.forEach(spot => {
             spot.date = formatDate(new Date(Date.parse(spot.date)));
-            console.log(spot.date);
             const html = listTemplate(spot);
             $('#list-view').append(html);
         });
