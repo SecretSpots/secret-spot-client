@@ -36,6 +36,7 @@
         $('select').change(function(){
             const sortVal = $('#sort option:selected').val();
             spotView.sortBy(sortVal);
+            spotView.filterHandler();
         });
     };
 
@@ -43,7 +44,7 @@
         const $posts = $('#list-view');
 
         $posts.find('.spot').sort(function (a, b) {
-            if (sortVal === 'data-title' || sortVal === 'data-date') { // sort 1-10...
+            if (sortVal === 'data-title' || sortVal === 'data-date' || sortVal === 'data-popularity') { // sort 1-10...
                 return $(a).attr(`${sortVal}`).toLowerCase() > $(b).attr(`${sortVal}`).toLowerCase();
             } else { // sort 10-1...
                 return $(a).attr(`${sortVal}`).toLowerCase() < $(b).attr(`${sortVal}`).toLowerCase();
@@ -83,6 +84,9 @@
         $('.spot').empty().remove();
         
         spotView.loadSpots();
+        spotView.showMore();
+        spotView.sortListener();
+        spotView.populateFilter();
 
         $('.list-good-spot, .list-been-spot').hide();
 
@@ -144,8 +148,8 @@
     
     spotView.loadSpots = () => {
         Spot.all.forEach(spot => {
+            spot.date = formatDate(spot.date);
             formatVotes(spot);
-            spot.date = formatDate(new Date(Date.parse(spot.date)));
             const html = listTemplate(spot);
             $('#list-view').append(html);
         });
@@ -159,6 +163,7 @@
     }
     
     function formatDate(date) {
+        const formattedDate = new Date(Date.parse(date));
         const monthNames = [
             'January', 'February', 'March',
             'April', 'May', 'June', 'July',
@@ -166,11 +171,11 @@
             'November', 'December'
         ];
       
-        const day = date.getDate();
-        const monthIndex = date.getMonth();
-        const year = date.getFullYear();
-        const hour = date.getHours();
-        const minutes = date.getMinutes();
+        const day = formattedDate.getDate();
+        const monthIndex = formattedDate.getMonth();
+        const year = formattedDate.getFullYear();
+        const hour = formattedDate.getHours();
+        const minutes = ('0' + formattedDate.getMinutes()).slice(-2);
       
         return `${monthNames[monthIndex]} ${day}, ${year} ${hour}:${minutes}`;
     }
