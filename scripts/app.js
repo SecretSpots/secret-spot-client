@@ -19,6 +19,7 @@
         if (User.current) {
             page('*', () => page.redirect('/map'));
             $('.login-options').hide();
+            $('#add-link').show();
             $('#current-username').text(User.name).fadeIn();
             $('#logout')
                 .fadeIn()
@@ -31,6 +32,7 @@
             $('#current-username').empty().hide();
             $('#logout').hide();
             $('.login-options').show();
+            $('#add-link').hide();
             page('*', () => page.redirect('/auth/signin'));
         }
     };
