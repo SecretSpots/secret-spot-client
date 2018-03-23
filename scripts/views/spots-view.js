@@ -41,6 +41,7 @@
         $('select').change(function(){
             const sortVal = $('#sort option:selected').val();
             spotView.sortBy(sortVal);
+            spotView.filterHandler();
         });
     };
 
@@ -88,8 +89,8 @@
         $('.spot').empty().remove();
         spotView.loadSpots();
         spotView.showMore();
-        spotView.populateFilter();
         spotView.sortListener();
+        spotView.populateFilter();
 
         $('#list-view')
             .off('click', '.list-delete-spot')
