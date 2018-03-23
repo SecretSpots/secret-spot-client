@@ -10,6 +10,8 @@
 
     mapView.initMapView = () => {
         $('#map-view').show();
+        $('#add-spot')[0].reset();
+
         if (Map.tempMarker) Map.tempMarker.setMap(null);
 
         mapView.buildMarkers();

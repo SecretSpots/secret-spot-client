@@ -80,8 +80,10 @@
     flex: 1 0 auto;
 }
 
-.left input[type="text"]:disabled {
+.left #address {
     background: #91acb3;
+    cursor: default;
+
 }
 
 .right {
