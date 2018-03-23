@@ -142,7 +142,6 @@
         spotView.showMore();
         spotView.populateFilter();
         spotView.sortListener();
-        // spotView.sortBy();
 
     };
     
