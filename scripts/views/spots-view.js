@@ -120,6 +120,30 @@
             $('#list-view').append(html);
         });
     };
+    
+    function formatDate(date) {
+        const monthNames = [
+            'January', 'February', 'March',
+            'April', 'May', 'June', 'July',
+            'August', 'September', 'October',
+            'November', 'December'
+        ];
+      
+        const day = date.getDate();
+        const monthIndex = date.getMonth();
+        const year = date.getFullYear();
+      
+        return `${monthNames[monthIndex]} ${day}, ${year}`;
+    }
+
+    spotView.loadSpots = () => {
+        Spot.all.forEach(spot => {
+            spot.date = formatDate(new Date(Date.parse(spot.date)));
+            console.log(spot.date);
+            const html = listTemplate(spot);
+            $('#list-view').append(html);
+        });
+    };
 
     spotView.initUpdateView = () => {
         const spot = Spot.detail;
