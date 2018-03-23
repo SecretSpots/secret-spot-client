@@ -10,13 +10,14 @@
 
     mapView.initMapView = () => {
         $('#map-view').show();
+        if (Map.tempMarker) Map.tempMarker.setMap(null);
 
         mapView.buildMarkers();
         mapView.initForm();
 
         google.maps.event.addListener(Map.infoWindow, 'domready', function() {
             $('.gm-style-iw').siblings().first().addClass('info-container');
-            $('.gm-style-iw').siblings().last().addClass('icon-cancel-circle').empty();
+            $('.gm-style-iw').siblings('div').last().addClass('icon-cancel-circle').empty();
             $('.info-container div:nth-child(3)').find('div div').addClass('info-triangle');
             $('.info-container div:nth-child(4)').addClass('info-background');
         });
