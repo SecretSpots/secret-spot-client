@@ -167,7 +167,7 @@
 }
 
 textarea {
-    background-color: #bddde6;
+    background-color: #ffffff;
     border: none;
 }
 
@@ -218,3 +218,8 @@ textarea {
 .detail-div h3 {
     padding-left: 1em;
 }
+
+.detail-div p {
+    padding-left: 2em;
+}
+

@@ -41,7 +41,7 @@
                     <input type="text" name="address" disabled="disabled" style="width:269px">
                 </label>
                 <label>
-                    <textarea rows="10" cols="40" name="note" placeholder="Add a note about your spot!"></textarea>
+                    <input type="text-area" name="note" placeholder="Add a note about your spot!">
                 </label>
                 <div id="share-button-div">
                     <input id="form-button" type="submit" value="Share">
@@ -128,7 +128,7 @@
                   <p>Added by <span class="list-user-name">{{username}}</span> on {{date}}</p>
                   <div class="editing-buttons">                
                     <button class="list-delete-spot" >Delete this Spot</button>
-                    <a href="/spots/{{spot_id}}/update"><button class="list-update-button">Update this Spot</button></a>
+                    <a href="/spots/{{spot_id}}/update"><button>Update this Spot</button></a>
                   </div>
                   <div class="voting-buttons">
                     <button class="list-been-spot">I've been here</button>
