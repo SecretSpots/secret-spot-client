@@ -64,11 +64,11 @@
     };
 
     Spot.checkVotesSingle = (id) => {
-        return $.getJSON(`${API_URL}/spots/${id}/votes`);
+        return $.getJSON(`${API_URL}/check/${id}/votes`);
     };
     
     Spot.checkVotesAll = () => {
-        return $.getJSON(`${API_URL}/spots/votes`);
+        return $.getJSON(`${API_URL}/check/votes`);
     };
     
     Spot.recordBeen = (id) => {

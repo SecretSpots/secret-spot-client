@@ -13,15 +13,13 @@
     
     spotView.showMore = () => {
         $('.hide').slideUp(0);
-        $('.editing-buttons, .voting-buttons').hide();
+        $('.editing-buttons').hide();
         $('#list-view').off('click', 'a.show-more, a.icon-circle-down, a.show-less');
         $('#list-view').on('click', 'a.show-more, a.icon-circle-down, a.show-less', function(e) {
             e.preventDefault();
             if ($(this).hasClass('show-more')) {
                 if(User.name === $(this).data('username')) {
                     $(this).parent().find('.editing-buttons').show();
-                } else if (User.current) {
-                    $(this).parent().find('.voting-buttons').show();
                 }
                 $(this).parent().find('.hide').slideDown(200);
                 $(this).addClass('show-less');
@@ -83,37 +81,10 @@
     spotView.initListView = () => {
         $('#list-view').fadeIn();
         $('.spot').empty().remove();
-
-        if (User.current) {
-            Spot.checkVotesSingle(spot.spot_id)
-                .then(response => {
-                    $('.voting-buttons').show();
-                    $('#good-spot, #been-spot').show().fadeTo(200, 0.3);
-                    if (!response.rows.length) {
-                        activateBeenButton(spot);
-                        activateGoodButton(spot);
-                    } else {
-                        const voteInfo = response.rows[0];
-                        if (!voteInfo.beenHere) {
-                            activateBeenButton(spot);
-                        } else {
-                            $('#been-spot').fadeTo(200, 0.3);
-                        }
-                        if (!voteInfo.likedHere) {
-                            activateGoodButton(spot);
-                        } else {
-                            $('#good-spot').fadeTo(200, 0.3);
-                        }
-                    }
-                })
-                .catch(console.error);
-        }
-
+        
         spotView.loadSpots();
-        spotView.showMore();
-        spotView.populateFilter();
-        spotView.sortListener();
-        // spotView.sortBy();
+
+        $('.list-good-spot, .list-been-spot').hide();
 
         $('#list-view')
             .off('click', '.list-delete-spot')
@@ -121,18 +92,54 @@
                 handleDelete($(this).parents('.spot-info').data('spot-id'), '/list-view');
             });
         
-        $('#list-view')
+        $('.spot-info')
             .off('click', '.list-been-spot')
             .on('click', '.list-been-spot', function() {
                 handleBeen($(this).parents('.spot-info').data('spot-id'));
+                $(this).fadeTo(200, 0.3);
+                updateText($(this), '.spot-info', 'been');
             });
 
-        $('#list-view')
+        $('.spot-info')
             .off('click', '.list-good-spot')
             .on('click', '.list-good-spot', function() {
+                console.log('clicked');
                 handleGood($(this).parents('.spot-info').data('spot-id'));
+                $(this).fadeTo(200, 0.3);
+                updateText($(this), '.spot-info', 'good');
             });
+
+        if (User.current) {
+            Spot.checkVotesAll()
+                .then(response => {
+                    if (response.rows.length) {
+                        const beenInfo = response.rows[0].beenArray;
+                        const goodInfo = response.rows[0].goodArray;
+                        Spot.all.forEach(spot => {
+                            const div = `div[data-spot-id=${spot.spot_id}]`;
+                            if (beenInfo.includes(spot.spot_id)) {
+                                $(div).off('click', '.list-been-spot');
+                                $(`${div} .list-been-spot`).fadeTo(200, 0.3);
+                            } else if (spot.username !== User.name) {
+                                $(`${div} .list-been-spot`).fadeTo(200, 1);
+                            }
+                            if (goodInfo.includes(spot.spot_id)) {
+                                $(div).off('click', '.list-good-spot');
+                                $(`${div} .list-good-spot`).fadeTo(200, 0.3);
+                            } else if (spot.username !== User.name) {
+                                $(`${div} .list-good-spot`).fadeTo(200, 1);
+                            }
+                        });
+                    }
+                })
+                .catch(console.error);
+        }
         
+        spotView.showMore();
+        spotView.populateFilter();
+        spotView.sortListener();
+        // spotView.sortBy();
+
     };
     
     spotView.loadSpots = () => {
