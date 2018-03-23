@@ -12,10 +12,8 @@
 
     const resetView = () => {
         $('.view').hide();
-        if (Map.tempMarker) Map.tempMarker.setMap(null);
+        // if (Map.tempMarker) Map.tempMarker.setMap(null);
     };
-
-
 
     const displayUser = () => {
         if (User.current) {
