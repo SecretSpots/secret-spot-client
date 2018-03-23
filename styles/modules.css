@@ -162,10 +162,6 @@
     padding: .3em
 }
 
-.content {
-    background-color:  #407887;;
-}
-
 textarea {
     background-color: #ffffff;
     border: none;
@@ -221,5 +217,15 @@ textarea {
 
 .detail-div p {
     padding-left: 2em;
+}
+
+#auth-view {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    padding-top: 17em
+
 }
 

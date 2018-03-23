@@ -4,6 +4,15 @@
         height: 90vh;
         width:100%
       }
+
+      html {
+        background-image:  url("./images/map-background.png");
+        background-size: 200%;
+      }
+
+      body {
+        background: rgba(0, 0, 0, 0.694)
+      }
       /* Optional: Makes the sample page fill the window. */
       html, body {
         height: 100%;
@@ -101,6 +110,6 @@
       text-decoration: none;
       color:white
     }
-    
+
   
 
