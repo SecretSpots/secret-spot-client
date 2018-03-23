@@ -1,96 +1,120 @@
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-       #map {
-        height: 90vh;
-        width:100%
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
+/* Always set the map height explicitly to define the size of the div
+  * element that contains the map. */
+#map {
+  height: 84.6vh;
+  width:100%;
+  padding: 0;
+  margin: 0;
+}
 
-      a {
-        text-decoration: none;
-        color: black
-      }
+html {
+  background-image:  url("./images/map-background.png");
+  background-size: 200%;
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+}
 
-      nav {
-        background-color: black;
-        font-size: 20px;
-        height: 10%;
-      }
+body {
+  background: rgba(0, 0, 0, 0.694)
+}
 
-      nav a {
-        color: white
-      }
+/* Optional: Makes the sample page fill the window. */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
-      nav ul {
-        float: right;
-        margin: 0;
-        display: flex;
-        list-style-type: none;
-        flex-direction: row;
-        justify-content: flex-end;
-        justify-content: space-between;
-        align-items: center;
-        padding-right: 2%;
-        height: 100% 
+a {
+  text-decoration: none;
+  color: black
+}
 
-      }
+nav {
+  background-color: black;
+  font-size: 20px;
+  height: 10%;
+}
 
-      ul li {
-        padding-top: 2%;
-        padding-bottom: 2%;
-      }
+nav a {
+  color: white
+}
 
-    body {
-      display: flex;
-      flex-direction: column;
-    }
+nav ul {
+  margin: 0;
+  display: flex;
+  list-style-type: none;
+  flex-direction: row;
+  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 1em;
+  height: 100% 
 
-    .content {
-      flex: 1 0 auto;
-    }
+}
 
-    footer {
-      flex-shrink: 0;
-      background-color: black;
-      display: flex;
-      color: white;
-      flex-direction: row;
-      justify-content: flex-end;
-      justify-content: space-between;
-      align-items: center;
-      padding-right: 2%;
-      padding-left: 2%;
-      }
-    
-    button {
-      border-style: none;
-      border-radius: 5px;
-      background-color: black;
-      color: white;
-      padding: .3em
-    }
+ul li {
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
 
-    .editing-buttons {
-      padding-left: 1em;
-      padding-bottom: 1em;
-    }
+body {
+  display: flex;
+  flex-direction: column;
+}
 
-    .voting-buttons {
-      padding-left: 1em;
-      padding-bottom: 1em;
-    }
+.content {
+  flex: 1 0 auto;
+}
 
-    #list-view {
-      background-color:  #407887;
-    }
+footer {
+  flex-shrink: 0;
+  background-color: black;
+  display: flex;
+  color: white;
+  flex-direction: row;
+  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 2%;
+  padding-left: 2%;
+}
 
-    #update-view {
-      background-color:  #407887;
-    }
-  
+button {
+  border-style: none;
+  border-radius: 5px;
+  background-color: black;
+  color: white;
+  padding: .3em;
+}
+
+button:focus {
+  outline:0;
+}
+
+.editing-buttons {
+  padding-left: 1em;
+  padding-bottom: 1em;
+}
+
+.voting-buttons {
+  padding-left: 1em;
+  padding-bottom: 1em;
+}
+
+#list-view {
+  background-color:  #407887;
+}
+
+#update-view {
+  background-color:  #407887;
+}
+
+footer a {
+  background-color: none;
+  text-decoration: none;
+  color:white
+}
+
+
 
