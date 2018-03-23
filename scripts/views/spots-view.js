@@ -43,7 +43,7 @@
     spotView.sortBy = (sortVal) => {
         const posts = $('#list-view');
 
-        posts.find('.spot').sort(function (a, b) {                
+        posts.find('.spot').sort(function (a, b) {
             const a2 = $(a).attr(`${sortVal}`).toLowerCase();
             const b2 = $(b).attr(`${sortVal}`).toLowerCase();
 
