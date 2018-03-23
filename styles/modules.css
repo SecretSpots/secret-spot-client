@@ -45,7 +45,7 @@
     justify-content: flex-end;
     align-items: center;
     padding-right: 1em;
-    padding-bottom: .2em;
+    padding-bottom: 1em;
 }
 
 .list-view-header {
@@ -118,9 +118,13 @@
 }
 
 #filter {
-    background-color: #407887;
+    background-color: black;
+    color: white;
+    padding: .5em;
+}
+
+#update-view {
     color: black;
-    padding: 1em;
 }
 
 .update-div h2 {
@@ -128,19 +132,17 @@
     margin-bottom: 0;
     padding-left: .5em;
     padding-top: 1em;
-    color: #163142;
 }
 
 .update-div h3 {
     margin-top: 0;
     padding-left: 1.5em;
     padding-top: 1em;
-    color: #163142;
 }
 
 .update-div p {
     padding-left: 1.5em;
-    color: #163142;
+    padding-bottom: 1em;
 }
 
 .update-div form {
@@ -161,6 +163,8 @@
     color: white;
     padding: .3em
 }
+
+
 
 textarea {
     background-color: #ffffff;
@@ -219,13 +223,42 @@ textarea {
     padding-left: 2em;
 }
 
+#detail-view {
+    background-color: #407887;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+}
+
+#detail-view div {
+    padding-left: .5em;
+}
+
 #auth-view {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     align-content: center;
-    padding-top: 17em
 
+}
+
+#auth-view form {
+    padding-top: 1em
+}
+
+#auth-view h1 {
+    color: #407887;
+    font-family: 'Amatic SC', cursive;
+    width: 75%;
+    font-size: 6em;
+    text-align: center;
+    margin-bottom: 0;
+    margin-top: 1.5em
+}
+
+#auth-type {
+    padding-top: .8em;
+    color:  white;
 }
 
