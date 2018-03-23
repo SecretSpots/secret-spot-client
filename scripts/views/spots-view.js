@@ -118,7 +118,6 @@
             spot.date = formatDate(spot.date);
             const html = listTemplate(spot);
             $('#list-view').append(html);
-            console.log(Spot.all);
         });
     };
     
