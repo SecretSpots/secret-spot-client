@@ -8,7 +8,7 @@ Alternative source to find and share secret spots with your community.
 
 
 ## Getting Started
-Site will be deployed at https://secretspots.github.io/secret-spot-client/
+Our site is live at https://secretspots.github.io/ ! Our server repo is located [here](https://github.com/SecretSpots/secret-spot-server)
 
 ## Architecture
 This project makes use of the following third party software: eslint, nodemon, cors, dotenv, express, morgan, pg.
