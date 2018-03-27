@@ -40,9 +40,7 @@
         Spot.fetchAll().then(next);
     };
 
-    page('*', (ctx, next) => {
-        resetView();
-
+    const resetAddLink = (ctx) => {
         $('#add-link').off('click');
         if (ctx.pathname === '/map') {
             $('#add-link').on('click', (event)=>{
@@ -58,7 +56,13 @@
                 page('/map?add');
             });
         }
+    };
 
+    page('*', (ctx, next) => {
+        // keep "scale" the same. now a list of actions.
+        // versus two functions calls and one inline action.
+        resetView();
+        resetAddLink(ctx);
         displayUser();
         next();
     });
