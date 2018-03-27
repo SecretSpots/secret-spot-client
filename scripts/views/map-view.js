@@ -27,7 +27,9 @@
     };
 
     let autocomplete = {};
-    let place = {};
+    // try not to use variables like this to pass state around, 
+    // see if you can pass explicitly instead.
+    // let place = {};
 
     mapView.initForm = () => {
         $('#form-view').hide();
@@ -48,20 +50,23 @@
     const onAutocomplete = () => {
         $('#form-view').slideDown(200);
 
-        place = autocomplete.getPlace();
-        place = {
-            name : place.name,
-            address : place.formatted_address,
-            lat : place.geometry.location.lat(),
-            lng : place.geometry.location.lng()
+        const autoPlace = autocomplete.getPlace();
+        const place = {
+            name : autoPlace.name,
+            address : autoPlace.formatted_address,
+            lat : autoPlace.geometry.location.lat(),
+            lng : autoPlace.geometry.location.lng()
         };
 
-        fillInForm();
-        mapSearch();
+        fillInForm(place);
+        mapSearch(place);
     };
 
     const submitHandler = (e) => {
         e.preventDefault();
+
+        // replacing place.lat and place.lng 
+        // would come from form[2].value
 
         const data = {
             name : $('input[name=name]').val(),
@@ -98,7 +103,6 @@
             const marker = new google.maps.Marker({
                 position: new google.maps.LatLng(spot.lat, spot.lng),
                 icon: markerSVG,
-
                 name: spot.name,
                 id: spot.spot_id
             });
@@ -122,13 +126,13 @@
                 if (Map.tempMarker) Map.tempMarker.setMap(null);
 
                 marker.setAnimation(google.maps.Animation.BOUNCE);
-                setTimeout(function(){ marker.setAnimation(null); }, 375);
+                setTimeout(() => marker.setAnimation(null), 375);
         
             });
         });
     };
 
-    const fillInForm = () => {
+    const fillInForm = (place) => {
         
         const form = $('#add-spot input');
 
@@ -137,7 +141,7 @@
         form[2].value = `${place.lat} ${place.lng}`;
     };
 
-    const mapSearch = () => {
+    const mapSearch = (place) => {
         Map.tempMarker = new google.maps.Marker({
             position: new google.maps.LatLng(place.lat, place.lng),
             map: Map.mapObject,

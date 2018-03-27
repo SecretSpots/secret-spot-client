@@ -4,9 +4,13 @@
 
     function Spot(data) {
         Object.keys(data).map(key => this[key] = data[key]);
+        // something like this. I would rename for template use
+        this.displayDate = formatDate(this.date);
     }
 
     Spot.all = [];
+
+    // take a look at .toLocaleString() for built in formatting...
 
     function formatDate(date) {
         const formattedDate = new Date(Date.parse(date));
@@ -39,7 +43,7 @@
         return $.getJSON(`${API_URL}/spots/${id}`)
             .then(data => {
                 Spot.detail = new Spot(data);
-                Spot.detail.date = formatDate(Spot.detail.date);
+                // moved the date format to model...
             });
 
     };

@@ -11,6 +11,7 @@
     Map.infoWindow = null; //define in outer scope to avoid duplicates
 
     Map.initMap = () => {
+        // Another option here would be to try browser geolocation...
         const center = { lat: 45.519900, lng: -122.678316 };
         
         Map.mapObject = new google.maps.Map(document.getElementById('map'), {
